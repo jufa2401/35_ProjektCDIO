@@ -1,4 +1,4 @@
-package controller;
+package controller.fieldcontrollers;
 //
 public class JailController {
 

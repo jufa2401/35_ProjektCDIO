@@ -1,4 +1,4 @@
-package controller;
+package controller.fieldcontrollers;
 
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
