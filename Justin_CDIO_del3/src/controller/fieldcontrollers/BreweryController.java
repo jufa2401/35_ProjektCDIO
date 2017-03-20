@@ -7,8 +7,8 @@ import entity.fieldclasses.Field;
 import entity.fieldclasses.Ownable;
 
 public class BreweryController {
-	public static void BreweryRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
-		if (field.getType() == 2) {
+	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
+		if (field.getPrice() > 0) {
 			//			hvis feltet kan ejes
 			Ownable ofield = (Ownable) field; 
 			if (ofield.getOwner() != null) {
