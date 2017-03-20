@@ -1,17 +1,23 @@
+/*
+ * Dette er en klasse som skal beskrive felter hvor man lander og der ikke sker noget,
+ * og de felter hvor handlingen på feltet er en simpel overførsel af penge.
+ * Dvs. klassen dækker over: Besøg fængsel, start, og parkering
+ */
+
 package entity.fieldclasses;
 import java.awt.Color;
 
 import entity.Player;
 //TODO: Meddelelse om modtagelse af penge
-public class Refuge extends Field {
+public class MiscFields extends Field {
 private int bonus;
 
-	/** Constructor til Refuge felter.
+	/** Constructor til Misc felter.
 	 * @param fieldNumber
 	 * @param color
 	 * @param bonus
 	 */
-	public Refuge(int fieldNumber, Color color, int bonus) {
+	public MiscFields(int fieldNumber, Color color, int bonus) {
 		super(fieldNumber, color);
 		this.bonus = bonus;
 	}

@@ -12,25 +12,25 @@ import entity.Player;
  *
  */
 
-public class Fleet extends Ownable {
+public class ShippingCompany extends Ownable {
 
-	int rent, fleetsOwned;
+	int rent, ShippingCompanysOwned;
 
 	/**
-	 * Constructor til Fleet felt objekter/instanser. 
+	 * Constructor til ShippingCompany felt objekter/instanser. 
 	 * @param fieldNumber
 	 * @param color
 	 * @param price
 	 */
 
-	public Fleet(int fieldNumber, Color color, int price) {
+	public ShippingCompany(int fieldNumber, Color color, int price) {
 		super(fieldNumber, color, price);
 	}
 /**
- *  Hvis man lander på en Fleet som er ejet,
+ *  Hvis man lander på en ShippingCompany som er ejet,
  * skal man betale en variabel leje til ejeren.
  * Lejen er bestemt efter hvor mange af denne type ejendom man ejer
- * dvs. at du kan opkræve højere leje, jo flere 'fleets' du ejer
+ * dvs. at du kan opkræve højere leje, jo flere 'ShippingCompanys' du ejer
  * Når det er bestemt bliver det betalt
  * metoden returnerer det betalte beløb, som bruges til at tælle
  * balancen ned i GUIen
@@ -39,8 +39,8 @@ public class Fleet extends Ownable {
 	public int landOnField(Player player)  {
 		int paid = 0;
 		if (this.owner != null){
-			fleetsOwned = this.owner.getFleetsOwned();
-			switch (fleetsOwned) {
+			ShippingCompanysOwned = this.owner.getShippingCompanysOwned();
+			switch (ShippingCompanysOwned) {
 			case 1: rent = 500;		break;
 			case 2: rent = 1000;	break;
 			case 3: rent = 2000;	break;
@@ -56,12 +56,12 @@ public class Fleet extends Ownable {
 /**
  * Superklassens metode til at købe feltet genbruges
  * derudover registreres det at denne spiller har købt 
- * endnu en fleet, da dette skal bruges til at beregne leje
+ * endnu en ShippingCompany, da dette skal bruges til at beregne leje
  */
 	@Override
 	public void buyField(Player player) {
 		super.buyField(player);
-		player.setFleetsOwned(1+player.getFleetsOwned());
+		player.setShippingCompanysOwned(1+player.getShippingCompanysOwned());
 	}
 
 
@@ -76,10 +76,10 @@ public class Fleet extends Ownable {
 	}
 	/**
 	 * Returnerer unik id, 
-	 * som identificerer denne klasse som Fleet
+	 * som identificerer denne klasse som ShippingCompany
 	 */
 	@Override
 	public int getType() {
-		return 1;	// Fleet
+		return 1;	// ShippingCompany
 	}
 }

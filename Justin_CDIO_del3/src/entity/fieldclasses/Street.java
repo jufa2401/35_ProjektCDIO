@@ -9,15 +9,16 @@ import entity.Player;
  * skal man betale en fast leje til ejeren.
  * 
  */
-public class Territory extends Ownable{
-	int rent;
+public class Street extends Ownable{
+//	Streetsowned skal bruges!
+	int rent, StreetsOwned;
 	/** Constructor til Territory felter
 	 * @param fieldNumber
 	 * @param color
 	 * @param price
 	 * @param rent
 	 */
-	public Territory(int fieldNumber, Color color, int price, int rent) {
+	public Street(int fieldNumber, Color color, int price, int rent) {
 		super(fieldNumber, color, price);
 		this.rent = rent;	
 	}

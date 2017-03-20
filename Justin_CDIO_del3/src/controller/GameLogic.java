@@ -9,9 +9,10 @@ import entity.fieldclasses.Ownable;
 public class GameLogic{
 
 	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
-		if (field.getPrice() > 0) {
+		Ownable ofield = (Ownable) field;
+		if (ofield.getPrice() > 0) {
 			//			hvis feltet kan ejes
-			Ownable ofield = (Ownable) field; 
+		
 			if (ofield.getOwner() != null) {
 				// Hvis der er en ejer af feltet
 				int paid = ofield.landOnField(player);

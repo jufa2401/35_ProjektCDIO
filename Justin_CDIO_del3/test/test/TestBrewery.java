@@ -11,17 +11,17 @@ import org.junit.Test;
 import entity.fieldclasses.*;
 import entity.*;
 
-public class TestLaborCamp {
+public class TestBrewery {
 
 	private Player player;
-	private LaborCamp feltlabor;
+	private Brewery feltlabor;
 	private Player ejer = new Player("ejer", 10000);
 	private DiceCup d12;
 	
 	@Before
 	public void setUp() throws Exception {
 		this.player = new Player("Doland Dak", 10000);
-		this.feltlabor = new LaborCamp(1, Color.BLACK, 2000);
+		this.feltlabor = new Brewery(1, Color.BLACK, 2000);
 		this.d12 = new DiceCup();
 	}
 
@@ -50,7 +50,7 @@ public class TestLaborCamp {
 		Assert.assertNotNull(this.player);
 		Assert.assertNotNull(this.feltlabor);
 		
-		Assert.assertTrue(this.feltlabor instanceof LaborCamp);
+		Assert.assertTrue(this.feltlabor instanceof Brewery);
 	}
 	
 	@Test
@@ -59,10 +59,10 @@ public class TestLaborCamp {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		//Tester om når der er én ejer af af laborcampen og en anden spiller lander derpå om balancen bliver påvirket korrekt.
+		//Tester om når der er én ejer af af Breweryen og en anden spiller lander derpå om balancen bliver påvirket korrekt.
 		d12.rollDiceCup();
 		this.player.SaveDiceRoll(d12);
-		ejer.setLaborCampsOwned(1);
+		ejer.setBreweriesOwned(1);
 		this.feltlabor.setOwner(ejer);
 		this.feltlabor.landOnField(this.player);
 		
@@ -79,10 +79,10 @@ public class TestLaborCamp {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		//Tester om når der er én ejer af af laborcampen og en anden spiller lander derpå om balancen bliver påvirket korrekt.
+		//Tester om når der er én ejer af af Breweryen og en anden spiller lander derpå om balancen bliver påvirket korrekt.
 		d12.rollDiceCup();
 		this.player.SaveDiceRoll(d12);
-		ejer.setLaborCampsOwned(2);
+		ejer.setBreweriesOwned(2);
 		this.feltlabor.setOwner(ejer);
 		this.feltlabor.landOnField(this.player);
 		

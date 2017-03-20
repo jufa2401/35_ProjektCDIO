@@ -2,7 +2,7 @@ package entity;
 public class Player {
 
 	private String name;
-	private int balance, currentField, d1, d2, fleetsOwned,LaborCampsOwned, Identifier;
+	private int balance, currentField, d1, d2, ShippingCompanysOwned,BreweriesOwned, Identifier;
 	private boolean hasLost;
 	private static int AvailableIdentifer = 0;
 	/**
@@ -14,8 +14,9 @@ public class Player {
 	public Player (String name, int balance){
 		this.name = name;
 		this.balance = balance;
-		fleetsOwned = 0;
-		LaborCampsOwned = 0;
+//	Disse variabler skal vel hentes fra databasen?
+		ShippingCompanysOwned = 0;
+		BreweriesOwned = 0;
 		hasLost = false;
 		currentField = 0;
 		Identifier = AvailableIdentifer++;
@@ -46,18 +47,18 @@ public class Player {
 	public int getBalance() {
 		return balance;
 	}
-	//	Getters og setters til fleets
-	public int getFleetsOwned() {
-		return fleetsOwned;
+	//	Getters og setters til ShippingCompanys
+	public int getShippingCompanysOwned() {
+		return ShippingCompanysOwned;
 	}
-	public void setFleetsOwned(int fleetsOwned) {
-		this.fleetsOwned = fleetsOwned;
+	public void setShippingCompanysOwned(int ShippingCompanysOwned) {
+		this.ShippingCompanysOwned = ShippingCompanysOwned;
 	}
-	public int getLaborCampsOwned() {
-		return LaborCampsOwned;
+	public int getBreweriesOwned() {
+		return BreweriesOwned;
 	}
-	public void setLaborCampsOwned(int laborCampsOwned) {
-		this.LaborCampsOwned = laborCampsOwned;
+	public void setBreweriesOwned(int BreweriesOwned) {
+		this.BreweriesOwned = BreweriesOwned;
 	}
 
 	/**
@@ -94,13 +95,14 @@ public class Player {
 	 * @param amount
 	 * @return
 	 */
+//	DATABASE
 	public int payTo (Player recipient, int amount) {
 		recipient.Transaction(amount);
 		Transaction(-amount);
 		return balance;
 	}
 
-	//	Getters and setters for fieldnumber
+	//	Getters and setters for fieldnumber - DATABASE
 	public int getCurrentField() {
 		return currentField;
 	}
@@ -110,11 +112,20 @@ public class Player {
 	 * @param gb
 	 * @return
 	 */
+	
 	public int moveToField(int roll, GameBoard gb) {
 		int length = gb.getNumberOfFields();
 		this.currentField += roll;
 		while(this.currentField >= length)
 			this.currentField -= length;
+		return this.currentField;
+	}
+//	Ny kode
+	public int moveFromField(int roll, GameBoard gb) {
+		int length = gb.getNumberOfFields();
+		this.currentField -= roll;
+		while(this.currentField >= length)
+			this.currentField += length;
 		return this.currentField;
 	}
 

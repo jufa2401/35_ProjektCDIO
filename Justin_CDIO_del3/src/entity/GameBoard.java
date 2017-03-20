@@ -3,12 +3,12 @@ import java.awt.Color;
 import java.lang.reflect.Array;
 
 import entity.fieldclasses.Field;
-import entity.fieldclasses.Fleet;
-import entity.fieldclasses.LaborCamp;
+import entity.fieldclasses.ShippingCompany;
+import entity.fieldclasses.Brewery;
 import entity.fieldclasses.Ownable;
-import entity.fieldclasses.Refuge;
+import entity.fieldclasses.MiscFields;
 import entity.fieldclasses.Tax;
-import entity.fieldclasses.Territory;
+import entity.fieldclasses.Street;
 ;
 public class GameBoard {
 	private static Field[] field;
@@ -18,30 +18,30 @@ public class GameBoard {
 		GameBoard.field = new Field[21];
 
 //		Territory parametre: id, feltfarve, feltpris, leje
-		field[0] = new Territory(0, Color.RED, 1000, 100);
-		field[1] = new Territory(1, Color.RED, 1500, 300);
+		field[0] = new Street(0, Color.RED, 1000, 100);
+		field[1] = new Street(1, Color.RED, 1500, 300);
 //		Refuge parametre: id, feltfarve, bonus 
-		field[2] = new Refuge(2, Color.CYAN, 5000);
-//		Fleet parametre: id, pris
-		field[3] = new Fleet(3, Color.BLUE, 4000);
-		field[4] = new Territory(4, Color.RED, 2000, 500);
-		field[5] = new Territory(5, Color.RED, 3000, 700);
-		field[6] = new LaborCamp(6, Color.GREEN, 2500);
+		field[2] = new MiscFields(2, Color.CYAN, 5000);
+//		ShippingCompany parametre: id, pris
+		field[3] = new ShippingCompany(3, Color.BLUE, 4000);
+		field[4] = new Street(4, Color.RED, 2000, 500);
+		field[5] = new Street(5, Color.RED, 3000, 700);
+		field[6] = new Brewery(6, Color.GREEN, 2500);
 //		Tax parametre: id, feltfarve, fast skattebeløb, skatte pct.
 		field[7] = new Tax(7, Color.YELLOW, 2000, 0);
-		field[8] = new Territory(8, Color.RED, 4000, 1000);
-		field[9] = new Territory(9, Color.RED, 4300, 1300);
-		field[10] = new Fleet(10, Color.BLUE, 4000);
-		field[11] = new LaborCamp(11, Color.GREEN, 2500);
-		field[12] = new Territory(12, Color.RED, 4750, 1600);
-		field[13] = new Territory(13, Color.RED, 5000, 2000);
-		field[14] = new Refuge(14, Color.CYAN, 500);
-		field[15] = new Fleet(15, Color.BLUE, 4000);
-		field[16] = new Territory(16, Color.RED, 5500, 2600);
-		field[17] = new Territory(17, Color.RED, 6000, 3200);
+		field[8] = new Street(8, Color.RED, 4000, 1000);
+		field[9] = new Street(9, Color.RED, 4300, 1300);
+		field[10] = new ShippingCompany(10, Color.BLUE, 4000);
+		field[11] = new Brewery(11, Color.GREEN, 2500);
+		field[12] = new Street(12, Color.RED, 4750, 1600);
+		field[13] = new Street(13, Color.RED, 5000, 2000);
+		field[14] = new MiscFields(14, Color.CYAN, 500);
+		field[15] = new ShippingCompany(15, Color.BLUE, 4000);
+		field[16] = new Street(16, Color.RED, 5500, 2600);
+		field[17] = new Street(17, Color.RED, 6000, 3200);
 		field[18] = new Tax(18, Color.YELLOW, 4000, 10);
-		field[19] = new Territory(19, Color.RED, 8000, 4000);	
-		field[20] = new Fleet(20, Color.BLUE, 4000);
+		field[19] = new Street(19, Color.RED, 8000, 4000);	
+		field[20] = new ShippingCompany(20, Color.BLUE, 4000);
 	}	
 	public int getNumberOfFields () {
 		return Array.getLength(field);

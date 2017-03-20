@@ -6,7 +6,7 @@ public class PlayerList {
 	private Player[] players;
 
 /**
- *  For hver spiller der kommer ind i spillet, tæller vi 1 op i players arrayet
+ *  For hver spiller der kommer ind i spillet, tæller vi 1 op i players arrayet *DATABASE PROGRAMMERING*
  * @param playerCount
  */
 	public PlayerList (int playerCount) {
@@ -17,7 +17,7 @@ public class PlayerList {
 	}
 
 /**
- * Vi tildeler spillerne ID, og tilføjer spillerne med  parametrene navn og balance
+ * Vi tildeler spillerne ID, og tilføjer spillerne med  parametrene navn og balance *DATABASE PROGRAMMERING*
  * @param ID
  * @param name
  */

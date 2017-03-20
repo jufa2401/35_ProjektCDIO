@@ -11,31 +11,31 @@ import org.junit.Test;
 import entity.fieldclasses.*;
 import entity.*;
 
-public class TestFleet {
+public class TestShippingCompany {
 	
 	private Player player;
-	private Fleet fleet;
+	private ShippingCompany ShippingCompany;
 	private Player ejer = new Player("ejer", 5000);
 	
 	@Before
 	public void setUp() throws Exception {
 		this.player = new Player("Doland Dak", 10000);
-		this.fleet = new Fleet(1, Color.black, 2000);
+		this.ShippingCompany = new ShippingCompany(1, Color.black, 2000);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		this.player = new Player("Doland Dak", 10000);
-		this.fleet = new Fleet(1, Color.black, 2000);
-		this.player.setFleetsOwned(0);
+		this.ShippingCompany = new ShippingCompany(1, Color.black, 2000);
+		this.player.setShippingCompanysOwned(0);
 	}
 	
 	@Test 
 	public void testEntities() {
 		Assert.assertNotNull(this.player);
-		Assert.assertNotNull(this.fleet);
+		Assert.assertNotNull(this.ShippingCompany);
 		
-		Assert.assertTrue(this.fleet instanceof Fleet);
+		Assert.assertTrue(this.ShippingCompany instanceof ShippingCompany);
 	}
 
 //	@Test
@@ -59,9 +59,9 @@ public class TestFleet {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		ejer.setFleetsOwned(1);
-		this.fleet.setOwner(ejer);
-		this.fleet.landOnField(this.player);
+		ejer.setShippingCompanysOwned(1);
+		this.ShippingCompany.setOwner(ejer);
+		this.ShippingCompany.landOnField(this.player);
 		expected = 10000 - 500;
 		actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
@@ -73,9 +73,9 @@ public class TestFleet {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		ejer.setFleetsOwned(2);
-		this.fleet.setOwner(ejer);
-		this.fleet.landOnField(this.player);
+		ejer.setShippingCompanysOwned(2);
+		this.ShippingCompany.setOwner(ejer);
+		this.ShippingCompany.landOnField(this.player);
 		expected = 10000 - 1000;
 		actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
@@ -87,9 +87,9 @@ public class TestFleet {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		ejer.setFleetsOwned(3);
-		this.fleet.setOwner(ejer);
-		this.fleet.landOnField(this.player);
+		ejer.setShippingCompanysOwned(3);
+		this.ShippingCompany.setOwner(ejer);
+		this.ShippingCompany.landOnField(this.player);
 		expected = 10000 - 2000;
 		actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
@@ -101,9 +101,9 @@ public class TestFleet {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		ejer.setFleetsOwned(4);
-		this.fleet.setOwner(ejer);
-		this.fleet.landOnField(this.player);
+		ejer.setShippingCompanysOwned(4);
+		this.ShippingCompany.setOwner(ejer);
+		this.ShippingCompany.landOnField(this.player);
 		expected = 10000 - 4000;
 		actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
@@ -117,15 +117,15 @@ public class TestFleet {
 		int actual = this.player.getBalance();
 		Assert.assertEquals(expected, actual);
 		
-		// Tester om metoden buyField tilføjer en fleet til spilleren.
-		this.fleet.buyField(this.player);
+		// Tester om metoden buyField tilføjer en ShippingCompany til spilleren.
+		this.ShippingCompany.buyField(this.player);
 		
-		Assert.assertTrue(this.player.getFleetsOwned() == 1);
+		Assert.assertTrue(this.player.getShippingCompanysOwned() == 1);
 		}
 	
 
 //	@Test
-//	public final void testFleet() {
+//	public final void testShippingCompany() {
 //		fail("Not yet implemented"); // TODO - NOT INTERESTING
 //	}
 

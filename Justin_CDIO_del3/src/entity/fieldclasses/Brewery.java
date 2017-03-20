@@ -6,15 +6,15 @@ import java.awt.Color;
 
  */
 import entity.Player;
-public class LaborCamp extends Ownable {
-	int rent, LaborCampsOwned;
+public class Brewery extends Ownable {
+	int rent, BreweriesOwned;
 
-	/**Constructor til LaborCamp felt.
+	/**Constructor til Brewery felt.
 	 * @param fieldNumber
 	 * @param color
 	 * @param price
 	 */
-	public LaborCamp(int fieldNumber, Color color, int price) {
+	public Brewery(int fieldNumber, Color color, int price) {
 		super(fieldNumber, color, price);
 	}
 
@@ -32,8 +32,8 @@ public class LaborCamp extends Ownable {
 	public int landOnField(Player player) {
 		int rent = 0;
 		if (this.owner != null){
-			LaborCampsOwned = this.owner.getLaborCampsOwned(); 
-			rent = LaborCampsOwned * 100*player.getDiceSum();			
+			BreweriesOwned = this.owner.getBreweriesOwned(); 
+			rent = BreweriesOwned * 100*player.getDiceSum();			
 			}
 		player.payTo(this.owner, rent); 
 		return rent;		
@@ -47,7 +47,7 @@ public class LaborCamp extends Ownable {
 	@Override
 	public void buyField(Player player) {
 		super.buyField(player);
-		player.setLaborCampsOwned(1+player.getLaborCampsOwned());
+		player.setBreweriesOwned(1+player.getBreweriesOwned());
 	}
 
 

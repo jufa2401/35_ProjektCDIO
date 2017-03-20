@@ -36,8 +36,6 @@ public abstract class Field {
 	 * Alle underklasserne har denne metode med, selvom de ikke bruger dem
 	 * De vil returnere med 0, hvis de ikke skal bruge dem.
 	 */
-	public abstract int getPrice();
-	public abstract int getRent();
 	
 	/**
 	 * Abstract metode, som nedarves til underklasser,
@@ -74,6 +72,16 @@ public abstract class Field {
 	}
 	
 	public int getTaxRate() {
+		return 0;
+	}
+
+	public int getRent() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getPrice() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
