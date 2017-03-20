@@ -5,14 +5,13 @@ import boundary.language.LanguageHandler;
 import controller.fieldcontrollers.StreetController;
 import entity.Player;
 import entity.fieldclasses.Field;
-import entity.fieldclasses.Ownable;
 
 public class GameLogic{
 
 	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
 		if (field.getPrice() > 0) {
 			StreetController.StreetRules(GUIh, language, fieldNumber, field, player);
-		} else {
+		} else if (field.getType() == 4) {
 			//			hvis feltet ikke kan ejes
 			int taxAmount = field.getTaxAmount();
 			int taxRate   = field.getTaxRate();
