@@ -11,7 +11,7 @@ public class GameLogic{
 	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
 		if (field.getPrice() > 0) {
 			StreetController.StreetRules(GUIh, language, fieldNumber, field, player);
-		} else if (field.getType() == 4) {
+		   } else if (field.getTaxAmount() > 0 || field.getTaxRate() > 0) {
 			//			hvis feltet ikke kan ejes
 			int taxAmount = field.getTaxAmount();
 			int taxRate   = field.getTaxRate();
