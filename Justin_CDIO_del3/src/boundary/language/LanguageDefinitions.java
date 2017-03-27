@@ -1,41 +1,41 @@
   package boundary.language;
 
-	public interface LanguageDefinitions {
+	 interface LanguageDefinitions {
 	
-	public String gameRules();
+	 String gameRules();
 	
-	public String getFieldName(int index);
+	 String getFieldName(int index);
 	
-	public String getFieldRent(int rent);
+	 String getFieldRent(int rent);
 	
-	public String getFieldPrice(int price);
+	 String getFieldPrice(int price);
 
-	public String getFieldDescription(int type);
+	 String getFieldDescription(int type);
 	
-	public String AskHowManyPlayer();
+	 String AskHowManyPlayer();
 
-	public String AskForPlayerName();
+	 String AskForPlayerName();
 	
-	public String askBuyField();
+	 String askBuyField();
 
-	public String no();
+	 String no();
 
-	public String yes();
+	 String yes();
 
-	public String getOkMove(String s);
+	 String getOkMove(String s);
 
-	public String Ok();
+	 String Ok();
 
-	public String GameOver(String winner);
+	 String GameOver(String winner);
 
-	public String playerPayTo(String payer, String recipient, int paid);
+	 String playerPayTo(String payer, String recipient, int paid);
 	
 	
 
-	public String playerTax(String name, int paid);
+	 String playerTax(String name, int paid);
 
-	public String playerBonus(String name, int bonus);
+	 String playerBonus(String name, int bonus);
 
-	public String askPayTax();
+	 String askPayTax();
 	
 }
