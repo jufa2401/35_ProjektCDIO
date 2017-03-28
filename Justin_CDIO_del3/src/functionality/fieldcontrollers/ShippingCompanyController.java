@@ -1,4 +1,4 @@
-package presentation.fieldcontrollers;
+package functionality.fieldcontrollers;
 
 import data.PlayerDTO;
 import data.fieldclasses.FieldDTO;

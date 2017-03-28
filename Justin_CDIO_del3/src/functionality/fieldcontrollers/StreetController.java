@@ -1,4 +1,4 @@
-package presentation.fieldcontrollers;
+package functionality.fieldcontrollers;
 
 import data.PlayerDTO;
 import data.fieldclasses.FieldDTO;
@@ -6,9 +6,9 @@ import data.fieldclasses.Ownable;
 import presentation.GUIHandler;
 import presentation.language.LanguageHandler;
 
-public class BreweryController {
+public class StreetController {
 	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
-		if (field.getPrice() > 0) {
+//		if (field.getPrice() > 0) {
 			//			hvis feltet kan ejes
 			Ownable ofield = (Ownable) field; 
 			if (ofield.getOwner() != null) {
@@ -30,4 +30,4 @@ public class BreweryController {
 		}
 
 	}
-}
+

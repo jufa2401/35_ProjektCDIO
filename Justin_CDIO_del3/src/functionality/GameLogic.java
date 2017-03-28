@@ -2,8 +2,8 @@ package functionality;
 
 import data.PlayerDTO;
 import data.fieldclasses.FieldDTO;
+import functionality.fieldcontrollers.StreetController;
 import presentation.GUIHandler;
-import presentation.fieldcontrollers.StreetController;
 import presentation.language.LanguageHandler;
 
 public class GameLogic{
