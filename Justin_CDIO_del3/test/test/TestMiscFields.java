@@ -1,7 +1,5 @@
 	package test;
 
-import static org.junit.Assert.fail;
-
 import java.awt.Color;
 
 import org.junit.After;
