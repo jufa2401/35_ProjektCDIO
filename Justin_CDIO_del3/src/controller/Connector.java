@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class Connector {
     private final String HOST     = "Localhost";
     private final int    PORT     = 3306;
-    private final String DATABASE = "?";
+    private final String DATABASE = "matador";
     private final String USERNAME = "root"; 
     private final String PASSWORD = "";
     private Connection connection;
