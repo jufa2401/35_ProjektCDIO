@@ -1,7 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 
 /**
  * Ownable er en underklasse til Fieldklassen,
@@ -10,9 +10,9 @@ import entity.Player;
  * og de metoder som kun er generelle,
  * for de felter der kan ejes.
  */
-public abstract class Ownable extends Field {
+public abstract class Ownable extends FieldDTO {
 	protected int price;
-	Player owner;
+	PlayerDTO owner;
 
 	/** Constructor til Ownable felter:
 	 * @param fieldNumber
@@ -29,20 +29,20 @@ public abstract class Ownable extends Field {
 	/** Bruges til at få ejer af felt elementet.
 	 * @return Felt ejer
 	 */
-	public Player getOwner() {
+	public PlayerDTO getOwner() {
 		return owner;
 	}
 	/** Bruges til at sætte ejeren af et felt.
 	 * @param owner
 	 */
-	public void setOwner(Player owner) {
+	public void setOwner(PlayerDTO owner) {
 		this.owner = owner;
 	}
 	
 	/** Bruges af spiller til at købe et felt element. 
 	 * @param player
 	 */
-	public void buyField(Player player) {
+	public void buyField(PlayerDTO player) {
 		player.Transaction(-price);
 		setOwner(player);
 	

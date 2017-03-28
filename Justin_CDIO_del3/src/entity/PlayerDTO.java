@@ -1,5 +1,5 @@
 package entity;
-public class Player {
+public class PlayerDTO {
 
 	private String name;
 	private int balance, currentField, d1, d2, ShippingCompanysOwned,BreweriesOwned, Identifier;
@@ -11,7 +11,7 @@ public class Player {
 	 * @param name
 	 * @param balance
 	 */
-	public Player (String name, int balance){
+	public PlayerDTO (String name, int balance){
 		this.name = name;
 		this.balance = balance;
 //	Disse variabler skal vel hentes fra databasen?
@@ -21,7 +21,7 @@ public class Player {
 		currentField = 0;
 		Identifier = AvailableIdentifer++;
 	}
-	public Player() {
+	public PlayerDTO() {
 	}
 	//getters and setters for navn og balance 
 	public String getName() {
@@ -96,7 +96,7 @@ public class Player {
 	 * @return
 	 */
 //	DATABASE
-	public int payTo (Player recipient, int amount) {
+	public int payTo (PlayerDTO recipient, int amount) {
 		recipient.Transaction(amount);
 		Transaction(-amount);
 		return balance;
@@ -113,7 +113,7 @@ public class Player {
 	 * @return
 	 */
 	
-	public int moveToField(int roll, GameBoard gb) {
+	public int moveToField(int roll, GameBoardDTO gb) {
 		int length = gb.getNumberOfFields();
 		this.currentField += roll;
 		while(this.currentField >= length)
@@ -121,7 +121,7 @@ public class Player {
 		return this.currentField;
 	}
 //	Ny kode
-	public int moveFromField(int roll, GameBoard gb) {
+	public int moveFromField(int roll, GameBoardDTO gb) {
 		int length = gb.getNumberOfFields();
 		this.currentField -= roll;
 		while(this.currentField >= length)

@@ -3,16 +3,16 @@ package entity;
 public class PlayerList {
 	//Tomt Playerarray
 	private int playerCount;
-	private Player[] players;
+	private PlayerDTO[] players;
 
 /**
  *  For hver spiller der kommer ind i spillet, tæller vi 1 op i players arrayet *DATABASE PROGRAMMERING*
  * @param playerCount
  */
 	public PlayerList (int playerCount) {
-		this.players = new Player[playerCount];
+		this.players = new PlayerDTO[playerCount];
 		for (int c = 0; c < playerCount; c++)
-			players[c] = new Player();
+			players[c] = new PlayerDTO();
 		this.playerCount = playerCount;
 	}
 
@@ -22,10 +22,10 @@ public class PlayerList {
  * @param name
  */
 	public void addPlayer(int ID, String name) {
-		players[ID] = new Player(name, 30000);
+		players[ID] = new PlayerDTO(name, 30000);
 	}
 	
-	public Player getPlayer(int ID) {
+	public PlayerDTO getPlayer(int ID) {
 		return players[ID];
 	}
 	public int getNumberofPlayer() {

@@ -13,18 +13,18 @@ import entity.*;
 
 public class TestTax {
 
-	private Player player;
+	private PlayerDTO player;
 	private Tax taxfield;
 	
 	@Before
 	public void setUp() throws Exception {
-		this.player = new Player("Doland Dak", 10000);
+		this.player = new PlayerDTO("Doland Dak", 10000);
 		this.taxfield = new Tax(1, Color.black, 4000, 10);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.player = new Player("Doland Dak", 10000);
+		this.player = new PlayerDTO("Doland Dak", 10000);
 	}
 
 //	@Test
@@ -47,7 +47,7 @@ public class TestTax {
 		Assert.assertNotNull(this.player);
 		Assert.assertNotNull(this.taxfield);
 		
-		Assert.assertTrue(this.player instanceof Player);
+		Assert.assertTrue(this.player instanceof PlayerDTO);
 		Assert.assertTrue(this.taxfield instanceof Tax);
 	}
 	

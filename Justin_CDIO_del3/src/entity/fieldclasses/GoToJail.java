@@ -2,9 +2,9 @@ package entity.fieldclasses;
 
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 
-public class GoToJail extends Field {
+public class GoToJail extends FieldDTO {
 
 	public GoToJail(int fieldNumber, Color color) {
 		super(fieldNumber, color);
@@ -18,7 +18,7 @@ public class GoToJail extends Field {
 	}
 
 	@Override
-	public int landOnField(Player player) {
+	public int landOnField(PlayerDTO player) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

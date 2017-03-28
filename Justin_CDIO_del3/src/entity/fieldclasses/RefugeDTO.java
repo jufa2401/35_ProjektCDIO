@@ -7,9 +7,9 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 //TODO: Meddelelse om modtagelse af penge
-public class MiscFields extends Field {
+public class RefugeDTO extends FieldDTO {
 private int bonus;
 
 	/** Constructor til Misc felter.
@@ -17,7 +17,7 @@ private int bonus;
 	 * @param color
 	 * @param bonus
 	 */
-	public MiscFields(int fieldNumber, Color color, int bonus) {
+	public RefugeDTO(int fieldNumber, Color color, int bonus) {
 		super(fieldNumber, color);
 		this.bonus = bonus;
 	}
@@ -27,7 +27,7 @@ private int bonus;
 	 *  får man udbetalt en bonus
 	 */
 	@Override
-	public int landOnField(Player player) {
+	public int landOnField(PlayerDTO player) {
 		player.Transaction(this.bonus);
 //	betalte beløb er positivt, derfor er det udbetalte beløb negativt
 		return -this.bonus;

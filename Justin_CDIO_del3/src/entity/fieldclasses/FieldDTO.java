@@ -1,9 +1,9 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 
-public abstract class Field {
+public abstract class FieldDTO {
 	private int ID;
 	private Color color;
 	/**
@@ -11,7 +11,7 @@ public abstract class Field {
 	 * @param fieldNumber
 	 * @param color
 	 */
-	public Field(int fieldNumber, Color color) {
+	public FieldDTO(int fieldNumber, Color color) {
 		this.ID = fieldNumber;
 		this.color = color;
 	}
@@ -48,14 +48,14 @@ public abstract class Field {
 	 * @param player
 	 * @return
 	 */
-	public abstract int landOnField(Player player);
+	public abstract int landOnField(PlayerDTO player);
 
 	/**
 	 * @param player
 	 * @param taxRate
 	 * @return
 	 */
-	public int landOnField(Player player, int taxRate) {
+	public int landOnField(PlayerDTO player, int taxRate) {
 		return 0;
 	}
 	

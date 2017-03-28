@@ -2,7 +2,7 @@ package rungame;
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
 import controller.Controller;
-import entity.GameBoard;
+import entity.GameBoardDTO;
 import entity.PlayerList;
 public class Main {
 /* 
@@ -11,7 +11,7 @@ public class Main {
  * 
  */
 	public static void main (String[]args) {
-		GameBoard game = new GameBoard();
+		GameBoardDTO game = new GameBoardDTO();
 		GUIHandler GUIh = new GUIHandler();
 //		Sætter sproget til dansk, flere sprog kan udvikles i language pakken, ved at implementere language definitions
 		LanguageHandler language = new LanguageHandler("Dansk");

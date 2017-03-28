@@ -2,18 +2,18 @@ package controller;
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
 import entity.DiceCup;
-import entity.GameBoard;
-import entity.Player;
+import entity.GameBoardDTO;
+import entity.PlayerDTO;
 import entity.PlayerList;
-import entity.fieldclasses.Field;
+import entity.fieldclasses.FieldDTO;
 
 public class Controller {
 	DiceCup dice;
-	GameBoard game;
+	GameBoardDTO game;
 	GUIHandler GUIh;
 	LanguageHandler language;
 	PlayerList playerList;
-	public Controller (GUIHandler GUI, LanguageHandler language, GameBoard gb, PlayerList playerList) {
+	public Controller (GUIHandler GUI, LanguageHandler language, GameBoardDTO gb, PlayerList playerList) {
 		dice = new DiceCup();
 		this.game = gb;
 		this.GUIh = GUI;
@@ -26,7 +26,7 @@ public class Controller {
 		// Spillerne rykker efter tur, indtil der findes en vinder
 		while(playerList.isWinner() == false) {
 			for(int i = 0; i < nPlayers; i++) {
-				Player player = playerList.getPlayer(i);
+				PlayerDTO player = playerList.getPlayer(i);
 				//				Checker om der er en vinder, og spiller 'i' stadig er med i spillet
 				if(playerList.isWinner() == false && player.hasLost() == false)
 					gameTurn(player);
@@ -37,7 +37,7 @@ public class Controller {
 		GUIh.getButtonPressed(language.GameOver(winner), language.Ok());
 	}
 
-	public void gameTurn(Player player) {
+	public void gameTurn(PlayerDTO player) {
 		// vent indtil spilleren er klar til at rykke
 		GUIh.getButtonPressed(language.GetOkMove(player.getName()), language.Ok());
 		dice.rollDiceCup();
@@ -52,7 +52,7 @@ public class Controller {
 		// spillerens brik vises på det nye felt
 		GUIh.setCar(fieldNumber, player.getName());
 		// vi henter feltet på basis af dets index
-		Field field = game.getField(fieldNumber);
+		FieldDTO field = game.getField(fieldNumber);
 		// vi gemmer spillerens tabt-status
 		boolean hasLost = player.hasLost();
 		// Vi kalder GameLogic som indeholder feltreglerne

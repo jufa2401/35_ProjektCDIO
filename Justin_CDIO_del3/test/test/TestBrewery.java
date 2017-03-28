@@ -13,21 +13,21 @@ import entity.*;
 
 public class TestBrewery {
 
-	private Player player;
-	private Brewery feltlabor;
-	private Player ejer = new Player("ejer", 10000);
+	private PlayerDTO player;
+	private BreweryDTO feltlabor;
+	private PlayerDTO ejer = new PlayerDTO("ejer", 10000);
 	private DiceCup d12;
 	
 	@Before
 	public void setUp() throws Exception {
-		this.player = new Player("Doland Dak", 10000);
-		this.feltlabor = new Brewery(1, Color.BLACK, 2000);
+		this.player = new PlayerDTO("Doland Dak", 10000);
+		this.feltlabor = new BreweryDTO(1, Color.BLACK, 2000);
 		this.d12 = new DiceCup();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.player = new Player("Doland Dak", 10000);	
+		this.player = new PlayerDTO("Doland Dak", 10000);	
 	}
 
 //	@Test
@@ -50,7 +50,7 @@ public class TestBrewery {
 		Assert.assertNotNull(this.player);
 		Assert.assertNotNull(this.feltlabor);
 		
-		Assert.assertTrue(this.feltlabor instanceof Brewery);
+		Assert.assertTrue(this.feltlabor instanceof BreweryDTO);
 	}
 	
 	@Test

@@ -13,19 +13,19 @@ import entity.*;
 
 public class TestStreet {
 	
-	private Player player;
-	private Street Street1000;
-	private Street Street4000;
-	private Street StreetNegative500;
-	Player ejer = new Player("ejer", 5000);
+	private PlayerDTO player;
+	private StreetDTO Street1000;
+	private StreetDTO Street4000;
+	private StreetDTO StreetNegative500;
+	PlayerDTO ejer = new PlayerDTO("ejer", 5000);
 	
 	@Before
 	public void setUp() throws Exception {
-		this.player = new Player("Doland Dak", 10000);
+		this.player = new PlayerDTO("Doland Dak", 10000);
 		//Player ejer = new Player("ejer", 1000);
-		this.Street1000 = new Street(1, Color.black, 2000, 1000);
-		this.Street4000 = new Street(2, Color.blue, 6000, 4000);
-		this.StreetNegative500 = new Street(3, Color.yellow, 100, -500);
+		this.Street1000 = new StreetDTO(1, Color.black, 2000, 1000);
+		this.Street4000 = new StreetDTO(2, Color.blue, 6000, 4000);
+		this.StreetNegative500 = new StreetDTO(3, Color.yellow, 100, -500);
 		this.Street1000.setOwner(ejer);
 		this.Street4000.setOwner(ejer);
 		this.StreetNegative500.setOwner(ejer);
@@ -33,7 +33,7 @@ public class TestStreet {
 
 	@After
 	public void tearDown() throws Exception {
-		this.player = new Player("Doland Dak", 10000);
+		this.player = new PlayerDTO("Doland Dak", 10000);
 	
 	}
 
@@ -44,9 +44,9 @@ public class TestStreet {
 		Assert.assertNotNull(this.Street4000);
 		Assert.assertNotNull(this.StreetNegative500);
 		
-		Assert.assertTrue(this.Street1000 instanceof Street);
-		Assert.assertTrue(this.Street4000 instanceof Street);
-		Assert.assertTrue(this.StreetNegative500 instanceof Street);
+		Assert.assertTrue(this.Street1000 instanceof StreetDTO);
+		Assert.assertTrue(this.Street4000 instanceof StreetDTO);
+		Assert.assertTrue(this.StreetNegative500 instanceof StreetDTO);
 	}
 	
 	@Test

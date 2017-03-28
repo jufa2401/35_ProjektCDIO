@@ -1,7 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 
 /**
  * Man kan ikke eje tax og dens superklasse er derfor Field.	
@@ -10,7 +10,7 @@ import entity.Player;
  * Prisen er den mindste af enten
  * den faste betalingssum, eller skatteprocenten.
  */
-public class Tax extends Field{
+public class Tax extends FieldDTO{
 	private int taxAmount, taxRate;	
 	public Tax(int fieldNumber, Color color, int taxAmount, int taxRate) {
 		super(fieldNumber, color);
@@ -22,7 +22,7 @@ public class Tax extends Field{
 	 *  betale et fast beløb
 	 */
 	@Override
-	public int landOnField(Player player) {
+	public int landOnField(PlayerDTO player) {
 		int payment = this.taxAmount;
 		player.Transaction(-payment);
 		return payment;
@@ -33,7 +33,7 @@ public class Tax extends Field{
 	 *  som en procentsats af saldobalancen
 	 */
 	@Override
-	public int landOnField(Player player, int rate) {
+	public int landOnField(PlayerDTO player, int rate) {
 		int balance = player.getBalance();
 		//			Vi beregner assets som resterende penge på kontoen, det kunne have inkluderet værdien af ejendomme
 		//			Dette kan evt. implementeres senere

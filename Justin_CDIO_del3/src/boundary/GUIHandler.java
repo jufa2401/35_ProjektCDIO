@@ -8,7 +8,7 @@ import desktop_fields.Field;
 import desktop_fields.Street;
 import desktop_resources.GUI;
 
-import entity.GameBoard;
+import entity.GameBoardDTO;
 /**		
  * Det er forsøgt at begrænse koblingen mellem boundary og entities,
  * men har endt med at beholde GameBoard, da  det for mig resulterede i 
@@ -26,7 +26,7 @@ public class GUIHandler {
 	 * felte ind i forskelligt farvede objekter, som er hentet fra GameBoards array.
 	 * 
 	 */
-	public void createGameBoard(GameBoard gb, LanguageHandler language) {
+	public void createGameBoard(GameBoardDTO gb, LanguageHandler language) {
 		length = gb.getNumberOfFields();
 		Field[] fields = new Field[length];
 		for (int index = 0; index < length; index++) {

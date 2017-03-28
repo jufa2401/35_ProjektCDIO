@@ -2,12 +2,12 @@ package controller.fieldcontrollers;
 
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
-import entity.Player;
-import entity.fieldclasses.Field;
+import entity.PlayerDTO;
+import entity.fieldclasses.FieldDTO;
 import entity.fieldclasses.Ownable;
 
 public class BreweryController {
-	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
+	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
 		if (field.getPrice() > 0) {
 			//			hvis feltet kan ejes
 			Ownable ofield = (Ownable) field; 

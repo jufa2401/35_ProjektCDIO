@@ -2,11 +2,11 @@ package controller.fieldcontrollers;
 
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
-import entity.Player;
-import entity.fieldclasses.Field;
+import entity.PlayerDTO;
+import entity.fieldclasses.FieldDTO;
 
 public class TaxController {
-	public static void TaxRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
+	public static void TaxRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
 		//			hvis feltet ikke kan ejes
 		int taxAmount = field.getTaxAmount();
 		int taxRate   = field.getTaxRate();

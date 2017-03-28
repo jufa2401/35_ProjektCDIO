@@ -1,7 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 
 /* Denne type felt har en pris,
  * som kan betales for ejerskab.
@@ -12,7 +12,7 @@ import entity.Player;
  *
  */
 
-public class ShippingCompany extends Ownable {
+public class ShippingCompanyDTO extends Ownable {
 
 	int rent, ShippingCompanysOwned;
 
@@ -23,7 +23,7 @@ public class ShippingCompany extends Ownable {
 	 * @param price
 	 */
 
-	public ShippingCompany(int fieldNumber, Color color, int price) {
+	public ShippingCompanyDTO(int fieldNumber, Color color, int price) {
 		super(fieldNumber, color, price);
 	}
 /**
@@ -36,7 +36,7 @@ public class ShippingCompany extends Ownable {
  * balancen ned i GUIen
  */
 	@Override
-	public int landOnField(Player player)  {
+	public int landOnField(PlayerDTO player)  {
 		int paid = 0;
 		if (this.owner != null){
 			ShippingCompanysOwned = this.owner.getShippingCompanysOwned();
@@ -59,7 +59,7 @@ public class ShippingCompany extends Ownable {
  * endnu en ShippingCompany, da dette skal bruges til at beregne leje
  */
 	@Override
-	public void buyField(Player player) {
+	public void buyField(PlayerDTO player) {
 		super.buyField(player);
 		player.setShippingCompanysOwned(1+player.getShippingCompanysOwned());
 	}

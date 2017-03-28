@@ -7,26 +7,26 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import entity.Player;
-import entity.fieldclasses.MiscFields;
+import entity.PlayerDTO;
+import entity.fieldclasses.RefugeDTO;
 
 public class TestMiscFields {
-	private Player player;
-	private MiscFields refuge500;
-	private MiscFields refuge5000;
-	private MiscFields refugeNegative700;
+	private PlayerDTO player;
+	private RefugeDTO refuge500;
+	private RefugeDTO refuge5000;
+	private RefugeDTO refugeNegative700;
 	
 	@Before
 	public void setUp() throws Exception {
-		this.player = new Player("Doland Dak", 1000);
-		this.refuge500 = new MiscFields(1, Color.red, 500);
-		this.refuge5000 = new MiscFields(2, Color.BLACK, 5000);
-		this.refugeNegative700 = new MiscFields(3,Color.GREEN, -700);
+		this.player = new PlayerDTO("Doland Dak", 1000);
+		this.refuge500 = new RefugeDTO(1, Color.red, 500);
+		this.refuge5000 = new RefugeDTO(2, Color.BLACK, 5000);
+		this.refugeNegative700 = new RefugeDTO(3,Color.GREEN, -700);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.player = new Player("Doland Dak", 1000);
+		this.player = new PlayerDTO("Doland Dak", 1000);
 	}
 
 	
@@ -39,9 +39,9 @@ public class TestMiscFields {
 			Assert.assertNotNull(this.refuge5000);
 			Assert.assertNotNull(this.refugeNegative700);
 			
-			Assert.assertTrue(this.refuge500 instanceof MiscFields);
-			Assert.assertTrue(this.refuge5000 instanceof MiscFields);
-			Assert.assertTrue(this.refugeNegative700 instanceof MiscFields);
+			Assert.assertTrue(this.refuge500 instanceof RefugeDTO);
+			Assert.assertTrue(this.refuge5000 instanceof RefugeDTO);
+			Assert.assertTrue(this.refugeNegative700 instanceof RefugeDTO);
 	}
 	@Test
 	public final void testLandOnField500() {

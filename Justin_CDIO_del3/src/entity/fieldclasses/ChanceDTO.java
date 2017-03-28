@@ -2,11 +2,11 @@ package entity.fieldclasses;
 
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 
-public class Chance extends Field {
+public class ChanceDTO extends FieldDTO {
 
-	public Chance(int fieldNumber, Color color) {
+	public ChanceDTO(int fieldNumber, Color color) {
 		super(fieldNumber, color);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,7 +18,7 @@ public class Chance extends Field {
 	}
 
 	@Override
-	public int landOnField(Player player) {
+	public int landOnField(PlayerDTO player) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

@@ -5,8 +5,8 @@ import java.awt.Color;
  * som kan betales for ejerskab.
 
  */
-import entity.Player;
-public class Brewery extends Ownable {
+import entity.PlayerDTO;
+public class BreweryDTO extends Ownable {
 	int rent, BreweriesOwned;
 
 	/**Constructor til Brewery felt.
@@ -14,7 +14,7 @@ public class Brewery extends Ownable {
 	 * @param color
 	 * @param price
 	 */
-	public Brewery(int fieldNumber, Color color, int price) {
+	public BreweryDTO(int fieldNumber, Color color, int price) {
 		super(fieldNumber, color, price);
 	}
 
@@ -29,7 +29,7 @@ public class Brewery extends Ownable {
 	 * balancen ned i GUIen
 	 */
 	@Override
-	public int landOnField(Player player) {
+	public int landOnField(PlayerDTO player) {
 		int rent = 0;
 		if (this.owner != null){
 			BreweriesOwned = this.owner.getBreweriesOwned(); 
@@ -45,7 +45,7 @@ public class Brewery extends Ownable {
 	 * endnu en LaborCamps, da dette skal bruges til at beregne leje
 	 */
 	@Override
-	public void buyField(Player player) {
+	public void buyField(PlayerDTO player) {
 		super.buyField(player);
 		player.setBreweriesOwned(1+player.getBreweriesOwned());
 	}

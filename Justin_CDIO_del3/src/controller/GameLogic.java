@@ -3,12 +3,12 @@ package controller;
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
 import controller.fieldcontrollers.StreetController;
-import entity.Player;
-import entity.fieldclasses.Field;
+import entity.PlayerDTO;
+import entity.fieldclasses.FieldDTO;
 
 public class GameLogic{
 
-	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, Field field, Player player) {
+	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
 		if (field.getPrice() > 0) {
 			StreetController.StreetRules(GUIh, language, fieldNumber, field, player);
 		   } else if (field.getTaxAmount() > 0 || field.getTaxRate() > 0) {

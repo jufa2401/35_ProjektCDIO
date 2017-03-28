@@ -1,7 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
-import entity.Player;
+import entity.PlayerDTO;
 /**
  * Denne type felt har en pris,
  * som kan betales for ejerskab.
@@ -9,7 +9,7 @@ import entity.Player;
  * skal man betale en fast leje til ejeren.
  * 
  */
-public class Street extends Ownable{
+public class StreetDTO extends Ownable{
 //	Streetsowned skal bruges!
 	int rent, StreetsOwned;
 	/** Constructor til Territory felter
@@ -18,7 +18,7 @@ public class Street extends Ownable{
 	 * @param price
 	 * @param rent
 	 */
-	public Street(int fieldNumber, Color color, int price, int rent) {
+	public StreetDTO(int fieldNumber, Color color, int price, int rent) {
 		super(fieldNumber, color, price);
 		this.rent = rent;	
 	}
@@ -35,7 +35,7 @@ public class Street extends Ownable{
 	 * @return Belæøb betalt til felt ejer 
 	 */
 	@Override
-	public int landOnField(Player player) {
+	public int landOnField(PlayerDTO player) {
 		int paid = 0;
 		if (this.owner != null){
 			player.payTo(this.owner, rent);
