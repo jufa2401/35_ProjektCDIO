@@ -8,7 +8,8 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import entity.DiceCup;
+
+import data.DiceCup;
 
 /**
  * @author Janus
@@ -34,7 +35,7 @@ public class TestDiceCup {
 	}
 
 	/**
-	 * Test method for {@link entity.DiceCup#getDiceSum()}.
+	 * Test method for {@link data.DiceCup#getDiceSum()}.
 	 */
 	@Test
 	public final void testGetDiceSum() {

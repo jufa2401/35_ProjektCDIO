@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import entity.PlayerDTO;
-import entity.fieldclasses.RefugeDTO;
+import data.PlayerDTO;
+import data.fieldclasses.RefugeDTO;
 
 public class TestMiscFields {
 	private PlayerDTO player;

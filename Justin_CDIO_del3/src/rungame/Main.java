@@ -1,9 +1,9 @@
 package rungame;
-import boundary.GUIHandler;
-import boundary.language.LanguageHandler;
-import controller.Controller;
-import entity.GameBoardDTO;
-import entity.PlayerList;
+import data.GameBoardDTO;
+import data.PlayerList;
+import functionality.Controller;
+import presentation.GUIHandler;
+import presentation.language.LanguageHandler;
 public class Main {
 /* 
  * Min main klasse starter initialiserer GameBoard,

@@ -7,7 +7,8 @@ import java.util.Arrays;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import entity.Die;
+
+import data.Die;
 
 public class TestDie {
 
