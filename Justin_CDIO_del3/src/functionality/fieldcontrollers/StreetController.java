@@ -8,8 +8,6 @@ import presentation.language.LanguageHandler;
 
 public class StreetController {
 	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
-//		if (field.getPrice() > 0) {
-			//			hvis feltet kan ejes
 			Ownable ofield = (Ownable) field; 
 			if (ofield.getOwner() != null) {
 				// Hvis der er en ejer af feltet
