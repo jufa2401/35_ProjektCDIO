@@ -1,5 +1,4 @@
 package functionality;
-//Refuge not working
 import functionality.fieldcontrollers.StreetController;
 import functionality.fieldcontrollers.TaxController;
 import data.PlayerDTO;
