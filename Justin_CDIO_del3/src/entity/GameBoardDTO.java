@@ -25,7 +25,7 @@ public class GameBoardDTO {
 //		ShippingCompany parametre: id, pris
 		field[3] = new ShippingCompanyDTO(3, Color.BLUE, 4000);
 		field[4] = new StreetDTO(4, Color.RED, 2000, 500);
-		field[5] = new StreetDTO(5, Color.RED, 3000, 700);
+		field[5] = new StreetDTO(5, new Color(0xFFFFFF), 3000, 700);
 		field[6] = new BreweryDTO(6, Color.GREEN, 2500);
 //		Tax parametre: id, feltfarve, fast skattebeløb, skatte pct.
 		field[7] = new Tax(7, Color.YELLOW, 2000, 0);

@@ -1,5 +1,5 @@
 package daoimplementation;
-import daoboundary.ShippingCompanyDAO;
+import boundary.dao.ShippingCompanyDAO;
 public class MySQLShippingCompanyDAO {
 
 }

@@ -3,9 +3,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import boundary.dao.PlayerDAO;
 import controller.Connector;
 import controller.SQLMapper;
-import daoboundary.PlayerDAO;
 import entity.PlayerDTO;
 public class MySQLPlayerDAO implements PlayerDAO {
 	
@@ -16,7 +16,7 @@ public class MySQLPlayerDAO implements PlayerDAO {
 		SQLMapper m = new SQLMapper();
 		String query = m.getStatement(1);
 		
-		ArrayList<PlayerDTO> l = new ArrayList<>();
+		ArrayList<PlayerDTO> playerlist = new ArrayList<>();
 		try {
 			ResultSet rs = c.doQuery(query);
 			while(rs.next()){
@@ -24,9 +24,9 @@ public class MySQLPlayerDAO implements PlayerDAO {
 				int balance = rs.getInt("balance");
 				int id = rs.getInt(1);
 				PlayerDTO DTO = new PlayerDTO(name, balance);
-				l.add(DTO);
+				playerlist.add(DTO);
 			}
-			return l;
+			return playerlist;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error");

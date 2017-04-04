@@ -1,5 +1,5 @@
 package daoimplementation;
-import daoboundary.StreetDAO;
+import boundary.dao.StreetDAO;
 public class MySQLStreetDAO {
 
 }

@@ -1,5 +1,5 @@
 package daoimplementation;
-import daoboundary.ChanceDAO;
+import boundary.dao.ChanceDAO;
 public class MySQLChanceDAO {
 
 }

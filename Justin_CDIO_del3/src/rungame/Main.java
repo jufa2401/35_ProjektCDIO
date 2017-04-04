@@ -8,7 +8,6 @@ public class Main {
 /* 
  * Min main klasse starter initialiserer GameBoard,
  * GUIHandler, sætter sprog, henter reglerne
- * 
  */
 	public static void main (String[]args) {
 		GameBoardDTO game = new GameBoardDTO();

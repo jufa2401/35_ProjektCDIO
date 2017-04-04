@@ -1,5 +1,5 @@
 package daoimplementation;
-import daoboundary.RefugeDAO;
+import boundary.dao.RefugeDAO;
 public class MySQLRefugeDAO {
 
 }

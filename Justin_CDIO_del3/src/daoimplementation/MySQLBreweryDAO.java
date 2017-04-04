@@ -1,5 +1,5 @@
 package daoimplementation;
-import daoboundary.BreweryDAO;
+import boundary.dao.BreweryDAO;
 public class MySQLBreweryDAO {
 
 }

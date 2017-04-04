@@ -1,4 +1,4 @@
-package daoboundary;
+package boundary.dao;
 
 public class DALException extends Exception
 {

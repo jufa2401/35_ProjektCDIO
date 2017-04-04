@@ -1,4 +1,4 @@
-package daoboundary;
+package boundary.dao;
 import java.util.ArrayList;
 
 import entity.PlayerDTO;
