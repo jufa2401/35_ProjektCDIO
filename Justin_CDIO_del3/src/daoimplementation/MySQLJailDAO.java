@@ -20,7 +20,7 @@ public class MySQLJailDAO implements JailDAO {
 		try {
 			ResultSet rs = c.doQuery(query);
 			while(rs.next()){
-				int fieldnumber = rs.getInt("id");
+				int fieldnumber = rs.getInt("fængsel");
 //				Henter int (hex) værdien for en farve for et givet felt
 				int colorint = rs.getInt("color");
 //				Konverterer farveintegeren om til en reel farve
