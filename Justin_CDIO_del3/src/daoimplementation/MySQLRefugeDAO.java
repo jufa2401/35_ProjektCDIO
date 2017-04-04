@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import boundary.dao.RefugeDAO;
-import boundary.dao.RefugeDAO;
 import controller.Connector;
 import controller.SQLMapper;
 import entity.fieldclasses.RefugeDTO;
