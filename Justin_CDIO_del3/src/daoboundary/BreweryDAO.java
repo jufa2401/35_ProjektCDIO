@@ -1,5 +1,6 @@
 package daoboundary;
-import daoimplementation.MySQLBreweryDAO;
+import entity.fieldclasses.BreweryDTO;
 public interface BreweryDAO {
+	public BreweryDTO getBrewery() throws RuntimeException;
 
 }

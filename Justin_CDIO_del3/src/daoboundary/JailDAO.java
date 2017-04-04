@@ -1,5 +1,6 @@
 package daoboundary;
-import daoimplementation.MySQLJailDAO;
+import entity.fieldclasses.JailDTO;
 public interface JailDAO {
+	public JailDTO getJail() throws RuntimeException;
 
 }

@@ -1,5 +1,7 @@
 package daoboundary;
-import daoimplementation.MySQLPlayerDAO;
-public interface PlayerDAO {
+import java.util.ArrayList;
 
+import entity.PlayerDTO;
+public interface PlayerDAO {
+	public ArrayList<PlayerDTO> getPlayer() throws RuntimeException;
 }

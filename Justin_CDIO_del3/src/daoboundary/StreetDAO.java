@@ -1,5 +1,6 @@
 package daoboundary;
-import daoimplementation.MySQLStreetDAO;
+import entity.fieldclasses.StreetDTO;
 public interface StreetDAO {
+	public StreetDTO getStreet() throws RuntimeException;
 
 }

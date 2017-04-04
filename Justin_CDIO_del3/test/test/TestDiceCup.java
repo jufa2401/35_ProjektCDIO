@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.DiceCup;
+import entity.DiceCup;
 
 /**
  * @author Janus
@@ -35,7 +35,7 @@ public class TestDiceCup {
 	}
 
 	/**
-	 * Test method for {@link data.DiceCup#getDiceSum()}.
+	 * Test method for {@link entity.DiceCup#getDiceSum()}.
 	 */
 	@Test
 	public final void testGetDiceSum() {

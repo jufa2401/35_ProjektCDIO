@@ -9,8 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import data.*;
-import data.fieldclasses.*;
+import entity.*;
+import entity.fieldclasses.*;
 
 public class TestBrewery {
 

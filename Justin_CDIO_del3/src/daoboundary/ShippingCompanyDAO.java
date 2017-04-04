@@ -1,5 +1,6 @@
 package daoboundary;
-import daoimplementation.MySQLShippingCompanyDAO;
+import entity.fieldclasses.ShippingCompanyDTO;
 public interface ShippingCompanyDAO {
+	public ShippingCompanyDTO GetShippingCompany() throws RuntimeException;
 
 }

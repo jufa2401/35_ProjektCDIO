@@ -1,5 +1,6 @@
 package daoboundary;
-import daoimplementation.MySQLGameBoardDAO;
+import entity.GameBoardDTO;
 public interface GameBoardDAO {
+	public GameBoardDTO getGameboard() throws RuntimeException;
 
 }

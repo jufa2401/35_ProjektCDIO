@@ -1,5 +1,6 @@
 package daoboundary;
-import daoimplementation.MySQLRefugeDAO;
+import entity.fieldclasses.RefugeDTO;
 public interface RefugeDAO {
+	public RefugeDTO getRefuge() throws RuntimeException;
 
 }

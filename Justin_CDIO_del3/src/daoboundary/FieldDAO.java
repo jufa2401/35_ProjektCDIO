@@ -1,5 +1,5 @@
 package daoboundary;
-import daoimplementation.MySQLFieldDAO;
+import entity.fieldclasses.FieldDTO;
 public interface FieldDAO {
-
+	public FieldDTO getField() throws RuntimeException;
 }

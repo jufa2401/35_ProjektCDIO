@@ -1,5 +1,5 @@
 package daoboundary;
-import daoimplementation.MySQLChanceDAO;
+import entity.fieldclasses.ChanceDTO;
 public interface ChanceDAO {
-
+	public ChanceDTO GetChance() throws RuntimeException;
 }
