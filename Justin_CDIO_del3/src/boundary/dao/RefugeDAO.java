@@ -1,6 +1,8 @@
 package boundary.dao;
+import java.util.ArrayList;
+
 import entity.fieldclasses.RefugeDTO;
 public interface RefugeDAO {
-	public RefugeDTO getRefuge() throws RuntimeException;
+	public ArrayList<RefugeDTO> getRefuge() throws RuntimeException;
 
 }
