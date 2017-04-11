@@ -6,7 +6,7 @@ import entity.PlayerDTO;
 /**
  * Denne type felt har en pris,
  * som kan betales for ejerskab.
- * Hvis man lander på en LaborCamp som er ejet,
+ * Hvis man lander på en street som er ejet,
  * skal man betale en fast leje til ejeren.
  * 
  */
@@ -19,8 +19,8 @@ public class StreetDTO extends Ownable{
 	 * @param price
 	 * @param rent
 	 */
-	public StreetDTO(int fieldNumber, Color color, int price, int rent) {
-		super(fieldNumber, color, price);
+	public StreetDTO(int fieldNumber, String name, Color color, int price, int rent) {
+		super(fieldNumber, name, color, price);
 		this.rent = rent;	
 	}
 	public int getPrice() {

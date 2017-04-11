@@ -21,14 +21,14 @@ public class MySQLBreweryDAO implements BreweryDAO {
 		try {
 			ResultSet rs = c.doQuery(query);
 			while(rs.next()){
-				int fieldnumber = rs.getInt("fængsel");
-				int price = rs.getInt("Kolonne hvor pris er");
+				int fieldnumber = rs.getInt(1);
+				int price = rs.getInt(2);
 //				Henter int (hex) værdien for en farve for et givet felt
-				int colorint = rs.getInt("color");
+				int colorint = rs.getInt(2);
 //				Konverterer farveintegeren om til en reel farve
 				Color color = new Color(colorint);
-				
-				BreweryDTO DTO = new BreweryDTO(fieldnumber,color,price);
+				int rent = 0;
+				BreweryDTO DTO = new BreweryDTO(fieldnumber,color,price, rent );
 				Brewerylist.add(DTO);
 			}
 			return Brewerylist;

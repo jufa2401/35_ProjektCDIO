@@ -6,8 +6,8 @@ import entity.PlayerDTO;
 
 public class GoToJail extends FieldDTO {
 
-	public GoToJail(int fieldNumber, Color color) {
-		super(fieldNumber, color);
+	public GoToJail(int fieldNumber, String name, Color color) {
+		super(fieldNumber, name, color);
 		// TODO Auto-generated constructor stub
 	}
 

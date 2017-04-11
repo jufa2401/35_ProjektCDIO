@@ -10,8 +10,8 @@ public class BreweryDTO extends Ownable {
 	 * @param color
 	 * @param price
 	 */
-	public BreweryDTO(int fieldNumber, Color color, int price) {
-		super(fieldNumber, color, price);
+	public BreweryDTO(int fieldNumber,String name, Color color, int price, int rent) {
+		super(fieldNumber, name, color, price);
 	}
 
 	/**

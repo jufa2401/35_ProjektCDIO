@@ -8,17 +8,16 @@ package entity.fieldclasses;
 import java.awt.Color;
 
 import entity.PlayerDTO;
-//TODO: Meddelelse om modtagelse af penge
+//TODO: Meddelelse om modtagelse af penge LAVE BONUS OM
 public class RefugeDTO extends FieldDTO {
 private int bonus;
 
 	/** Constructor til Misc felter.
 	 * @param fieldNumber
 	 * @param color
-	 * @param bonus
 	 */
-	public RefugeDTO(int fieldNumber, Color color, int bonus) {
-		super(fieldNumber, color);
+	public RefugeDTO(int fieldNumber, String name, Color color, int bonus) {
+		super(fieldNumber, name,  color);
 		this.bonus = bonus;
 	}
 
@@ -28,25 +27,31 @@ private int bonus;
 	 */
 	@Override
 	public int landOnField(PlayerDTO player) {
-		player.Transaction(this.bonus);
+	//	player.Transaction(this.bonus);
 //	betalte beløb er positivt, derfor er det udbetalte beløb negativt
-		return -this.bonus;
-	}
-
-	/**
-	 *  ikke relevant idet feltet ikke er ownable
-	 */
-	@Override
-	public int getRent() {
-		return bonus;
-	}
-
-	/**
-	 *  ikke relevant idet feltet ikke er ownable
-	 */
-	@Override
-	public int getPrice() {
+//		return -this.bonus;
 		return 0;
+	}
+
+//	/**
+//	 *  ikke relevant idet feltet ikke er ownable
+//	 */
+//	@Override
+//	public int getRent() {
+//		return bonus;
+//	}
+
+//	/**
+//	 *  ikke relevant idet feltet ikke er ownable
+//	 */
+//	@Override
+//	public int getPrice() {
+//		return 0;
+//	}
+	
+	
+	public int getBonus() {
+		return bonus;
 	}
 
 	/**

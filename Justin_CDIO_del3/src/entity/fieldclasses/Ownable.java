@@ -19,8 +19,8 @@ public abstract class Ownable extends FieldDTO {
 	 * @param color
 	 * @param price
 	 */
-	public Ownable(int fieldNumber, Color color, int price) {
-		super(fieldNumber, color);
+	public Ownable(int fieldNumber, String name, Color color, int price) {
+		super(fieldNumber, name, color);
 
 		this.price = price;
 		this.owner = null;

@@ -1,37 +1,60 @@
 package daoimplementation;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import boundary.dao.PlayerDAO;
 import controller.Connector;
 import controller.SQLMapper;
-import entity.PlayerDTO;
+import entity.PlayerList;
 public class MySQLPlayerDAO implements PlayerDAO {
 	
-	public ArrayList<PlayerDTO> getPlayer() throws RuntimeException{
+	public PlayerList getPlayers() throws RuntimeException{
 		Connector c = new Connector();
 
 		/* Alt SQL er holdt ude af java koden */
 		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(1);
-		
-		ArrayList<PlayerDTO> playerlist = new ArrayList<>();
+		String query = m.getStatement(2);
+		int playerCount = getPlayerCount();
+		PlayerList pl = new PlayerList(playerCount);
 		try {
 			ResultSet rs = c.doQuery(query);
 			while(rs.next()){
-				String name = rs.getString("name");
-				int balance = rs.getInt("balance");
-				int id = rs.getInt(1);
-				PlayerDTO DTO = new PlayerDTO(name, balance);
-				playerlist.add(DTO);
+				int playerid = rs.getInt(1);
+				String name = rs.getString(2);
+				int currentField = rs.getInt(4);
+				int balance = rs.getInt(5);
+				int ShippingCompaniesOwned = rs.getInt(6);
+				int BreweriesOwned = rs.getInt(7);
+
+				pl.addPlayer(playerid, name, currentField, balance, ShippingCompaniesOwned, BreweriesOwned);
 			}
-			return playerlist;
+			return pl;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error");
 		}
 	}
+	
+	public int getPlayerCount() throws RuntimeException{
+		Connector c = new Connector();
 
+		/* Alt SQL er holdt ude af java koden */
+		SQLMapper m = new SQLMapper();
+		String query = m.getStatement(4);
+
+
+		try {
+			ResultSet rs = c.doQuery(query);
+			rs.next();
+			int playerCount = rs.getInt(1);
+
+
+			return playerCount;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error");
+		}
+
+	}
 }
 

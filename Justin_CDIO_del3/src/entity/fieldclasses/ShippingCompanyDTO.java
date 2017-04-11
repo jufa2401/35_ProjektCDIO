@@ -23,13 +23,13 @@ public class ShippingCompanyDTO extends Ownable {
 	 * @param price
 	 */
 
-	public ShippingCompanyDTO(int fieldNumber, Color color, int price) {
-		super(fieldNumber, color, price);
+	public ShippingCompanyDTO(int fieldNumber, String name,  Color color, int price, int rent_1, int rent_2, int rent_3, int rent_4) {
+		super(fieldNumber,name, color, price);
 	}
 /**
  *  Hvis man lander på en ShippingCompany som er ejet,
  * skal man betale en variabel leje til ejeren.
- * Lejen er bestemt efter hvor mange af denne type ejendom man ejer
+ * Lejen er bestemt efter hvor mange af denne type ejendom man eer
  * dvs. at du kan opkræve højere leje, jo flere 'ShippingCompanys' du ejer
  * Når det er bestemt bliver det betalt
  * metoden returnerer det betalte beløb, som bruges til at tælle

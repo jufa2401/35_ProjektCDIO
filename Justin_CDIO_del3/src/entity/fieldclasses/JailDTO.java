@@ -6,8 +6,8 @@ import entity.PlayerDTO;
 
 public class JailDTO extends FieldDTO {
 
-	public JailDTO(int fieldNumber, Color color) {
-		super(fieldNumber, color);
+	public JailDTO(int fieldNumber, String name, Color color) {
+		super(fieldNumber, name, color);
 		
 	}
 

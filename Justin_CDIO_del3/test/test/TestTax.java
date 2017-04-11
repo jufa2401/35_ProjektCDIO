@@ -15,12 +15,12 @@ import entity.fieldclasses.*;
 public class TestTax {
 
 	private PlayerDTO player;
-	private Tax taxfield;
+	private TaxDTO taxfield;
 	
 	@Before
 	public void setUp() throws Exception {
 		this.player = new PlayerDTO("Doland Dak", 10000);
-		this.taxfield = new Tax(1, Color.black, 4000, 10);
+		this.taxfield = new TaxDTO(1, Color.black, 4000, 10);
 	}
 
 	@After
@@ -49,7 +49,7 @@ public class TestTax {
 		Assert.assertNotNull(this.taxfield);
 		
 		Assert.assertTrue(this.player instanceof PlayerDTO);
-		Assert.assertTrue(this.taxfield instanceof Tax);
+		Assert.assertTrue(this.taxfield instanceof TaxDTO);
 	}
 	
 	@Test

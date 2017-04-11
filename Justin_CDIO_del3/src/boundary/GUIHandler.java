@@ -36,7 +36,7 @@ public class GUIHandler {
 			if (price > 0) {
 				int rent  = gb.getFieldRent(index);
 				fields[id] = new Street.Builder()
-						.setTitle(language.getFieldName(id))
+						.setTitle(gb.getFieldName(id))
 						.setSubText(language.getFieldPrice(price))
 						.setDescription(language.getFieldDescription(type))
 						.setBgColor(gb.getFieldColor(index))
@@ -44,7 +44,7 @@ public class GUIHandler {
 						.build();
 			} else {
 				fields[id] = new Street.Builder()
-						.setTitle(language.getFieldName(id))
+						.setTitle(gb.getFieldName(id))
 						.setSubText(language.getFieldPrice(price))
 						.setDescription(language.getFieldDescription(type))
 						.setBgColor(gb.getFieldColor(index))
@@ -81,7 +81,7 @@ public class GUIHandler {
 	 * @param player
 	 * @param balance
 	 */
-	public void addPlayer(String player, int balance) {
+	public void addPlayer(String player, int currentField, int balance) {
 		Builder carBuilder = new Car.Builder();
 		switch (pid) {
 		case 0:
@@ -131,7 +131,7 @@ public class GUIHandler {
 		}
 		Car car = carBuilder.build();
 		GUI.addPlayer(player, balance, car);
-		GUI.setCar(1, player); //+1
+		setCar(currentField, player);
 		pid++;
 	}
 /**

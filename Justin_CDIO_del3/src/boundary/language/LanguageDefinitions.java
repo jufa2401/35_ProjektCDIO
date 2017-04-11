@@ -4,7 +4,7 @@
 	
 	 String gameRules();
 	
-	 String getFieldName(int index);
+//	 String getFieldName(int index);
 	
 	 String getFieldRent(int rent);
 	
@@ -29,9 +29,9 @@
 	 String GameOver(String winner);
 
 	 String playerPayTo(String payer, String recipient, int paid);
+	 
+	 String AskLoadGame();
 	
-	
-
 	 String playerTax(String name, int paid);
 
 	 String playerBonus(String name, int bonus);

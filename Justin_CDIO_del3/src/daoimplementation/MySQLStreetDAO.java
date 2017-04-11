@@ -21,11 +21,11 @@ public class MySQLStreetDAO implements StreetDAO {
 		try {
 			ResultSet rs = c.doQuery(query);
 			while(rs.next()){
-				int fieldnumber = rs.getInt("fængsel");
-				int price = rs.getInt("Kolonne hvor price er i");
-				int rent= rs.getInt("Kolonne hvor rent er i");
+				int fieldnumber = rs.getInt("field_id");
+				int price = rs.getInt("price");
+				int rent= rs.getInt("standard_rent");
 //				Henter int (hex) værdien for en farve for et givet felt
-				int colorint = rs.getInt("color");
+				int colorint = rs.getInt("rent_price1");
 //				Konverterer farveintegeren om til en reel farve
 				Color color = new Color(colorint);
 				
@@ -33,6 +33,34 @@ public class MySQLStreetDAO implements StreetDAO {
 				Streetlist.add(DTO);
 			}
 			return Streetlist;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error");
+		}
+	}
+
+	@Override
+	public StreetDTO get1Street()throws RuntimeException{
+		Connector c = new Connector();
+
+		/* Alt SQL er holdt ude af java koden */
+		SQLMapper m = new SQLMapper();
+		String query = m.getStatement(1);
+		
+		try {
+			ResultSet rs = c.doQuery(query);
+			while(rs.next()){
+				int fieldnumber = rs.getInt("field_id");
+				int price = rs.getInt("price");
+				int rent= rs.getInt("standard_rent");
+//				Henter int (hex) værdien for en farve for et givet felt
+				int colorint = rs.getInt("rent_price1");
+//				Konverterer farveintegeren om til en reel farve
+				Color color = new Color(colorint);
+				StreetDTO streetdto = new StreetDTO(fieldnumber,color,price,rent);
+				return streetdto;
+			}
+			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error");

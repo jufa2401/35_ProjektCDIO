@@ -1,28 +1,38 @@
 package entity;
-public class PlayerDTO {
 
+import entity.fieldclasses.RefugeDTO;
+
+public class PlayerDTO {
 	private String name;
-	private int balance, currentField, d1, d2, ShippingCompanysOwned,BreweriesOwned, Identifier;
+	private int balance, currentField, d1, d2, ShippingCompaniesOwned,BreweriesOwned, Identifier;
 	private boolean hasLost;
-	private static int AvailableIdentifer = 0;
+	//private static int AvailableIdentifer = 0;
 	/**
 	 * Den private int anvendes til at give hver spiller et unikt id
+	 * @param playerid 
 	 * 
 	 * @param name
 	 * @param balance
+	 * @param balance2 
 	 */
-	public PlayerDTO (String name, int balance){
+	public PlayerDTO (int playerid, String name, int position, int balance, int ShippingCompaniesOwned, int BreweriesOwned){
 		this.name = name;
 		this.balance = balance;
-//	Disse variabler skal vel hentes fra databasen?
-		ShippingCompanysOwned = 0;
-		BreweriesOwned = 0;
+		//	Disse variabler skal vel hentes fra databasen?
+		this.ShippingCompaniesOwned = ShippingCompaniesOwned;
+		this.BreweriesOwned = BreweriesOwned;
 		hasLost = false;
-		currentField = 0;
-		Identifier = AvailableIdentifer++;
+		currentField = position;
+		//		Identifier = AvailableIdentifer++;
+		Identifier = playerid;
 	}
+
+
 	public PlayerDTO() {
+		// TODO Auto-generated constructor stub
 	}
+
+
 	//getters and setters for navn og balance 
 	public String getName() {
 		return this.name;
@@ -49,10 +59,10 @@ public class PlayerDTO {
 	}
 	//	Getters og setters til ShippingCompanys
 	public int getShippingCompanysOwned() {
-		return ShippingCompanysOwned;
+		return ShippingCompaniesOwned;
 	}
 	public void setShippingCompanysOwned(int ShippingCompanysOwned) {
-		this.ShippingCompanysOwned = ShippingCompanysOwned;
+		this.ShippingCompaniesOwned = ShippingCompanysOwned;
 	}
 	public int getBreweriesOwned() {
 		return BreweriesOwned;
@@ -81,8 +91,8 @@ public class PlayerDTO {
 	 * @param amount
 	 * @return
 	 */
-	
-	
+
+
 	public int Transaction(int amount){
 		balance = balance + amount;
 		if(balance < 0){
@@ -98,7 +108,7 @@ public class PlayerDTO {
 	 * @param amount
 	 * @return
 	 */
-//	DATABASE
+	//	DATABASE
 	public int payTo (PlayerDTO recipient, int amount) {
 		recipient.Transaction(amount);
 		Transaction(-amount);
@@ -115,20 +125,19 @@ public class PlayerDTO {
 	 * @param gb
 	 * @return
 	 */
-	
+
 	public int moveToField(int roll, GameBoardDTO gb) {
 		int length = gb.getNumberOfFields();
 		this.currentField += roll;
-		while(this.currentField >= length)
+		while(this.currentField >= length) {
 			this.currentField -= length;
+			this.balance += gb.getStartBonus();
+		}
 		return this.currentField;
 	}
-//	Ny kode
-	public int moveFromField(int roll, GameBoardDTO gb) {
-		int length = gb.getNumberOfFields();
-		this.currentField -= roll;
-		while(this.currentField >= length)
-			this.currentField += length;
+	//	Ny kode skal rettes
+	public int moveToJail(int jailindex, GameBoardDTO gb) {
+		this.currentField = jailindex;
 		return this.currentField;
 	}
 

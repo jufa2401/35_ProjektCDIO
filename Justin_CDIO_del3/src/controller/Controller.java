@@ -1,6 +1,7 @@
 package controller;
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
+import desktop_resources.GUI;
 import entity.DiceCup;
 import entity.GameBoardDTO;
 import entity.PlayerDTO;
@@ -20,7 +21,6 @@ public class Controller {
 		this.language = language;
 		this.playerList = playerList;
 	}
-
 	public void launchGame() {
 		int nPlayers = playerList.getNumberofPlayer();
 		// Spillerne rykker efter tur, indtil der findes en vinder
@@ -31,6 +31,8 @@ public class Controller {
 				if(playerList.isWinner() == false && player.hasLost() == false)
 					gameTurn(player);
 			}
+//			Savegamestate()
+//			save owned by state, player state
 		}
 		// Spillet er slut, og der gives besked om hvem der har vundet
 		String winner = playerList.getWinner();

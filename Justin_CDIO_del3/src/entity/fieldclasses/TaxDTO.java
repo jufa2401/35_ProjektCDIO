@@ -10,10 +10,10 @@ import entity.PlayerDTO;
  * Prisen er den mindste af enten
  * den faste betalingssum, eller skatteprocenten.
  */
-public class Tax extends FieldDTO{
+public class TaxDTO extends FieldDTO{
 	private int taxAmount, taxRate;	
-	public Tax(int fieldNumber, Color color, int taxAmount, int taxRate) {
-		super(fieldNumber, color);
+	public TaxDTO(int fieldNumber,String name, Color color, int taxAmount, int taxRate) {
+		super(fieldNumber, name, color);
 		this.taxAmount = taxAmount;
 		this.taxRate = taxRate;
 	}

@@ -1,7 +1,6 @@
 package boundary.dao;
-import java.util.ArrayList;
-
-import entity.PlayerDTO;
+import entity.PlayerList;
 public interface PlayerDAO {
-	public ArrayList<PlayerDTO> getPlayer() throws RuntimeException;
+	public PlayerList getPlayers() throws RuntimeException;
+	public int getPlayerCount() throws RuntimeException;
 }

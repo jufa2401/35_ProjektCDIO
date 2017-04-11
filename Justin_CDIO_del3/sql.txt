@@ -1,0 +1,8 @@
+1=SELECT * FROM `street`;
+2=SELECT * FROM `player`;
+3=SELECT * FROM `brewery`;
+4=SELECT COUNT(*) from `player`;
+5=SELECT COUNT(*) from `field`; 
+6=SELECT * FROM `field` WHERE field_id = ##;
+
+^ Field skal rettes til gameboard view.

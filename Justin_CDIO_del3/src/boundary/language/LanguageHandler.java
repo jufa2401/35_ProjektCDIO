@@ -29,9 +29,9 @@ public class LanguageHandler {
 		return selectedLanguage.gameRules();
 	}
 
-	public String getFieldName(int index) {
-		return selectedLanguage.getFieldName(index);
-	}
+//	public String getFieldName(int index) {
+//		return selectedLanguage.getFieldName(index);
+//	}
 
 	public String getFieldPrice(int price) {
 		return selectedLanguage.getFieldPrice(price);
@@ -95,6 +95,9 @@ public class LanguageHandler {
 
 	public String askPayTax() {
 		return selectedLanguage.askPayTax();
+	}
+	public String AskLoadGame() {
+		return selectedLanguage.AskLoadGame();
 	}
 
 }

@@ -5,4 +5,6 @@ import entity.fieldclasses.StreetDTO;
 public interface StreetDAO {
 	public ArrayList<StreetDTO> getStreet() throws RuntimeException;
 
+	public StreetDTO get1Street();
+
 }

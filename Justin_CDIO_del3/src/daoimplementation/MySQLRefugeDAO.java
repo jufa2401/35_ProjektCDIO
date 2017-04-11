@@ -27,7 +27,7 @@ public class MySQLRefugeDAO implements RefugeDAO {
 //				Konverterer farveintegeren om til en reel farve
 				Color color = new Color(colorint);
 				
-				RefugeDTO DTO = new RefugeDTO(fieldnumber,color, bonus);
+				RefugeDTO DTO = new RefugeDTO(fieldnumber,color);
 				Refugelist.add(DTO);
 			}
 			return Refugelist;

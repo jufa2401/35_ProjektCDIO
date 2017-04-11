@@ -3,5 +3,6 @@ import java.util.ArrayList;
 
 import entity.fieldclasses.FieldDTO;
 public interface FieldDAO {
-	public ArrayList<FieldDTO> getField() throws RuntimeException;
+	public int getFieldCount() throws RuntimeException;
+	public FieldDTO getField(int id) throws RuntimeException;
 }

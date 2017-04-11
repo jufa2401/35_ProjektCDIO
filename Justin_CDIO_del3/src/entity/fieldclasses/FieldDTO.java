@@ -6,14 +6,20 @@ import entity.PlayerDTO;
 public abstract class FieldDTO {
 	private int ID;
 	private Color color;
+	private String name;
 	/**
 	 * Constructor som laver et felt.
 	 * @param fieldNumber
 	 * @param color
 	 */
-	public FieldDTO(int fieldNumber, Color color) {
+	public FieldDTO(int fieldNumber,String name, Color color) {
 		this.ID = fieldNumber;
 		this.color = color;
+		this.name = name;
+	}
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
 	}
 
 	/**

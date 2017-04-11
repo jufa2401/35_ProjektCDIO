@@ -10,33 +10,33 @@ public class Dansk implements LanguageDefinitions {
 				+ "\t Visse felter kan købes, andre kan medføre en betaling. \n"
 				+ "\t Hvis en spiller lander på et ejet felt, betales en sum til ejeren. \n " ;
 	}
-	@Override
-	public String getFieldName(int index) {
-		String names[] = {
-				"Stamme Lejr",
-				"Krater",
-				"Befæstede by",
-				"Andet Sejl",
-				"Bjerg",
-				"Kold Ørken",
-				"Hytterne i bjergene",
-				"Guldmine",
-				"Sort Grotte",
-				"Varmuren",
-				"Havgrotten",
-				"Graven",
-				"Bjerglandsbyen",
-				"Fortet i syd",
-				"Kloster",
-				"Piraterne",
-				"Palads portene ",
-				"Tårnet",
-				"Karavanen",
-				"Slot",
-				"Kaperflåden"			
-		};
-		return names[index];
-	}
+//	@Override
+//	public String getFieldName(int index) {
+//		String names[] = {
+//				"Stamme Lejr",
+//				"Krater",
+//				"Befæstede by",
+//				"Andet Sejl",
+//				"Bjerg",
+//				"Kold Ørken",
+//				"Hytterne i bjergene",
+//				"Guldmine",
+//				"Sort Grotte",
+//				"Varmuren",
+//				"Havgrotten",
+//				"Graven",
+//				"Bjerglandsbyen",
+//				"Fortet i syd",
+//				"Kloster",
+//				"Piraterne",
+//				"Palads portene ",
+//				"Tårnet",
+//				"Karavanen",
+//				"Slot",
+//				"Kaperflåden"			
+//		};
+//		return names[index];
+//	}
 	@Override
 	public String getFieldRent(int rent) {
 		String s;
@@ -77,12 +77,12 @@ public class Dansk implements LanguageDefinitions {
 	public String getFieldDescription(int type) {
 		String s;
 		switch (type) {
-		case 1: 	s = "Flåde";		break;
-		case 2: 	s = "Arbejdslejr";	break;
-		case 3: 	s = "Helle";		break;
-		case 4: 	s = "Skat";			break;
-		case 5: 	s = "Territorie";	break;
-		default:	s = "";				break;
+		case 1: 	s = "Rederi";				break;
+		case 2: 	s = "Bryggeri";				break;
+		case 3: 	s = "Start/Parkering";		break;
+		case 4: 	s = "Skat";					break;
+		case 5: 	s = "Gade";					break;
+		default:	s = "";						break;
 		}
 		return s;
 	}
@@ -124,4 +124,9 @@ public class Dansk implements LanguageDefinitions {
 	public String askPayTax() {
 		return "Hvilket beløb skal der betales i skat?";
 	}
+	@Override
+	public String AskLoadGame() {
+		return "Vil du genoptage et gemt spil?";
+	}
+
 }

@@ -6,8 +6,8 @@ import entity.PlayerDTO;
 
 public class ChanceDTO extends FieldDTO {
 
-	public ChanceDTO(int fieldNumber, Color color) {
-		super(fieldNumber, color);
+	public ChanceDTO(int fieldNumber,String name, Color color) {
+		super(fieldNumber, name, color);
 		// TODO Auto-generated constructor stub
 	}
 
