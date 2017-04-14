@@ -21,13 +21,13 @@ public class PlayerList {
  * @param ID
  * @param name
  */
-	public void addPlayer(int ID, String name, int pos, int bal, int ships, int breweries) {
-		players[ID] = new PlayerDTO(ID, name, pos, bal, ships, breweries);
+	public void addPlayer(int ID, String name, int pos, int bal) {
+		players[ID] = new PlayerDTO(ID, name, pos, bal);
 	
 	}
 		
 	public PlayerDTO getPlayer(int ID) {
-		return players[ID];
+		return players[ID];  
 	}
 	public int getNumberofPlayer() {
 		return playerCount;

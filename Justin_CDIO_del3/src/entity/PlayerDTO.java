@@ -1,10 +1,10 @@
 package entity;
 
-import entity.fieldclasses.RefugeDTO;
+import entity.fieldclasses.StartDTO;
 
 public class PlayerDTO {
 	private String name;
-	private int balance, currentField, d1, d2, ShippingCompaniesOwned,BreweriesOwned, Identifier;
+	private int balance, currentField, d1, d2, Identifier, ShippingCompanysOwned, BreweriesOwned;
 	private boolean hasLost;
 	//private static int AvailableIdentifer = 0;
 	/**
@@ -15,18 +15,18 @@ public class PlayerDTO {
 	 * @param balance
 	 * @param balance2 
 	 */
-	public PlayerDTO (int playerid, String name, int position, int balance, int ShippingCompaniesOwned, int BreweriesOwned){
+	public PlayerDTO (int playerid, String name, int position, int balance){
 		this.name = name;
 		this.balance = balance;
-		//	Disse variabler skal vel hentes fra databasen?
-		this.ShippingCompaniesOwned = ShippingCompaniesOwned;
 		this.BreweriesOwned = BreweriesOwned;
+		this.ShippingCompanysOwned = ShippingCompanysOwned;
+		//	Disse variabler skal vel hentes fra databasen?
+
 		hasLost = false;
 		currentField = position;
 		//		Identifier = AvailableIdentifer++;
 		Identifier = playerid;
 	}
-
 
 	public PlayerDTO() {
 		// TODO Auto-generated constructor stub
@@ -58,18 +58,18 @@ public class PlayerDTO {
 		return balance;
 	}
 	//	Getters og setters til ShippingCompanys
-	public int getShippingCompanysOwned() {
-		return ShippingCompaniesOwned;
-	}
-	public void setShippingCompanysOwned(int ShippingCompanysOwned) {
-		this.ShippingCompaniesOwned = ShippingCompanysOwned;
-	}
-	public int getBreweriesOwned() {
-		return BreweriesOwned;
-	}
-	public void setBreweriesOwned(int BreweriesOwned) {
-		this.BreweriesOwned = BreweriesOwned;
-	}
+//	public int getShippingCompanysOwned() {
+//		return ShippingCompaniesOwned;
+//	}
+//	public void setShippingCompanysOwned(int ShippingCompanysOwned) {
+//		this.ShippingCompaniesOwned = ShippingCompanysOwned;
+//	}
+//	public int getBreweriesOwned() {
+//		return BreweriesOwned;
+//	}
+//	public void setBreweriesOwned(int BreweriesOwned) {
+//		this.BreweriesOwned = BreweriesOwned;
+//	}
 
 	/**
 	 *  Vi laver metode til at gemme terningsummen, denne metode er lavet specifikt 
@@ -143,6 +143,11 @@ public class PlayerDTO {
 
 	public int getPlayerID() {
 		return this.Identifier;
+	}
+
+	public int getRoundsLeftJail() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

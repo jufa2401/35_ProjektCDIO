@@ -1,47 +1,20 @@
 package boundary.language;
-
+//sss
 public class Dansk implements LanguageDefinitions {
 
 	@Override
 	public String gameRules() {
-		return "\t Dette spil kan spilles af 2-6 spillere. \n"
+		return 	  "\t Dette spil kan spilles af 2-6 spillere. \n"
 				+ "\t Spillet tabes ved at gå bankerot, den sidste spiller med likvide midler vinder spillet. \n"
 				+ "\t Alle spillere starter med en balance på 30.000. \n"
 				+ "\t Visse felter kan købes, andre kan medføre en betaling. \n"
 				+ "\t Hvis en spiller lander på et ejet felt, betales en sum til ejeren. \n " ;
 	}
-//	@Override
-//	public String getFieldName(int index) {
-//		String names[] = {
-//				"Stamme Lejr",
-//				"Krater",
-//				"Befæstede by",
-//				"Andet Sejl",
-//				"Bjerg",
-//				"Kold Ørken",
-//				"Hytterne i bjergene",
-//				"Guldmine",
-//				"Sort Grotte",
-//				"Varmuren",
-//				"Havgrotten",
-//				"Graven",
-//				"Bjerglandsbyen",
-//				"Fortet i syd",
-//				"Kloster",
-//				"Piraterne",
-//				"Palads portene ",
-//				"Tårnet",
-//				"Karavanen",
-//				"Slot",
-//				"Kaperflåden"			
-//		};
-//		return names[index];
-//	}
 	@Override
 	public String getFieldRent(int rent) {
 		String s;
 		if (rent > 0) {
-			s = "Lejen er:" + rent;
+			s = "Lejen er: " + rent;
 		} else {
 			//hvis feltet ikke er ownable (rent = 0), så returneres en tom streng.
 			s = "";
@@ -79,10 +52,13 @@ public class Dansk implements LanguageDefinitions {
 		switch (type) {
 		case 1: 	s = "Rederi";				break;
 		case 2: 	s = "Bryggeri";				break;
-		case 3: 	s = "Start/Parkering";		break;
+		case 3: 	s = "Start";		break;
 		case 4: 	s = "Skat";					break;
 		case 5: 	s = "Gade";					break;
-		default:	s = "";						break;
+		case 6: 	s = "Fængsel";				break;
+		case 7: 	s = "Prøv lykken";			break;
+		case 8: 	s = "Gratis parkering";			break;
+		default:	s = "ingen type sat";		break;
 		}
 		return s;
 	}
@@ -127,6 +103,22 @@ public class Dansk implements LanguageDefinitions {
 	@Override
 	public String AskLoadGame() {
 		return "Vil du genoptage et gemt spil?";
+	}
+	@Override
+	public String getChanceDescription(int chanceid) {
+		String s;
+		switch (chanceid) {
+		case 1: 	s = "betal lille skat";									break;
+		case 2: 	s = "du fik andenpladsen i en skønhedskonkurrence";		break;
+		case 3: 	s = "Gå i fængsel";										break;
+		case 4: 	s = "Gå til start";										break;
+		case 5: 	s = "Gå til nærmeste Rederi";							break;
+		case 6: 	s = "Gå til nærmeste Rederi";							break;
+		case 7: 	s = "Gå til nærmeste bryggeri";							break;
+		case 8: 	s = "Du skal betale reperationer på ejendomme";			break;
+		default:	s = "ingen type sat";		break;
+		}
+		return s;
 	}
 
 }

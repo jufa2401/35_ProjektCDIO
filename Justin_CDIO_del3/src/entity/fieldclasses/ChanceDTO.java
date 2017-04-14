@@ -14,7 +14,7 @@ public class ChanceDTO extends FieldDTO {
 	@Override
 	public int getType() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 7;
 	}
 
 	@Override

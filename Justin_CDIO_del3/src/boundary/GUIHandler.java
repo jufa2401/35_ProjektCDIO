@@ -4,8 +4,15 @@ import java.awt.Color;
 import boundary.language.LanguageHandler;
 import desktop_codebehind.Car;
 import desktop_codebehind.Car.Builder;
+import desktop_fields.Brewery;
+import desktop_fields.Chance;
 import desktop_fields.Field;
+import desktop_fields.Jail;
+import desktop_fields.Refuge;
+import desktop_fields.Shipping;
+import desktop_fields.Start;
 import desktop_fields.Street;
+import desktop_fields.Tax;
 import desktop_resources.GUI;
 import entity.GameBoardDTO;
 /**		
@@ -32,28 +39,88 @@ public class GUIHandler {
 			int price = gb.getFieldPrice(index);
 			int type  = gb.getFieldType(index);
 			int id    = gb.getField(index).getID();
+			int rent  = gb.getFieldRent(index);
 			//hvis feltet er ownable erklærer vi en 'street'
-			if (price > 0) {
-				int rent  = gb.getFieldRent(index);
+			switch (type) {
+			case 1:
+				//				int rent  = gb.getFieldRent(index);
+				fields[id] = new Shipping.Builder()
+				.setTitle(language.getFieldDescription(type))
+				.setSubText(language.getFieldPrice(price))
+				.setDescription(gb.getFieldName(id))
+				.setBgColor(Color.blue)
+				.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 2:
+				fields[id] = new Brewery.Builder()
+				.setTitle(language.getFieldDescription(type))
+				.setSubText(language.getFieldPrice(price))
+				.setDescription(gb.getFieldName(id))
+				//				.setBgColor(gb.getFieldColor(index))
+				.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 3:
+				fields[id] = new Start.Builder()
+				.setTitle(language.getFieldDescription(type))
+				.setSubText(language.getFieldPrice(price))
+				.setDescription(gb.getFieldName(index))
+				//				.setBgColor(gb.getFieldColor(index))
+				//				.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 4:
+				fields[id] = new Tax.Builder()
+				.setTitle(language.getFieldDescription(type))
+				.setSubText(gb.getFieldName(id))
+				.setDescription(gb.getFieldName(index))
+				//				.setBgColor
+				//								.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 5:
+				//				int rent  = gb.getFieldRent(index);	
 				fields[id] = new Street.Builder()
-						.setTitle(gb.getFieldName(id))
-						.setSubText(language.getFieldPrice(price))
-						.setDescription(language.getFieldDescription(type))
-						.setBgColor(gb.getFieldColor(index))
-						.setRent(language.getFieldRent(rent))
-						.build();
-			} else {
-				fields[id] = new Street.Builder()
-						.setTitle(gb.getFieldName(id))
-						.setSubText(language.getFieldPrice(price))
-						.setDescription(language.getFieldDescription(type))
-						.setBgColor(gb.getFieldColor(index))
-						.build();
-			}
+				.setTitle(language.getFieldDescription(type))
+				.setSubText(language.getFieldPrice(price))
+				.setDescription(gb.getFieldName(id))
+				.setBgColor(gb.getFieldColor(index))
+				.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 6:
+				fields[id] = new Jail.Builder()
+				.setTitle(gb.getFieldName(id))
+				.setSubText(language.getFieldPrice(price))
+				.setDescription(gb.getFieldName(id))
+				//				.setBgColor(gb.getFieldColor(index))
+				//				.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 7:
+				fields[id] = new Chance.Builder()
+				//			.setTitle(gb.getFieldName(id))
+				//			.setSubText(language.getFieldPrice(price))
+				//			.setDescription(language.getFieldDescription(type))
+				.setBgColor(new Color (29952))
+				//			.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			case 8:
+				fields[id] = new Refuge.Builder()
+				.setTitle(language.getFieldDescription(type))
+				.setSubText(language.getFieldPrice(price))
+				.setDescription(gb.getFieldName(id))
+				//				.setBgColor(gb.getFieldColor(index))
+				//				.setRent(language.getFieldRent(rent))
+				.build();
+				break;
+			default: break;}
 		}
 		GUI.create(fields);
 	}
-	
+
 	/**
 	 * prompter spilleren for et tal mellem min og max
 	 * @param message
@@ -134,11 +201,11 @@ public class GUIHandler {
 		setCar(currentField, player);
 		pid++;
 	}
-/**
- * viser en specifik spillers brik på et given felt
- * @param currentField
- * @param name
- */
+	/**
+	 * viser en specifik spillers brik på et given felt
+	 * @param currentField
+	 * @param name
+	 */
 	public void setCar(int currentField, String name) {
 		GUI.setCar(currentField+1, name);						//+1
 	}
@@ -175,7 +242,7 @@ public class GUIHandler {
 	 */
 	public void setBalance(String name, int newBalance) {
 		GUI.setBalance(name, newBalance);
-		
+
 	}
 	/**
 	 * Opdaterer et givet felt til at vise hvilken spiller ejer det.
@@ -208,7 +275,7 @@ public class GUIHandler {
 		GUI.showMessage(gameRules);
 	}
 
-	
+
 }
 
 

@@ -2,6 +2,7 @@ package entity.fieldclasses;
 
 import java.awt.Color;
 
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
 
 public class JailDTO extends FieldDTO {
@@ -17,10 +18,10 @@ public class JailDTO extends FieldDTO {
 		return 6;
 	}
 
-	@Override
-	public int landOnField(PlayerDTO player) {
-		
-		return 0;
+	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
+		int currentfield = player.moveToJail(10, gb);
+		return currentfield;
 	}
+	
 
 }

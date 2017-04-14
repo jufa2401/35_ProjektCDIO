@@ -21,12 +21,10 @@ public class MySQLPlayerDAO implements PlayerDAO {
 			while(rs.next()){
 				int playerid = rs.getInt(1);
 				String name = rs.getString(2);
-				int currentField = rs.getInt(4);
-				int balance = rs.getInt(5);
-				int ShippingCompaniesOwned = rs.getInt(6);
-				int BreweriesOwned = rs.getInt(7);
-
-				pl.addPlayer(playerid, name, currentField, balance, ShippingCompaniesOwned, BreweriesOwned);
+				int currentField = rs.getInt(3);
+				int balance = rs.getInt(4);
+				int roundsleftjail = rs.getInt(5);
+				pl.addPlayer(playerid, name, currentField, balance);
 			}
 			return pl;
 		} catch (SQLException e) {

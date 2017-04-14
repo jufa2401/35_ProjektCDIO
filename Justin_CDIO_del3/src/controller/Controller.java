@@ -1,7 +1,7 @@
 package controller;
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
-import desktop_resources.GUI;
+import daoimplementation.MySQLGameStateDAO;
 import entity.DiceCup;
 import entity.GameBoardDTO;
 import entity.PlayerDTO;
@@ -22,6 +22,7 @@ public class Controller {
 		this.playerList = playerList;
 	}
 	public void launchGame() {
+		MySQLGameStateDAO gamestate = new MySQLGameStateDAO();
 		int nPlayers = playerList.getNumberofPlayer();
 		// Spillerne rykker efter tur, indtil der findes en vinder
 		while(playerList.isWinner() == false) {
@@ -31,7 +32,10 @@ public class Controller {
 				if(playerList.isWinner() == false && player.hasLost() == false)
 					gameTurn(player);
 			}
-//			Savegamestate()
+			
+			gamestate.saveFieldStatus(game);
+			gamestate.savePlayerStatus(playerList);
+			//			Savegamestate()
 //			save owned by state, player state
 		}
 		// Spillet er slut, og der gives besked om hvem der har vundet
@@ -58,7 +62,7 @@ public class Controller {
 		// vi gemmer spillerens tabt-status
 		boolean hasLost = player.hasLost();
 		// Vi kalder GameLogic som indeholder feltreglerne
-		GameLogic.FieldRules(GUIh, language, fieldNumber, field, player);	
+		GameLogic.FieldRules(GUIh, language, game, fieldNumber, field, player);	
 		/*
 		 *  Vi bruger den tidligere gemte tabt-status, til at kontrollere om
 		 *  spilleren har tabt i den netop gennemførte træk. Hvis han har tabt,

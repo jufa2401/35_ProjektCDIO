@@ -26,8 +26,8 @@ public class MySQLJailDAO implements JailDAO {
 //				Konverterer farveintegeren om til en reel farve
 				Color color = new Color(colorint);
 				
-				JailDTO DTO = new JailDTO(fieldnumber,color);
-				Jaillist.add(DTO);
+//				JailDTO DTO = new JailDTO(fieldnumber,color);
+//				Jaillist.add(DTO);
 			}
 			return Jaillist;
 		} catch (SQLException e) {

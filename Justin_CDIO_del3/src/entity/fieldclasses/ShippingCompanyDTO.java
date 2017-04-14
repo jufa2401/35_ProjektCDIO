@@ -1,6 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
 
 /* Denne type felt har en pris,
@@ -26,6 +27,25 @@ public class ShippingCompanyDTO extends Ownable {
 	public ShippingCompanyDTO(int fieldNumber, String name,  Color color, int price, int rent_1, int rent_2, int rent_3, int rent_4) {
 		super(fieldNumber,name, color, price);
 	}
+	
+	public int getNumberOwned(PlayerDTO p, GameBoardDTO gb) {
+		int nfields = gb.getNumberOfFields();
+		int ShippingCompanysOwned = 0;
+		
+		for (int i = 0; i<nfields; i++) {
+			FieldDTO field = gb.getField(i);
+			if (field.getType() == 1) {
+				ShippingCompanyDTO sfield = (ShippingCompanyDTO) field;
+				if (sfield.getOwner() == p) {
+					++ShippingCompanysOwned;
+				}
+			}
+		}
+		
+		return ShippingCompanysOwned;
+	}
+
+	
 /**
  *  Hvis man lander på en ShippingCompany som er ejet,
  * skal man betale en variabel leje til ejeren.
@@ -35,11 +55,13 @@ public class ShippingCompanyDTO extends Ownable {
  * metoden returnerer det betalte beløb, som bruges til at tælle
  * balancen ned i GUIen
  */
+	
+	
 	@Override
-	public int landOnField(PlayerDTO player)  {
+	public int landOnField(PlayerDTO player, GameBoardDTO gb)  {
 		int paid = 0;
 		if (this.owner != null){
-			ShippingCompanysOwned = this.owner.getShippingCompanysOwned();
+			ShippingCompanysOwned = getNumberOwned(player, gb);
 			switch (ShippingCompanysOwned) {
 			case 1: rent = 500;		break;
 			case 2: rent = 1000;	break;
@@ -61,7 +83,7 @@ public class ShippingCompanyDTO extends Ownable {
 	@Override
 	public void buyField(PlayerDTO player) {
 		super.buyField(player);
-		player.setShippingCompanysOwned(1+player.getShippingCompanysOwned());
+//		player.setShippingCompanysOwned(1+player.getShippingCompanysOwned());
 	}
 
 
@@ -82,4 +104,5 @@ public class ShippingCompanyDTO extends Ownable {
 	public int getType() {
 		return 1;	// ShippingCompany
 	}
+
 }

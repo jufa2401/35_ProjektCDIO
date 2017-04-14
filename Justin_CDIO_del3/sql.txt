@@ -1,8 +1,30 @@
 1=SELECT * FROM `street`;
-2=SELECT * FROM `player`;
+2=SELECT * FROM `player_status`;
 3=SELECT * FROM `brewery`;
-4=SELECT COUNT(*) from `player`;
+4=SELECT COUNT(*) from `player_status`;
 5=SELECT COUNT(*) from `field`; 
 6=SELECT * FROM `field` WHERE field_id = ##;
 
-^ Field skal rettes til gameboard view.
+
+7=REPLACE INTO `field_status` (field_id, owned_by, street_houses, street_hotels) VALUES(
+8=truncate table `player_status`
+
+
+9=truncate table `field_status`
+10=REPLACE INTO `player_status` (player_id, name, position, balance, rounds_left_jail) VALUES(
+11=SELECT * FROM `field_status`;
+
+
+
+
+(field_status er forsøgt lavet i view men det blev opgivet da jeg fik denne fejl i jdbc
+cannot modify more than one base table through a join view)
+
+7UPDATE field_status SET owned_by =
+9UPDATE field_status SET owned_by = '-1' WHERE owned_by = 0 AND owned_by = 1 AND owned_by = 2 AND owned_by = 3 AND owned_by = 4 AND owned_by = 5;
+10UPDATE field_status SET amount_of_houses = '0' WHERE amount_of_houses = 1 AND amount_of_houses = 2 AND amount_of_houses = 3 AND amount_of_houses = 4;
+
+
+UPDATE field_status SET owned_by = '-1' WHERE owned_by = 0 AND owned_by = 1 AND owned_by = 2 AND owned_by = 3 AND owned_by = 4 AND owned_by = 5
+^
+UPDATE field_status SET amount_of_houses = '0' WHERE amount_of_houses = 1 AND amount_of_houses = 2 AND amount_of_houses = 3 AND amount_of_houses = 4

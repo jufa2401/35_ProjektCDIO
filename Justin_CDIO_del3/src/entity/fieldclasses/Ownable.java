@@ -1,6 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
 
 /**
@@ -13,7 +14,7 @@ import entity.PlayerDTO;
 public abstract class Ownable extends FieldDTO {
 	protected int price;
 	PlayerDTO owner;
-
+	protected int NumberOwned = 0;
 	/** Constructor til Ownable felter:
 	 * @param fieldNumber
 	 * @param color
@@ -25,27 +26,34 @@ public abstract class Ownable extends FieldDTO {
 		this.price = price;
 		this.owner = null;
 	}
+	public abstract int landOnField(PlayerDTO player, GameBoardDTO gb);	
+	public int getNumberOwned (PlayerDTO p, GameBoardDTO gb) {
+		return 0;
+	}
 
+	
 	/** Bruges til at få ejer af felt elementet.
 	 * @return Felt ejer
 	 */
 	public PlayerDTO getOwner() {
 		return owner;
 	}
+
 	/** Bruges til at sætte ejeren af et felt.
 	 * @param owner
 	 */
 	public void setOwner(PlayerDTO owner) {
 		this.owner = owner;
 	}
-	
+
 	/** Bruges af spiller til at købe et felt element. 
 	 * @param player
 	 */
 	public void buyField(PlayerDTO player) {
 		player.Transaction(-price);
 		setOwner(player);
-	
+
 	}
+
 
 }

@@ -1,6 +1,7 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
 
 public abstract class FieldDTO {
@@ -12,6 +13,7 @@ public abstract class FieldDTO {
 	 * @param fieldNumber
 	 * @param color
 	 */
+
 	public FieldDTO(int fieldNumber,String name, Color color) {
 		this.ID = fieldNumber;
 		this.color = color;
@@ -28,7 +30,11 @@ public abstract class FieldDTO {
 	public int getID() {
 		return ID;
 	}
-
+	/**
+	 * Abstract metode, som nedarves til underklasser,
+	 * som hver især skal returnere en unik id
+	 */
+	public abstract int getType();
 	/**
 	 * @return
 	 */
@@ -42,29 +48,32 @@ public abstract class FieldDTO {
 	 * Alle underklasserne har denne metode med, selvom de ikke bruger dem
 	 * De vil returnere med 0, hvis de ikke skal bruge dem.
 	 */
-	
-	/**
-	 * Abstract metode, som nedarves til underklasser,
-	 * som hver især skal returnere en unik id
-	 */
-	public abstract int getType();
+
+
 
 
 	/**
+	 * LandOnField til felter som kun har player som parameter
 	 * @param player
 	 * @return
 	 */
-	public abstract int landOnField(PlayerDTO player);
+	public int landOnField(PlayerDTO player) {
+		return 0;
+	}
 
 	/**
-	 * @param player
-	 * @param taxRate
+	 * LandOnField Specifik til tax
 	 * @return
 	 */
 	public int landOnField(PlayerDTO player, int taxRate) {
 		return 0;
 	}
-	
+
+	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	/**
 	 * Returnerer 0, så man kan skelne  de øvrige felter fra 
 	 * dét ene taxfelt der har en taxRate, dette bruges til 
@@ -76,7 +85,7 @@ public abstract class FieldDTO {
 	public int getTaxAmount() {
 		return 0;
 	}
-	
+
 	public int getTaxRate() {
 		return 0;
 	}
@@ -90,6 +99,7 @@ public abstract class FieldDTO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
 

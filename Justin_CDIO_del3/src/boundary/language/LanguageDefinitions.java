@@ -3,14 +3,14 @@
 	 interface LanguageDefinitions {
 	
 	 String gameRules();
-	
-//	 String getFieldName(int index);
-	
+		
 	 String getFieldRent(int rent);
 	
 	 String getFieldPrice(int price);
 
 	 String getFieldDescription(int type);
+	 
+	 String getChanceDescription (int chanceid);
 	
 	 String AskHowManyPlayer();
 

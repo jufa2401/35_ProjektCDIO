@@ -1,15 +1,11 @@
 package entity.fieldclasses;
 import java.awt.Color;
 
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
 public class BreweryDTO extends Ownable {
 	int rent, BreweriesOwned;
 
-	/**Constructor til Brewery felt.
-	 * @param fieldNumber
-	 * @param color
-	 * @param price
-	 */
 	public BreweryDTO(int fieldNumber,String name, Color color, int price, int rent) {
 		super(fieldNumber, name, color, price);
 	}
@@ -25,16 +21,16 @@ public class BreweryDTO extends Ownable {
 	 * balancen ned i GUIen
 	 */
 	@Override
-	public int landOnField(PlayerDTO player) {
+	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
 		int rent = 0;
 		if (this.owner != null){
-			BreweriesOwned = this.owner.getBreweriesOwned(); 
+			BreweriesOwned = getNumberOwned(player, gb); 
 			rent = BreweriesOwned * 100*player.getDiceSum();			
-			}
+		}
 		player.payTo(this.owner, rent); 
 		return rent;		
 	}
-	
+
 	/**
 	 * Superklassens metode til at købe feltet genbruges
 	 * derudover registreres det at denne spiller har købt 
@@ -43,11 +39,24 @@ public class BreweryDTO extends Ownable {
 	@Override
 	public void buyField(PlayerDTO player) {
 		super.buyField(player);
-		player.setBreweriesOwned(1+player.getBreweriesOwned());
 	}
 
 
-	
+	public int getNumberOwned(PlayerDTO p, GameBoardDTO gb) {
+		int nfields = gb.getNumberOfFields();
+		int BreweriesOwned = 0;
+
+		for (int i = 0; i<nfields; i++) {
+			FieldDTO field = gb.getField(i);
+			if (field.getType() == 2) {
+				BreweryDTO bfield = (BreweryDTO) field;
+				if (bfield.getOwner() == p) {
+					++BreweriesOwned;
+				}
+			}
+		}
+		return BreweriesOwned;
+	}
 	@Override
 	public int getPrice() {
 		return this.price;

@@ -8,20 +8,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entity.PlayerDTO;
-import entity.fieldclasses.RefugeDTO;
+import entity.fieldclasses.StartDTO;
 
 public class TestMiscFields {
 	private PlayerDTO player;
-	private RefugeDTO refuge500;
-	private RefugeDTO refuge5000;
-	private RefugeDTO refugeNegative700;
+	private StartDTO refuge500;
+	private StartDTO refuge5000;
+	private StartDTO refugeNegative700;
 	
 	@Before
 	public void setUp() throws Exception {
 		this.player = new PlayerDTO("Doland Dak", 1000);
-		this.refuge500 = new RefugeDTO(1, Color.red, 500);
-		this.refuge5000 = new RefugeDTO(2, Color.BLACK, 5000);
-		this.refugeNegative700 = new RefugeDTO(3,Color.GREEN, -700);
+		this.refuge500 = new StartDTO(1, Color.red, 500);
+		this.refuge5000 = new StartDTO(2, Color.BLACK, 5000);
+		this.refugeNegative700 = new StartDTO(3,Color.GREEN, -700);
 	}
 
 	@After
@@ -39,9 +39,9 @@ public class TestMiscFields {
 			Assert.assertNotNull(this.refuge5000);
 			Assert.assertNotNull(this.refugeNegative700);
 			
-			Assert.assertTrue(this.refuge500 instanceof RefugeDTO);
-			Assert.assertTrue(this.refuge5000 instanceof RefugeDTO);
-			Assert.assertTrue(this.refugeNegative700 instanceof RefugeDTO);
+			Assert.assertTrue(this.refuge500 instanceof StartDTO);
+			Assert.assertTrue(this.refuge5000 instanceof StartDTO);
+			Assert.assertTrue(this.refugeNegative700 instanceof StartDTO);
 	}
 	@Test
 	public final void testLandOnField500() {
