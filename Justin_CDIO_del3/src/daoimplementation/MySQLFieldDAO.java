@@ -2,19 +2,17 @@ package daoimplementation;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import boundary.dao.FieldDAO;
 import controller.Connector;
 import controller.SQLMapper;
-import entity.PlayerDTO;
-import entity.PlayerList;
 import entity.fieldclasses.BreweryDTO;
 import entity.fieldclasses.ChanceDTO;
 import entity.fieldclasses.FieldDTO;
 import entity.fieldclasses.JailDTO;
-import entity.fieldclasses.Ownable;
 import entity.fieldclasses.RefugeDTO;
-import entity.fieldclasses.StartDTO;
 import entity.fieldclasses.ShippingCompanyDTO;
+import entity.fieldclasses.StartDTO;
 import entity.fieldclasses.StreetDTO;
 import entity.fieldclasses.TaxDTO;
 public class MySQLFieldDAO implements FieldDAO {
@@ -37,7 +35,8 @@ public class MySQLFieldDAO implements FieldDAO {
 		}
 	}
 	@Override
-	public FieldDTO getField(int id) throws RuntimeException {Connector c = new Connector();
+	public FieldDTO getField(int id) throws RuntimeException {
+	Connector c = new Connector();
 	int fieldnumber = 0;
 	String fieldname = null;
 	String type = null;
@@ -68,12 +67,15 @@ public class MySQLFieldDAO implements FieldDAO {
 		while(rs.next()){
 			switch (type) {
 			case "street":
-				int streetgroup = rs.getInt(2);
+				String streetgroup = rs.getString(2);
+				colorint = rs.getInt(3);
 				int streetprice = rs.getInt(4);
 				int streetrent = rs.getInt(5);
-				colorint = rs.getInt(3);
+				int srent_1 = rs.getInt(6);
+				int srent_2 = rs.getInt(7);
+				int houseprice = rs.getInt(11);
 				color = new Color(colorint);
-				StreetDTO streetfield = new StreetDTO(fieldnumber, fieldname, color, streetprice, streetrent, streetgroup);
+				StreetDTO streetfield = new StreetDTO(fieldnumber, fieldname,streetgroup, color, streetprice, streetrent, srent_1, srent_2,houseprice);
 				return streetfield;
 			case "jail":
 				JailDTO jailfield = new JailDTO(fieldnumber, fieldname, color);
@@ -83,8 +85,9 @@ public class MySQLFieldDAO implements FieldDAO {
 				return chancefield;
 			case "brewery":
 				int breweryprice = rs.getInt(2);
-				int breweryrent = rs.getInt(3);
-				BreweryDTO breweryfield = new BreweryDTO(fieldnumber, fieldname, color, breweryprice, breweryrent);
+				int rent_1 = rs.getInt(3);
+				int rent_2 = rs.getInt(4);
+				BreweryDTO breweryfield = new BreweryDTO(fieldnumber, fieldname, color, breweryprice, rent_1, rent_2);
 				return breweryfield;
 			case "refuge":
 				if (fieldnumber == 0) {
@@ -98,10 +101,10 @@ public class MySQLFieldDAO implements FieldDAO {
 				}
 			case "shipping_company":
 				int shippingprice = rs.getInt(2);
-				int shippingrent_1 = rs.getInt(4);
-				int shippingrent_2 = rs.getInt(5);
-				int shippingrent_3 = rs.getInt(6);
-				int shippingrent_4 = rs.getInt(7);
+				int shippingrent_1 = rs.getInt(3);
+				int shippingrent_2 = rs.getInt(4);
+				int shippingrent_3 = rs.getInt(5);
+				int shippingrent_4 = rs.getInt(6);
 
 				ShippingCompanyDTO shippingfield = new ShippingCompanyDTO(fieldnumber, fieldname, color, shippingprice, shippingrent_1, shippingrent_2, shippingrent_3, shippingrent_4);
 				return shippingfield;
@@ -112,9 +115,11 @@ public class MySQLFieldDAO implements FieldDAO {
 				return taxfield;
 			default:
 				break;
+			
 			}
 		}
-	} catch (SQLException e) {
+	}
+	catch (SQLException e) {
 		e.printStackTrace();
 		throw new RuntimeException("Error");
 	}

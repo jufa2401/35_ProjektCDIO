@@ -15,7 +15,9 @@ import entity.PlayerDTO;
 
 public class ShippingCompanyDTO extends Ownable {
 
-	int rent, ShippingCompanysOwned;
+	int ShippingCompanysOwned;
+	
+	int[] rent = new int[5];
 
 	/**
 	 * Constructor til ShippingCompany felt objekter/instanser. 
@@ -26,24 +28,31 @@ public class ShippingCompanyDTO extends Ownable {
 
 	public ShippingCompanyDTO(int fieldNumber, String name,  Color color, int price, int rent_1, int rent_2, int rent_3, int rent_4) {
 		super(fieldNumber,name, color, price);
+		rent[0] = 0;
+		rent[1] = rent_1;
+		rent[2] = rent_2;
+		rent[3] = rent_3;
+		rent[4] = rent_4;
+		
 	}
 	
 	public int getNumberOwned(PlayerDTO p, GameBoardDTO gb) {
 		int nfields = gb.getNumberOfFields();
-		int ShippingCompanysOwned = 0;
+		int ShippingCompanysOwnedByOwner = 0;
 		
 		for (int i = 0; i<nfields; i++) {
 			FieldDTO field = gb.getField(i);
 			if (field.getType() == 1) {
 				ShippingCompanyDTO sfield = (ShippingCompanyDTO) field;
 				if (sfield.getOwner() == p) {
-					++ShippingCompanysOwned;
+					++ShippingCompanysOwnedByOwner;
 				}
 			}
 		}
 		
-		return ShippingCompanysOwned;
+		return ShippingCompanysOwnedByOwner;
 	}
+	
 
 	
 /**
@@ -61,17 +70,10 @@ public class ShippingCompanyDTO extends Ownable {
 	public int landOnField(PlayerDTO player, GameBoardDTO gb)  {
 		int paid = 0;
 		if (this.owner != null){
-			ShippingCompanysOwned = getNumberOwned(player, gb);
-			switch (ShippingCompanysOwned) {
-			case 1: rent = 500;		break;
-			case 2: rent = 1000;	break;
-			case 3: rent = 2000;	break;
-			case 4: rent = 4000;	break;
-			default: break;
-			}
-			player.payTo(this.owner, rent);
-			paid = rent;
-
+			ShippingCompanysOwned = getNumberOwned(this.owner, gb);
+			int r = rent[ShippingCompanysOwned];
+			player.payTo(this.owner, r);
+			paid = r;
 		}
 		return paid;		
 	}

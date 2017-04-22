@@ -1,17 +1,18 @@
 package entity;
 import java.awt.Color;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import boundary.dao.FieldDAO;
 import daoimplementation.MySQLFieldDAO;
 import entity.fieldclasses.FieldDTO;
 import entity.fieldclasses.Ownable;
 import entity.fieldclasses.StartDTO;
+import entity.fieldclasses.StreetDTO;
 public class GameBoardDTO {
 	private static FieldDTO[] field;
 	FieldDAO fielddao = new MySQLFieldDAO();
-	//	StreetDAO dao = new MySQLStreetDAO();
-	//	ArrayList<StreetDTO> streetlist= dao.getStreet();
+
 	public GameBoardDTO() {
 		int fieldcount = fielddao.getFieldCount();
 
@@ -81,9 +82,51 @@ public class GameBoardDTO {
 		StartDTO rfield = (StartDTO) field[0];
 		return rfield.getBonus();
 	}
-	
-}
+	public ArrayList<String> getGroups() {
+		int nfields = getNumberOfFields();
+		int ngroup = 0;
+		ArrayList<String> groups = new ArrayList<String>();
+		String lastgroup = "";
+		for (int i = 0; i<nfields; i++) {
+			FieldDTO field = getField(i);
+			if (field.getType() == 5){
+				StreetDTO sfield = (StreetDTO) field;
+				String group = sfield.getGroup();
+				if (!lastgroup.equals(group)) {
+					groups.add(ngroup, group);
+					++ngroup;
+					lastgroup = group;
+				}
+			}
 
+		}
+		return groups;
+
+	}
+	public ArrayList<String> getGroupsOwnedBy(PlayerDTO p) {
+		int nfields = getNumberOfFields();
+		int ngroup = 0;
+		ArrayList<String> groups = new ArrayList<String>();
+		String lastgroup = "";
+		for (int i = 0; i<nfields; i++) {
+			FieldDTO field = getField(i);
+			if (field.getType() == 5){
+				StreetDTO sfield = (StreetDTO) field;
+				if (sfield.getOwner() == p) {
+					String group = sfield.getGroup();
+					if (!lastgroup.equals(group)) {
+						groups.add(ngroup, group);
+						++ngroup;
+						lastgroup = group;
+					}
+				}
+			}
+
+		}
+		return groups;
+
+	}
+}
 
 
 

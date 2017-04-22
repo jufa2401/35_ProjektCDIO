@@ -24,7 +24,7 @@ public class MySQLPlayerDAO implements PlayerDAO {
 				int currentField = rs.getInt(3);
 				int balance = rs.getInt(4);
 				int roundsleftjail = rs.getInt(5);
-				pl.addPlayer(playerid, name, currentField, balance);
+				pl.addPlayer(playerid, name, currentField, balance, roundsleftjail);
 			}
 			return pl;
 		} catch (SQLException e) {

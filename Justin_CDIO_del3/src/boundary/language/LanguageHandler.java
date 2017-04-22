@@ -100,4 +100,49 @@ public class LanguageHandler {
 		return selectedLanguage.AskLoadGame();
 	}
 
+
+	public String askPayJail() {
+		return selectedLanguage.askPayJail();
+	}
+
+
+	public String playerOutOfJail(String name) {
+		return selectedLanguage.playerOutOfJail(name);
+	}
+
+
+	public String playerGoToJail(String name) {
+		return selectedLanguage.playerGoTOJail(name);
+	}
+
+
+	public String GetOkStart(String name) {
+		return selectedLanguage.GetOkStart(name);
+	}
+
+
+	public static String badName() {
+		return selectedLanguage.badName();
+	}
+
+
+	public String askBuyHouse() {
+		return selectedLanguage.askBuyHouse();
+	}
+	public String move() {
+		return selectedLanguage.move();
+	}
+	public String buy() {
+		return selectedLanguage.buy();
+	}
+	public String buyHouseGroup() {
+		return selectedLanguage.buyHouseGroup();
+	}
+
+
+	public String promptGroup() {
+		return selectedLanguage.promptGroup();
+	}
+
+
 }

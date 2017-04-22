@@ -14,13 +14,13 @@ public class ChanceDeck {
 		discards = new ArrayList<ChanceCard>();
 
 //		Language for nogle kort er lavet i Dansk
-		discards.add(new ChanceCard(0,language));
-		discards.add(new ChanceCard(0,"pay poor tax"));
-		discards.add(new ChanceCard(0,"elected chairman of the board"));
-		discards.add(new ChanceCard(0,"bank pays"));
-		discards.add(new ChanceCard(0,"collect 150"));
-		discards.add(new ChanceCard(0,"make repairs"));
-		discards.add(new ChanceCard(1,"GO TO JAIL"));
+		discards.add(new ChanceCard(0,0, language, 0, 0, 0, 0));
+		discards.add(new ChanceCard(0,0, "pay poor tax", 0, 0, 0, 0));
+		discards.add(new ChanceCard(0,0, "elected chairman of the board", 0, 0, 0, 0));
+		discards.add(new ChanceCard(0,0, "bank pays", 0, 0, 0, 0));
+		discards.add(new ChanceCard(0,0, "collect 150", 0, 0, 0, 0));
+		discards.add(new ChanceCard(0,0, "make repairs", 0, 0, 0, 0));
+		discards.add(new ChanceCard(1,0, "GO TO JAIL", 0, 0, 0, 0));
 		discards.add(new ChanceCard(2,"advance to go"));
 		discards.add(new ChanceCard(3,"advance to charles"));
 		discards.add(new ChanceCard(4,"advance to boardwalk"));
@@ -44,79 +44,12 @@ public class ChanceDeck {
 			cards.add(discards.get(index));
 			discards.remove(index);
 		}
-	}
+	
 
-	public int getChance(int location)
-	{
-		int rval = location;
-
-		if(cards.size()==0) {
-			shuffle();
-		}
-		ChanceCard card = (ChanceCard)cards.get(0);
-		cards.remove(0);
-		discards.add(card);
-		if(card.type==1) {
-			rval = 10;
-		}
-		else if(card.type==2) {
-			loops++;
-			rval = 0;
-		}
-		else if(card.type==3) {
-			if(location>11) {
-				loops++;
-			}
-			rval = 11;
-		}
-		else if(card.type==4) {
-			rval = 39;
-		}
-		else if(card.type==5) {
-			if(location==7) {
-				rval = 12;
-			}
-			else if(location==22) {
-				rval = 28;
-			}
-			else if(location==36) {
-				loops++;
-				rval = 12;
-			}
-			else {
-				System.out.println("I fucked up");
-			}
-		}
-		else if(card.type==6) {
-			if(location>24) {
-				loops++;
-			}
-			rval = 24;
-		}
-		else if(card.type==7) {
-			loops++;
-			rval = 5;
-		}
-		else if(card.type==8) {
-			rval = location-3;
-		}
-		else if(card.type==9) {
-			if(location==7) {
-				rval = 15;
-			}
-			else if(location==22) {
-				rval = 25;
-			}
-			else if(location==36) {
-				loops++;
-				rval = 5;
-			}
-		}
-
+	
 		//			System.out.println("GOT Chance: "+card.label);
 
 
-		return(rval);
 	}
 
 }

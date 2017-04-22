@@ -1,123 +1,92 @@
 package test;
 
-import static org.junit.Assert.*;
-
-import java.awt.Color;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import entity.*;
-import entity.fieldclasses.*;
+import entity.GameBoardDTO;
+import entity.PlayerDTO;
+import entity.fieldclasses.FieldDTO;
+import entity.fieldclasses.StreetDTO;
 
-public class TestStreet {
-	
+public class TestStreet{
+
 	private PlayerDTO player;
-	private StreetDTO Street1000;
-	private StreetDTO Street4000;
-	private StreetDTO StreetNegative500;
-	PlayerDTO ejer = new PlayerDTO("ejer", 5000);
-	
+
+	private PlayerDTO ejer;
+	private GameBoardDTO gb = new GameBoardDTO();
+
 	@Before
 	public void setUp() throws Exception {
-		this.player = new PlayerDTO("Doland Dak", 10000);
-		//Player ejer = new Player("ejer", 1000);
-		this.Street1000 = new StreetDTO(1, Color.black, 2000, 1000);
-		this.Street4000 = new StreetDTO(2, Color.blue, 6000, 4000);
-		this.StreetNegative500 = new StreetDTO(3, Color.yellow, 100, -500);
-		this.Street1000.setOwner(ejer);
-		this.Street4000.setOwner(ejer);
-		this.StreetNegative500.setOwner(ejer);
+		player = new PlayerDTO(1, "Spiller", 1, 10000, 0);
+		ejer = new PlayerDTO(0, "ejer", 1, 10000, 0);
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.player = new PlayerDTO("Doland Dak", 10000);
-	
+
 	}
 
 	@Test
-	public void testEntity() {
-		Assert.assertNotNull(this.player);
-		Assert.assertNotNull(this.Street1000);
-		Assert.assertNotNull(this.Street4000);
-		Assert.assertNotNull(this.StreetNegative500);
-		
-		Assert.assertTrue(this.Street1000 instanceof StreetDTO);
-		Assert.assertTrue(this.Street4000 instanceof StreetDTO);
-		Assert.assertTrue(this.StreetNegative500 instanceof StreetDTO);
-	}
-	
-	@Test
-	public final void testGetRent() {
-		int expected = 1000;
-		int actual = this.Street1000.getRent();
-		Assert.assertEquals(expected, actual);
-		
+	public void testEntities() {
+		Assert.assertNotNull(player);
+
 	}
 
 	@Test
-	public final void testGetPrice() {
-		int expected = 2000;
-		int actual = this.Street1000.getPrice();
-		Assert.assertEquals(expected, actual);
-	}
-
-	@Test
-	public final void testGetType() {
-		int expected = 5;
-		int actual = this.Street1000.getType();
-		Assert.assertEquals(expected, actual);
-	}
-
-	@Test
-	public final void testLandOnField1000() {
-		int expected = 10000;
-		int actual = this.player.getBalance();
-		Assert.assertEquals(expected, actual);
-		
-		//Tester LandOnField metoden og om den påvirker balances som forventet.
-		this.Street1000.landOnField(this.player);
-		
-		expected = 10000 - 1000;
-		actual = this.player.getBalance();
-		Assert.assertEquals(expected, actual);
+	// Tester det om man får fratrukket saldo den rette leje, hvis man lander på det aller første felt
+	public void testLandOnField() {
+		StreetDTO streetfield = null;
+		//		Sætter første Street til at have samme ejer
+		for(int index = 0; index < gb.getNumberOfFields(); index++) {
+			FieldDTO field = gb.getField(index);
+			if(field.getType() == 5) {
+				streetfield = (StreetDTO) field;
+				streetfield.setOwner(ejer); 
+				break;
+			}
 		}
-	
-	@Test
-	public final void testLandOnField2000() {
 		int expected = 10000;
-		int actual = this.player.getBalance();
+		int actual = player.getBalance();
 		Assert.assertEquals(expected, actual);
-		
-		//Tesert udfaldet af LandOnField metoden i Street og hvordan balancen påvirkes.
-		this.Street4000.landOnField(this.player);
-		
-		expected = 10000 - 4000;
-		actual = this.player.getBalance();
+
+		//Tester om når der er én ejer af af Streeten og en anden spiller lander derpå om balancen bliver påvirket korrekt.
+
+		streetfield.landOnField(player, gb);
+
+
+		expected = 10000 - 50;
+		actual = player.getBalance();
+
+		Assert.assertTrue(streetfield.getOwner() == ejer);
 		Assert.assertEquals(expected, actual);
 	}
-	
+
 	@Test
-	public final void testLandOnFieldNegative500() {
+	// Tester om man får fratrukket den rette leje hvis man lander på den sidste street
+	public void testLandOnField2() {
 		int expected = 10000;
-		int actual = this.player.getBalance();
+		int actual = player.getBalance();
 		Assert.assertEquals(expected, actual);
-		
-		//tester om hvordan rent metoden fungere sammen med player klassen.
-		// tester om en spiller modtager penge når han skal betale et negativt beløb - Overholder klassen matematiske regler (-- = +).
-		this.StreetNegative500.landOnField(this.player);
-		
-		expected = 10000 + 500;
-		actual = this.player.getBalance();
+
+		StreetDTO streetfield = null;
+		//		Sætter alle Street til at have samme ejer
+		for(int index = 0; index < gb.getNumberOfFields(); index++) {
+			FieldDTO field = gb.getField(index);
+			if(field.getType() == 5) {
+				streetfield = (StreetDTO) field;
+				streetfield.setOwner(ejer); 
+			}
+		}
+		streetfield.landOnField(player, gb);
+
+		expected = 10000 - 1000;
+		actual = player.getBalance();
+
+
 		Assert.assertEquals(expected, actual);
-		
-		//tester om ejeren af feltet er blevet trukkt penge.
-		expected = 5000 - 500;
-		actual = ejer.getBalance();
-		Assert.assertEquals(expected, actual);	
 	}
-	
 }
+

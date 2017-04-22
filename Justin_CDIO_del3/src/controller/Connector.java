@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 /** @author Ronnie Dalsgaard */
 public class Connector {
@@ -40,5 +41,11 @@ public class Connector {
     public void doUpdate(String query) throws SQLException{
         Statement stmt = connection.createStatement();
         stmt.executeUpdate(query);
+   
+    }
+    
+    public PreparedStatement ps (String query) throws SQLException {
+		return null;
+    	
     }
 }

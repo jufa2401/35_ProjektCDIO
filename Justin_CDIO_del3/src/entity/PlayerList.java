@@ -21,8 +21,8 @@ public class PlayerList {
  * @param ID
  * @param name
  */
-	public void addPlayer(int ID, String name, int pos, int bal) {
-		players[ID] = new PlayerDTO(ID, name, pos, bal);
+	public void addPlayer(int ID, String name, int pos, int bal, int rounds_left_jail) {
+		players[ID] = new PlayerDTO(ID, name, pos, bal, rounds_left_jail);
 	
 	}
 		

@@ -4,11 +4,14 @@ import java.awt.Color;
 import entity.GameBoardDTO;
 import entity.PlayerDTO;
 public class BreweryDTO extends Ownable {
-	int rent, BreweriesOwned;
+	int rent_1, rent_2;
 
-	public BreweryDTO(int fieldNumber,String name, Color color, int price, int rent) {
+	public BreweryDTO(int fieldNumber,String name, Color color, int price, int rent_1, int rent_2) {
 		super(fieldNumber, name, color, price);
+		this.rent_1 = rent_1;
+		this.rent_2 = rent_2;
 	}
+	
 
 	/**
 	 *  Hvis man lander på en LaborCamp som er ejet,
@@ -24,11 +27,12 @@ public class BreweryDTO extends Ownable {
 	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
 		int rent = 0;
 		if (this.owner != null){
-			BreweriesOwned = getNumberOwned(player, gb); 
-			rent = BreweriesOwned * 100*player.getDiceSum();			
-		}
+			int BreweriesOwned = getNumberOwned(this.owner, gb); 
+		rent = (BreweriesOwned > 1) ? rent_2*player.getDiceSum() : rent_1*player.getDiceSum();
 		player.payTo(this.owner, rent); 
-		return rent;		
+		}
+		return rent;
+		
 	}
 
 	/**
@@ -45,7 +49,6 @@ public class BreweryDTO extends Ownable {
 	public int getNumberOwned(PlayerDTO p, GameBoardDTO gb) {
 		int nfields = gb.getNumberOfFields();
 		int BreweriesOwned = 0;
-
 		for (int i = 0; i<nfields; i++) {
 			FieldDTO field = gb.getField(i);
 			if (field.getType() == 2) {
@@ -60,12 +63,6 @@ public class BreweryDTO extends Ownable {
 	@Override
 	public int getPrice() {
 		return this.price;
-	}
-
-	@Override
-	public int getRent() {
-		// Kan evt. udvides til at returnere 100 gange terningkast
-		return 0;
 	}
 
 	/**

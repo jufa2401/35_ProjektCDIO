@@ -21,10 +21,5 @@ public class SQLMapper {
 		}
 	}	
 	
-	
-	public static void main(String[] args) {
-		new SQLMapper().getStatement(4);
-		
-	}
 
 }

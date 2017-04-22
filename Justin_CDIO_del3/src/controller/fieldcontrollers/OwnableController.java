@@ -2,16 +2,17 @@ package controller.fieldcontrollers;
 
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
-import entity.fieldclasses.Ownable;
 import entity.fieldclasses.FieldDTO;
+import entity.fieldclasses.Ownable;
 
 public class OwnableController {
-	public static void OwnableRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
+	public static void OwnableRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player, GameBoardDTO gb) {
 		Ownable ofield = (Ownable) field; //?? noget skal sek
 			if (ofield.getOwner() != null) {
 				// Hvis der er en ejer af feltet
-				int paid = ofield.landOnField(player);
+				int paid = ofield.landOnField(player,gb);
 
 				// Giv besked om betalt leje
 				GUIh.getButtonPressed(language.playerPayTo(player.getName(), ofield.getOwner().getName(), paid), language.Ok());

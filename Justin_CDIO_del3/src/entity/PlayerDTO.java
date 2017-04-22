@@ -1,10 +1,12 @@
 package entity;
 
-import entity.fieldclasses.StartDTO;
+import desktop_codebehind.Player;
+import entity.fieldclasses.FieldDTO;
+import entity.fieldclasses.StreetDTO;
 
 public class PlayerDTO {
 	private String name;
-	private int balance, currentField, d1, d2, Identifier, ShippingCompanysOwned, BreweriesOwned;
+	private int balance, currentField, d1, d2, Identifier, rounds_left_jail;
 	private boolean hasLost;
 	//private static int AvailableIdentifer = 0;
 	/**
@@ -15,11 +17,11 @@ public class PlayerDTO {
 	 * @param balance
 	 * @param balance2 
 	 */
-	public PlayerDTO (int playerid, String name, int position, int balance){
+	public PlayerDTO (int playerid, String name, int position, int balance, int rounds_left_jail){
 		this.name = name;
 		this.balance = balance;
-		this.BreweriesOwned = BreweriesOwned;
-		this.ShippingCompanysOwned = ShippingCompanysOwned;
+		this.rounds_left_jail = rounds_left_jail;
+
 		//	Disse variabler skal vel hentes fra databasen?
 
 		hasLost = false;
@@ -57,19 +59,6 @@ public class PlayerDTO {
 	public int getBalance() {
 		return balance;
 	}
-	//	Getters og setters til ShippingCompanys
-//	public int getShippingCompanysOwned() {
-//		return ShippingCompaniesOwned;
-//	}
-//	public void setShippingCompanysOwned(int ShippingCompanysOwned) {
-//		this.ShippingCompaniesOwned = ShippingCompanysOwned;
-//	}
-//	public int getBreweriesOwned() {
-//		return BreweriesOwned;
-//	}
-//	public void setBreweriesOwned(int BreweriesOwned) {
-//		this.BreweriesOwned = BreweriesOwned;
-//	}
 
 	/**
 	 *  Vi laver metode til at gemme terningsummen, denne metode er lavet specifikt 
@@ -131,13 +120,15 @@ public class PlayerDTO {
 		this.currentField += roll;
 		while(this.currentField >= length) {
 			this.currentField -= length;
-			this.balance += gb.getStartBonus();
+			//			this.balance += gb.getStartBonus();
+			Transaction(gb.getStartBonus());
 		}
 		return this.currentField;
 	}
 	//	Ny kode skal rettes
 	public int moveToJail(int jailindex, GameBoardDTO gb) {
 		this.currentField = jailindex;
+		setRoundsLeftJail(3);
 		return this.currentField;
 	}
 
@@ -146,10 +137,57 @@ public class PlayerDTO {
 	}
 
 	public int getRoundsLeftJail() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rounds_left_jail;
+	}
+	public int setRoundsLeftJail(int n) {
+		rounds_left_jail = n;
+		return rounds_left_jail;
 	}
 
+	public boolean canBuyHouses(GameBoardDTO gb) {
+		//	ineffektiv kode men programmet er ikke begrænset af hastighed
+		int nfields = gb.getNumberOfFields();
+
+		for (int i = 0; i<nfields; i++) {
+			FieldDTO field = gb.getField(i);
+			if (field.getType() == 5){
+				StreetDTO sfield = (StreetDTO) field;
+				if (sfield.checkStreetGroupOwned (this, gb)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public int buyHouse(GameBoardDTO gb, String group) {
+		int nfields = gb.getNumberOfFields();
+		int fieldindex = -1;
+		int housesonlastfield = 0;
+		int housesonthisfield;
+		for (int i = 0; i<nfields; i++) {
+			FieldDTO field = gb.getField(i);
+			if (field.getType() == 5){
+				StreetDTO sfield = (StreetDTO) field;
+				if(sfield.getGroup().equals(group)) {
+					housesonthisfield = sfield.getHouses();
+					if (housesonthisfield <= housesonlastfield) {
+						fieldindex = i;
+						housesonlastfield = housesonthisfield;
+					}
+				}
+			}
+		}
+		if(fieldindex > 0) {
+			StreetDTO sfield = (StreetDTO) gb.getField(fieldindex);
+			int houseprice = sfield.getHousePrice();
+			if(balance > houseprice) {
+				Transaction(-houseprice);
+				sfield.setHouses(sfield.getHouses()+1);
+			}
+		}
+		return fieldindex;
+	}		
 
 
 }

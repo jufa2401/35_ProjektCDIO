@@ -7,9 +7,14 @@ import entity.PlayerDTO;
 
 public class JailDTO extends FieldDTO {
 
+	private static int jailindex = -1;
+
 	public JailDTO(int fieldNumber, String name, Color color) {
 		super(fieldNumber, name, color);
-		
+		if (jailindex  < 0)  {
+			jailindex = fieldNumber;
+		}
+
 	}
 
 	@Override
@@ -19,9 +24,13 @@ public class JailDTO extends FieldDTO {
 	}
 
 	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
-		int currentfield = player.moveToJail(10, gb);
-		return currentfield;
+		int currentfield = this.getID();
+		// hvis det er go to jail, bliver du smidt i fængsel	
+		if(currentfield != jailindex) {
+			currentfield = player.moveToJail(jailindex, gb);
+		}
+		return currentfield;	
 	}
-	
+
 
 }

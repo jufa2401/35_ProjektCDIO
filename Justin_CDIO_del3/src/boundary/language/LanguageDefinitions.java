@@ -9,9 +9,7 @@
 	 String getFieldPrice(int price);
 
 	 String getFieldDescription(int type);
-	 
-	 String getChanceDescription (int chanceid);
-	
+	 	
 	 String AskHowManyPlayer();
 
 	 String AskForPlayerName();
@@ -37,5 +35,25 @@
 	 String playerBonus(String name, int bonus);
 
 	 String askPayTax();
+
+	String askPayJail();
+
+	String playerOutOfJail(String name);
+
+	String playerGoTOJail(String name);
+
+	String GetOkStart(String name);
+
+	String badName();
+
+	String askBuyHouse();
+
+	String move();
+
+	String buy();
+
+	String buyHouseGroup();
+
+	String promptGroup();
 	
 }

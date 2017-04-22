@@ -1,10 +1,8 @@
 package rungame;
 import boundary.GUIHandler;
-import boundary.dao.FieldDAO;
 import boundary.dao.PlayerDAO;
 import boundary.language.LanguageHandler;
 import controller.Controller;
-import daoimplementation.MySQLFieldDAO;
 import daoimplementation.MySQLGameStateDAO;
 import daoimplementation.MySQLPlayerDAO;
 import entity.GameBoardDTO;
@@ -17,20 +15,23 @@ public class Main {
 	 * GUIHandler, sætter sprog, henter reglerne
 	 */
 	public static void main (String[]args) {
-		GameBoardDTO game = new GameBoardDTO();
+		
+		GameBoardDTO game = new GameBoardDTO	();
 		GUIHandler GUIh = new GUIHandler();
+
 		MySQLGameStateDAO gamestate = new MySQLGameStateDAO();
 		PlayerDAO playerdao = new MySQLPlayerDAO();
 		//		Sætter sproget til dansk, flere sprog kan udvikles i language pakken, ved at implementere language definitions
 		LanguageHandler language = new LanguageHandler("Dansk");
 		// Opretter spilleplade i GUI på basis af feltrækken i GameBoard
-		GUIh.createGameBoard(game, language);
+		GUIh.createGameBoard(game, language);		//GameBoardet var forsøgt at starte i sin egen tråd, men GUIen tager allerede højde for dette.
 		// Vis spillets regler til spillerne
 		GUIh.getGameRules(language.gameRules());
 		//		Spørg om genoptaget spil
 		int playerCount = 0;
 		PlayerList playerList;
-		if (GUIh.getYesNo(language.AskLoadGame(), language.yes(), language.no())) {
+		boolean isSavedGame = gamestate.checkFieldStatus();
+		if (isSavedGame && GUIh.getYesNo(language.AskLoadGame(), language.yes(), language.no())) {
 			playerCount = playerdao.getPlayerCount();
 			playerList = playerdao.getPlayers();
 			for (int i = 0; i < playerCount; i++) {				
@@ -69,9 +70,9 @@ public class Main {
 			{
 				String name;
 				do {
-					name = GUIh.getString(language.askForPlayerName());
+					name = GUIh.getName(language.askForPlayerName());
 				} while (playerList.isNameUsed(i,name));
-				playerList.addPlayer(i, name, 0, 30000);
+				playerList.addPlayer(i, name, 0, 30000, 0);
 				GUIh.addPlayer(playerList.getPlayer(i).getName(), 0, playerList.getPlayer(i).getBalance());
 			}	
 		}

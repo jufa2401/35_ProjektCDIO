@@ -9,7 +9,6 @@ import entity.fieldclasses.FieldDTO;
 public class TaxController {
 	public static void TaxRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) 
 	{
-		//			hvis feltet ikke kan ejes
 		int taxAmount = field.getTaxAmount();
 		int taxRate   = field.getTaxRate();
 		int paid;

@@ -2,12 +2,13 @@ package controller.fieldcontrollers;
 
 import boundary.GUIHandler;
 import boundary.language.LanguageHandler;
+import entity.GameBoardDTO;
 import entity.PlayerDTO;
 import entity.fieldclasses.BreweryDTO;
 import entity.fieldclasses.FieldDTO;
 
 public class BreweryController {
-	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player) {
+	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field, PlayerDTO player, GameBoardDTO gb) {
 //		Ownable ofield = (Ownable) field; 
 		BreweryDTO bfield = (BreweryDTO) field; //?? noget skal sek
 			if (bfield.getOwner() != null) {

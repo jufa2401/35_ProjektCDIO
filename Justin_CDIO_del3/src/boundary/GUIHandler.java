@@ -1,5 +1,7 @@
 package boundary;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import boundary.language.LanguageHandler;
 import desktop_codebehind.Car;
@@ -15,6 +17,7 @@ import desktop_fields.Street;
 import desktop_fields.Tax;
 import desktop_resources.GUI;
 import entity.GameBoardDTO;
+import entity.PlayerDTO;
 /**		
  * Det er forsøgt at begrænse koblingen mellem boundary og entities,
  * men har endt med at beholde GameBoard, da  det for mig resulterede i 
@@ -48,7 +51,7 @@ public class GUIHandler {
 				.setTitle(language.getFieldDescription(type))
 				.setSubText(language.getFieldPrice(price))
 				.setDescription(gb.getFieldName(id))
-				.setBgColor(Color.blue)
+//				.setBgColor(Color.blue)
 				.setRent(language.getFieldRent(rent))
 				.build();
 				break;
@@ -73,7 +76,7 @@ public class GUIHandler {
 			case 4:
 				fields[id] = new Tax.Builder()
 				.setTitle(language.getFieldDescription(type))
-				.setSubText(gb.getFieldName(id))
+				.setSubText(language.getFieldDescription(type))
 				.setDescription(gb.getFieldName(index))
 				//				.setBgColor
 				//								.setRent(language.getFieldRent(rent))
@@ -100,11 +103,6 @@ public class GUIHandler {
 				break;
 			case 7:
 				fields[id] = new Chance.Builder()
-				//			.setTitle(gb.getFieldName(id))
-				//			.setSubText(language.getFieldPrice(price))
-				//			.setDescription(language.getFieldDescription(type))
-				.setBgColor(new Color (29952))
-				//			.setRent(language.getFieldRent(rent))
 				.build();
 				break;
 			case 8:
@@ -136,8 +134,23 @@ public class GUIHandler {
 	 * @param message
 	 * @return
 	 */
-	public String getString(String message) {
+	public String getString(String message) 	{
 		return GUI.getUserString(message);
+	}
+	
+	// Metode lavet specifik til at hente en streng som er et navn. Inputvalideres med RegEx
+	public String getName (String message) {
+		String name;
+		boolean nameBad;
+		do { 
+			name = GUI.getUserString(message);
+			nameBad = !Pattern.matches("^[a-zA-zøØæÆåÅ]{1,18}+$", name);
+			if(nameBad) {
+				GUI.showMessage(LanguageHandler.badName());
+			}
+		} while (nameBad);
+		
+		return name;
 	}
 	/**
 	 * opretter én spiller i GUIen, der kan maks være 6 spillere,
@@ -273,9 +286,29 @@ public class GUIHandler {
 	 */
 	public void getGameRules(String gameRules) {
 		GUI.showMessage(gameRules);
+	}	
+	public void setChanceCard (String text) {
+		GUI.setChanceCard(text);	
+	}
+	public void showChanceCard (String text) {
+		GUI.displayChanceCard(text);
+	}
+	public void showChanceCard() {
+		GUI.displayChanceCard();
 	}
 
+	public int buyHouse(GameBoardDTO gb, String prompt, PlayerDTO p) {
+		ArrayList<String> groups = gb.getGroupsOwnedBy(p);
+		String [] T = new String [1];
+		String [] grouparray = groups.toArray(T);
+		String group = GUI.getUserSelection(prompt,grouparray);
+		return p.buyHouse(gb, group);
+	}
 
+	public void setHouses(int fieldnumber, int houseCount) {
+		GUI.setHouses(fieldnumber, houseCount);
+		
+	}	
 }
 
 

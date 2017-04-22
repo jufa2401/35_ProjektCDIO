@@ -8,5 +8,12 @@ public class Die {
 	}
 	public int getValue(){
 		return FaceValue;   
-	}		
+	}	
+	/**
+	 * Method setDice er lavet specifikt til test se TestJail
+	 * @return
+	 */
+	public void setValue (int i ) {
+		FaceValue = i;
+	}
 }

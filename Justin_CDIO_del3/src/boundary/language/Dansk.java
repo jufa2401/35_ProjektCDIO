@@ -41,6 +41,10 @@ public class Dansk implements LanguageDefinitions {
 	@Override
 	public String AskForPlayerName() {
 		return "Indtast spillernavn: ";
+	}	
+	@Override
+	public String badName() {
+		return "Ulovligt navn, indtast nyt spillernavn \nPrøv med  danske bogstaver og et kortere navn";
 	}
 	@Override
 	public String askBuyField() {
@@ -52,12 +56,12 @@ public class Dansk implements LanguageDefinitions {
 		switch (type) {
 		case 1: 	s = "Rederi";				break;
 		case 2: 	s = "Bryggeri";				break;
-		case 3: 	s = "Start";		break;
+		case 3: 	s = "Start";				break;
 		case 4: 	s = "Skat";					break;
 		case 5: 	s = "Gade";					break;
 		case 6: 	s = "Fængsel";				break;
 		case 7: 	s = "Prøv lykken";			break;
-		case 8: 	s = "Gratis parkering";			break;
+		case 8: 	s = "Gratis parkering";		break;
 		default:	s = "ingen type sat";		break;
 		}
 		return s;
@@ -105,20 +109,42 @@ public class Dansk implements LanguageDefinitions {
 		return "Vil du genoptage et gemt spil?";
 	}
 	@Override
-	public String getChanceDescription(int chanceid) {
-		String s;
-		switch (chanceid) {
-		case 1: 	s = "betal lille skat";									break;
-		case 2: 	s = "du fik andenpladsen i en skønhedskonkurrence";		break;
-		case 3: 	s = "Gå i fængsel";										break;
-		case 4: 	s = "Gå til start";										break;
-		case 5: 	s = "Gå til nærmeste Rederi";							break;
-		case 6: 	s = "Gå til nærmeste Rederi";							break;
-		case 7: 	s = "Gå til nærmeste bryggeri";							break;
-		case 8: 	s = "Du skal betale reperationer på ejendomme";			break;
-		default:	s = "ingen type sat";		break;
-		}
-		return s;
+	public String askPayJail() {
+		return "Vil du betale 1000 for at komme ud af fængsel?";
 	}
+	@Override
+	public String playerOutOfJail(String name) {
+	
+		return "Spilleren " + name +" er kommet ud af fængsel!";
+	}
+	@Override
+	public String playerGoTOJail(String name) {
+		return "Spilleren " +name + " smides i fængsel";
+	}
+	@Override
+	public String GetOkStart(String name) {
+		return "Spilleren " +name + " passerer start og modtager bonus";
+	}
+	@Override
+	public String askBuyHouse() {
+		return "Vil du rykke eller købe hus?";
+	}
+	@Override
+	public String move() {
+		return "Ryk";
+	}
+	@Override
+	public String buy() {
+		return "Køb hus";
+	}
+	@Override
+	public String buyHouseGroup() {
+		return "Vil du rykke eller købe hus?";
+	}
+	@Override
+	public String promptGroup() {
+		return "Vælg hvilken gadegruppe du vil købe hus på:";
+	}
+
 
 }
