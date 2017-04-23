@@ -69,8 +69,7 @@ public class GUIHandler {
 				.setTitle(language.getFieldDescription(type))
 				.setSubText(language.getFieldPrice(price))
 				.setDescription(gb.getFieldName(index))
-				//				.setBgColor(gb.getFieldColor(index))
-				//				.setRent(language.getFieldRent(rent))
+				//				.setBgColor(gb.getFieldColor(index)))
 				.build();
 				break;
 			case 4:
@@ -79,7 +78,6 @@ public class GUIHandler {
 				.setSubText(language.getFieldDescription(type))
 				.setDescription(gb.getFieldName(index))
 				//				.setBgColor
-				//								.setRent(language.getFieldRent(rent))
 				.build();
 				break;
 			case 5:
@@ -98,7 +96,6 @@ public class GUIHandler {
 				.setSubText(language.getFieldPrice(price))
 				.setDescription(gb.getFieldName(id))
 				//				.setBgColor(gb.getFieldColor(index))
-				//				.setRent(language.getFieldRent(rent))
 				.build();
 				break;
 			case 7:
@@ -111,7 +108,6 @@ public class GUIHandler {
 				.setSubText(language.getFieldPrice(price))
 				.setDescription(gb.getFieldName(id))
 				//				.setBgColor(gb.getFieldColor(index))
-				//				.setRent(language.getFieldRent(rent))
 				.build();
 				break;
 			default: break;}
@@ -162,7 +158,7 @@ public class GUIHandler {
 	 * @param balance
 	 */
 	public void addPlayer(String player, int currentField, int balance) {
-		Builder carBuilder = new Car.Builder();
+		Builder carBuilder = new Car.Builder(); 
 		switch (pid) {
 		case 0:
 			carBuilder
@@ -306,7 +302,12 @@ public class GUIHandler {
 	}
 
 	public void setHouses(int fieldnumber, int houseCount) {
-		GUI.setHouses(fieldnumber, houseCount);
+		GUI.setHouses(fieldnumber+1, houseCount);
+		
+	}
+//	GUI har ikke metode til at opdatere rent, den skal opdateres efter hvor mange huse der ejes!
+	public void setRent(int fieldnumber, String rent) {
+//		.setRent(fieldnumber+1,language.getFieldRent(rent));
 		
 	}	
 }

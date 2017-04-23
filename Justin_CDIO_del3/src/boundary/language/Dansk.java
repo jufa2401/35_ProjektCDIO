@@ -145,6 +145,14 @@ public class Dansk implements LanguageDefinitions {
 	public String promptGroup() {
 		return "Vælg hvilken gadegruppe du vil købe hus på:";
 	}
+	@Override
+	public String failedHousePurchase() {
+		return "Du kunne ikke købe hus, enten har du ikke penge nok, eller for mange huse.";
+	}
+	@Override
+	public String housePrice() {
+		return "\t Huspris: ";
+	}
 
 
 }

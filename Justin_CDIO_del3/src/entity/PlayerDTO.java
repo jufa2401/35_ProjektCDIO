@@ -1,6 +1,5 @@
 package entity;
 
-import desktop_codebehind.Player;
 import entity.fieldclasses.FieldDTO;
 import entity.fieldclasses.StreetDTO;
 
@@ -163,7 +162,7 @@ public class PlayerDTO {
 	public int buyHouse(GameBoardDTO gb, String group) {
 		int nfields = gb.getNumberOfFields();
 		int fieldindex = -1;
-		int housesonlastfield = 0;
+		int housesonlastfield = 5;
 		int housesonthisfield;
 		for (int i = 0; i<nfields; i++) {
 			FieldDTO field = gb.getField(i);
@@ -181,9 +180,12 @@ public class PlayerDTO {
 		if(fieldindex > 0) {
 			StreetDTO sfield = (StreetDTO) gb.getField(fieldindex);
 			int houseprice = sfield.getHousePrice();
-			if(balance > houseprice) {
+			int nhouses = sfield.getHouses();
+			if((balance > houseprice) && (nhouses < 4)) {
 				Transaction(-houseprice);
-				sfield.setHouses(sfield.getHouses()+1);
+				sfield.setHouses(nhouses+1);
+			} else {
+				fieldindex = -1;
 			}
 		}
 		return fieldindex;

@@ -73,9 +73,12 @@ public class MySQLFieldDAO implements FieldDAO {
 				int streetrent = rs.getInt(5);
 				int srent_1 = rs.getInt(6);
 				int srent_2 = rs.getInt(7);
+				int srent_3 = rs.getInt(8);
+				int srent_4 = rs.getInt(9);
 				int houseprice = rs.getInt(11);
 				color = new Color(colorint);
-				StreetDTO streetfield = new StreetDTO(fieldnumber, fieldname,streetgroup, color, streetprice, streetrent, srent_1, srent_2,houseprice);
+				StreetDTO streetfield = new StreetDTO(fieldnumber, fieldname,streetgroup, color,
+						streetprice, streetrent, srent_1, srent_2, srent_3, srent_4, houseprice);
 				return streetfield;
 			case "jail":
 				JailDTO jailfield = new JailDTO(fieldnumber, fieldname, color);
@@ -106,7 +109,8 @@ public class MySQLFieldDAO implements FieldDAO {
 				int shippingrent_3 = rs.getInt(5);
 				int shippingrent_4 = rs.getInt(6);
 
-				ShippingCompanyDTO shippingfield = new ShippingCompanyDTO(fieldnumber, fieldname, color, shippingprice, shippingrent_1, shippingrent_2, shippingrent_3, shippingrent_4);
+				ShippingCompanyDTO shippingfield = new ShippingCompanyDTO(fieldnumber, fieldname, color,
+						shippingprice, shippingrent_1, shippingrent_2, shippingrent_3, shippingrent_4);
 				return shippingfield;
 			case "tax":
 				int taxamount = rs.getInt(2);

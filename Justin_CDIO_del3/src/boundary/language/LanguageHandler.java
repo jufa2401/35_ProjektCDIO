@@ -145,4 +145,14 @@ public class LanguageHandler {
 	}
 
 
+	public String failedHousePurchase() {
+		return selectedLanguage.failedHousePurchase();
+	}
+	
+
+	public String housePrice() {
+		return selectedLanguage.housePrice();
+	}
+
+
 }

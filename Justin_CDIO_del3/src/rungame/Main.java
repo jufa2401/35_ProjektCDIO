@@ -9,6 +9,7 @@ import entity.GameBoardDTO;
 import entity.PlayerList;
 import entity.fieldclasses.FieldDTO;
 import entity.fieldclasses.Ownable;
+import entity.fieldclasses.StreetDTO;
 public class Main {
 	/* 
 	 * Min main klasse starter initialiserer GameBoard,
@@ -16,7 +17,7 @@ public class Main {
 	 */
 	public static void main (String[]args) {
 		
-		GameBoardDTO game = new GameBoardDTO	();
+		GameBoardDTO game = new GameBoardDTO();
 		GUIHandler GUIh = new GUIHandler();
 
 		MySQLGameStateDAO gamestate = new MySQLGameStateDAO();
@@ -44,7 +45,8 @@ public class Main {
 			gamestate.loadFieldStatus(playerList, game); //load fieldstatus
 			for (int i = 0; i < game.getNumberOfFields(); i++) {
 				FieldDTO field = game.getField(i);
-				switch (field.getType()) {
+				int type = field.getType();
+				switch (type) {
 				case 1:
 				case 2:
 				case 5:
@@ -52,6 +54,11 @@ public class Main {
 					if (ofield.getOwner() != null){
 						String name = ofield.getOwner().getName();
 						GUIh.setOwner(ofield.getID(), name);
+						if(type == 5) {
+							StreetDTO sfield = (StreetDTO) ofield;
+						GUIh.setRent(i, language.getFieldRent(sfield.getRent())); // Vrker ikke pga. GUI ikke opdaterer rent, den skal opdateres pr hus.
+						GUIh.setHouses(i, sfield.getHouses());
+						}
 					}
 					break;
 				default: break;

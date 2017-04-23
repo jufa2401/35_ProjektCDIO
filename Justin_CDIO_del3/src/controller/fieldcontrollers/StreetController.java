@@ -13,7 +13,6 @@ public class StreetController {
 		if (sfield.getOwner() != null) {
 			// Hvis der er en ejer af feltet
 			int paid = sfield.landOnField(player, gb);
-
 			// Giv besked om betalt leje
 			GUIh.getButtonPressed(language.playerPayTo(player.getName(), sfield.getOwner().getName(), paid), language.Ok());
 			GUIh.setBalance(sfield.getOwner().getName(), sfield.getOwner().getBalance());
@@ -30,10 +29,14 @@ public class StreetController {
 	public static void BuyHouse (GUIHandler GUIh, LanguageHandler language, PlayerDTO player, GameBoardDTO gb) {
 		while (!GUIh.getYesNo(language.askBuyHouse(), language.move(), language.buy())) {
 			int streetnumber = GUIh.buyHouse(gb, language.promptGroup(), player);
-			if(streetnumber > 0){
+			if(streetnumber > 0) {
 				GUIh.setBalance(player.getName(), player.getBalance());	
 				StreetDTO sfield = (StreetDTO) gb.getField(streetnumber);
 				GUIh.setHouses(streetnumber, sfield.getHouses());
+			}
+			else {
+				GUIh.getButtonPressed(language.failedHousePurchase(), language.Ok());
+			
 			}
 
 		}

@@ -55,5 +55,9 @@
 	String buyHouseGroup();
 
 	String promptGroup();
+
+	String failedHousePurchase();
+
+	String housePrice();
 	
 }

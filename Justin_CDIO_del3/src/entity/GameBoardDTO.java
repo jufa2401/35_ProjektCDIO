@@ -114,10 +114,12 @@ public class GameBoardDTO {
 				StreetDTO sfield = (StreetDTO) field;
 				if (sfield.getOwner() == p) {
 					String group = sfield.getGroup();
-					if (!lastgroup.equals(group)) {
-						groups.add(ngroup, group);
-						++ngroup;
-						lastgroup = group;
+					if (sfield.checkStreetGroupOwned(p, this)) {
+						if (!lastgroup.equals(group)) {
+							groups.add(ngroup, group + " ("+ sfield.getHousePrice()+")");
+							++ngroup;
+							lastgroup = group;
+						}
 					}
 				}
 			}
