@@ -1,8 +1,10 @@
 
-2=SELECT * FROM `player_status`;
+2=SELECT * FROM matador2.player_status_view;
 
-4=SELECT COUNT(*) from `player_status`;
-5=SELECT COUNT(*) from `field`; 
+4=SELECT * FROM matador2.player_count_view;
+5=SELECT * FROM matador2.field_count_view;
+
+=SELECT COUNT(*) from `field`; 
 6=SELECT * FROM `field` WHERE field_id = ##;
 
 
@@ -12,11 +14,11 @@
 
 9=truncate table `field_status`
 10=REPLACE INTO `player_status` (player_id, name, position, balance, rounds_left_jail) VALUES(
-11=SELECT * FROM `field_status`;
+11=SELECT * FROM matador2.field_status_view;
 12=SELECT COUNT(*) FROM `chance_card`;
 13=SELECT * FROM `chance_card` WHERE id = ##;
 
-14=SELECT COUNT(*) from `field_status`;
+14=SELECT * FROM matador2.field_status_count_view;
 
 (field_status er forsøgt lavet i view men det blev opgivet da jeg fik denne fejl i jdbc
 cannot modify more than one base table through a join view)

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test;
 
 import org.junit.After;
@@ -5,39 +8,61 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import entity.GameBoardDTO;
-import entity.PlayerDTO;
-import entity.fieldclasses.FieldDTO;
-import entity.fieldclasses.TaxDTO;
+import model.PlayerDTO;
+import model.fieldclasses.FieldDTO;
+import model.fieldclasses.GameBoardDTO;
+import model.fieldclasses.TaxDTO;
 
-public class TestTax{
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestTax.
+ */
+public class TestTax {
 
+	/** The player. */
 	private PlayerDTO player;
 
+	/** The gb. */
 	private GameBoardDTO gb = new GameBoardDTO();
 
+	/**
+	 * Sets the up.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		player = new PlayerDTO(1, "Spiller", 1, 10000, 0);
 	}
 
+	/**
+	 * Tear down.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 
 	}
 
+	/**
+	 * Test entities.
+	 */
 	@Test
 	public void testEntities() {
 		Assert.assertNotNull(player);
 
 	}
 
+	/**
+	 * Test land on field.
+	 */
 	@Test
 	public void testLandOnField() {
 		TaxDTO taxfield = null;
-		for(int index = 0; index < gb.getNumberOfFields(); index++) {
+		for (int index = 0; index < gb.getNumberOfFields(); index++) {
 			FieldDTO field = gb.getField(index);
-			if(field.getType() == 4) {
+			if (field.getType() == 4) {
 				taxfield = (TaxDTO) field;
 				break;
 			}
@@ -50,15 +75,16 @@ public class TestTax{
 		// og tester om dens faste rate bliver trukket fra spilleren
 
 		taxfield.landOnField(player);
-		
 
 		expected = 10000 - 4000;
 		actual = player.getBalance();
 
-
 		Assert.assertEquals(expected, actual);
 	}
 
+	/**
+	 * Test land on field 2.
+	 */
 	@Test
 	public void testLandOnField2() {
 		int expected = 10000;
@@ -66,22 +92,21 @@ public class TestTax{
 		Assert.assertEquals(expected, actual);
 
 		TaxDTO taxfield = null;
-		for(int index = 0; index < gb.getNumberOfFields(); index++) {
+		for (int index = 0; index < gb.getNumberOfFields(); index++) {
 			FieldDTO field = gb.getField(index);
-			if(field.getType() == 4) {
+			if (field.getType() == 4) {
 				taxfield = (TaxDTO) field;
- 
+
 			}
 		}
-		// Denne test af landonfield tjekker om spillerens balance bliver reduceret korrekt
+		// Denne test af landonfield tjekker om spillerens balance bliver
+		// reduceret korrekt
 		// når man sætter en skatte pct. for et felt
 		taxfield.landOnField(player, 10);
 
-		expected = 10000/10 * 9;
+		expected = 10000 / 10 * 9;
 		actual = player.getBalance();
-
 
 		Assert.assertEquals(expected, actual);
 	}
 }
-

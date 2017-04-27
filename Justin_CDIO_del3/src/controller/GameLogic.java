@@ -1,18 +1,41 @@
+/*
+ * 
+ */
 package controller;
-import boundary.GUIHandler; 
-import boundary.language.LanguageHandler;
+
 import controller.fieldcontrollers.JailController;
 import controller.fieldcontrollers.OwnableController;
 import controller.fieldcontrollers.StreetController;
 import controller.fieldcontrollers.TaxController;
-import entity.DiceCup;
-import entity.GameBoardDTO;
-import entity.PlayerDTO;
-import entity.fieldclasses.FieldDTO;
+import model.DiceCup;
+import model.PlayerDTO;
+import model.fieldclasses.FieldDTO;
+import model.fieldclasses.GameBoardDTO;
+import model.language.LanguageHandler;
+import view.GUIHandler;
 
-public class GameLogic{
+// TODO: Auto-generated Javadoc
+/**
+ * Denne klasse styrer de "specifikke" spilforløb som den henter fra hver
+ * feltcontroller.
+ *
+ * @author Justin
+ */
+public class GameLogic {
 
-	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, GameBoardDTO game, int fieldNumber, FieldDTO field, PlayerDTO player, DiceCup dice) {
+	/**
+	 * Field rules.
+	 *
+	 * @param GUIh the GU ih
+	 * @param language the language
+	 * @param game the game
+	 * @param fieldNumber the field number
+	 * @param field the field
+	 * @param player the player
+	 * @param dice the dice
+	 */
+	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, GameBoardDTO game, int fieldNumber,
+			FieldDTO field, PlayerDTO player, DiceCup dice) {
 		int type = field.getType();
 
 		switch (type) {
@@ -23,20 +46,19 @@ public class GameLogic{
 		case 4:
 			TaxController.TaxRules(GUIh, language, fieldNumber, field, player);
 			break;
-		case 5: 
+		case 5:
 			StreetController.StreetRules(GUIh, language, fieldNumber, field, player, game);
 			break;
 		case 6:
 			JailController.JailRules(GUIh, language, fieldNumber, field, player, game, dice);
 			break;
 
-		default: 
+		default:
 
 		}
-		//		// GUI opdateres med den nye balance for spilleren
+		// GUI opdateres med den nye balance for spilleren
 		GUIh.setBalance(player.getName(), player.getBalance());
 
 	}
 
 }
-

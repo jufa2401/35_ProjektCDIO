@@ -1,24 +1,46 @@
+/*
+ * 
+ */
 package controller;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 
-/** @author Ronnie Dalsgaard */
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Connector.
+ *
+ * @author Ronnie Dalsgaard
+ */
 public class Connector {
-    private final String HOST     = "Localhost";
-    private final int    PORT     = 3306;
-    private final String DATABASE = "matador2";
-    private final String USERNAME = "root"; 
-    private final String PASSWORD = "";
-    private Connection connection;
-    
-    public Connector() {
-        try {
+	
+	/** The host. */
+	private final String HOST = "Localhost";
+	
+	/** The port. */
+	private final int PORT = 3306;
+	
+	/** The database. */
+	private final String DATABASE = "matador2";
+	
+	/** The username. */
+	private final String USERNAME = "root";
+	
+	/** The password. */
+	private final String PASSWORD = "";
+	
+	/** The connection. */
+	private Connection connection;
+
+	/**
+	 * Instantiates a new connector.
+	 */
+	public Connector() {
+		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
 			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
@@ -26,26 +48,51 @@ public class Connector {
 			e.printStackTrace();
 			System.exit(1);
 		}
-    }
-    
-    public Connection getConnection(){
-    	return connection;
-    }
-    
-    public ResultSet doQuery(String query) throws SQLException{
-        Statement stmt = connection.createStatement();
-        ResultSet res = stmt.executeQuery(query);
-        return res;
-    }
-    
-    public void doUpdate(String query) throws SQLException{
-        Statement stmt = connection.createStatement();
-        stmt.executeUpdate(query);
-   
-    }
-    
-    public PreparedStatement ps (String query) throws SQLException {
+	}
+
+	/**
+	 * Do query.
+	 *
+	 * @param query the query
+	 * @return the result set
+	 * @throws SQLException the SQL exception
+	 */
+	public ResultSet doQuery(String query) throws SQLException {
+		Statement stmt = connection.createStatement();
+		ResultSet res = stmt.executeQuery(query);
+		return res;
+	}
+
+	/**
+	 * Do update.
+	 *
+	 * @param query the query
+	 * @throws SQLException the SQL exception
+	 */
+	public void doUpdate(String query) throws SQLException {
+		Statement stmt = connection.createStatement();
+		stmt.executeUpdate(query);
+
+	}
+
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 */
+	public Connection getConnection() {
+		return connection;
+	}
+
+	/**
+	 * Ps.
+	 *
+	 * @param query the query
+	 * @return the prepared statement
+	 * @throws SQLException the SQL exception
+	 */
+	public PreparedStatement ps(String query) throws SQLException {
 		return null;
-    	
-    }
+
+	}
 }
