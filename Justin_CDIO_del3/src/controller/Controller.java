@@ -13,6 +13,7 @@ import model.fieldclasses.FieldDTO;
 import model.fieldclasses.GameBoardDTO;
 import model.language.LanguageHandler;
 import view.GUIHandler;
+import view.Sound;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -21,19 +22,19 @@ import view.GUIHandler;
  * @author Justin
  */
 public class Controller {
-	
+
 	/** The dice. */
 	DiceCup dice;
-	
+
 	/** The game. */
 	GameBoardDTO game;
-	
+
 	/** The GU ih. */
 	GUIHandler GUIh;
-	
+
 	/** The language. */
 	LanguageHandler language;
-	
+
 	/** The player list. */
 	PlayerList playerList;
 
@@ -52,7 +53,7 @@ public class Controller {
 		this.language = language;
 		this.playerList = playerList;
 	}
-
+	Sound Sound = new Sound();
 	/**
 	 * Styrer spilturen. Spilturen ændrer forløb afhængigt af spillerens status.
 	 *
@@ -71,6 +72,7 @@ public class Controller {
 			dice.rollDiceCup();
 			int[] d = dice.getDiceValue();
 			GUIh.showDice(d[0], d[1]);
+			//			Sound.playSoundThread("dicethrow.wav");
 			// Fjerner brik fra feltet
 			GUIh.removeCar(fieldNumber, player.getName());
 			// Husker terningekast, i tilfælde af at det skal bruges til at
@@ -82,6 +84,7 @@ public class Controller {
 			}
 			// spilleren rykker
 			fieldNumber = player.moveToField(dice.getDiceSum(), game);
+
 
 			// spillerens brik vises på det nye felt
 			GUIh.setCar(fieldNumber, player.getName());
@@ -141,5 +144,12 @@ public class Controller {
 		// Spillet er slut, og der gives besked om hvem der har vundet
 		String winner = playerList.getWinner();
 		GUIh.getButtonPressed(language.GameOver(winner), language.Ok());
+
+		Sound.playGameOverSound();
+		if(GUIh.getYesNo(language.exitOrNew(),language.endgame() , language.newgame())){
+			System.exit(0);
+		}
+
 	}
 }
+

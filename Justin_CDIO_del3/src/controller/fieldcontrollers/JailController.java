@@ -10,6 +10,7 @@ import model.fieldclasses.GameBoardDTO;
 import model.fieldclasses.JailDTO;
 import model.language.LanguageHandler;
 import view.GUIHandler;
+import view.Sound;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -32,6 +33,7 @@ public class JailController {
 	public static void JailRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field,
 			PlayerDTO player, GameBoardDTO game, DiceCup d) {
 		JailDTO jfield = (JailDTO) field;
+		Sound Sound = new Sound();
 
 		// er du i fængsel?
 		if (player.getRoundsLeftJail() > 0) {
@@ -59,6 +61,7 @@ public class JailController {
 			int currentfield = player.getCurrentField();
 			int newfield = jfield.landOnField(player, game);
 			if (currentfield != newfield) {
+				Sound.playJailSoundThread();
 				GUIh.getButtonPressed(language.playerGoToJail(player.getName()), language.Ok());
 			}
 		}

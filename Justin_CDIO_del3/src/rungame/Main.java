@@ -1,10 +1,4 @@
 package rungame;
-
-import controller.Controller;
-import controller.SetupController;
-import model.PlayerList;
-import model.fieldclasses.GameBoardDTO;
-import model.language.LanguageHandler;
 import view.GUIHandler;
 
 // TODO: Auto-generated Javadoc
@@ -12,28 +6,17 @@ import view.GUIHandler;
  * The Class Main.
  */
 public class Main {
-	
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
-	/*
-	 * Min main klasse starter initialiserer GameBoard, GUIHandler, sætter
-	 * sprog, henter reglerne
-	 */
-	public static void main(String[] args) {
-
-		GameBoardDTO game = new GameBoardDTO();
+		
+	public static void main(String[] args) {		
+		RunGame run = new RunGame();
 		GUIHandler GUIh = new GUIHandler();
-		SetupController setup = new SetupController();
-		// Sætter sproget til dansk, flere sprog kan udvikles i language pakken,
-		// ved at implementere language definitions
-		LanguageHandler language = new LanguageHandler("Dansk");
-		PlayerList playerList = setup.setup(GUIh, game, language);
-
-		// Start spillet
-		Controller GameController = new Controller(GUIh, language, game, playerList);
-		GameController.launchGame();
+//		Starter spillet
+		run.run();
+//		Når vi når enden af Controller skal GUIen lukkes, så felterne kan tegnes igen
+		GUIh.shutdown();
+//		Spillet starter 
+		run.run();
+				
+		
 	}
 }

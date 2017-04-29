@@ -214,7 +214,7 @@ public class GUIHandler {
 	 * @return the name
 	 */
 	// Inputvalideres med RegEx
-	public String getName(String message, String badName) {
+	public String getName(String message, String badNameMessage) {
 		String name;
 		boolean nameBad = true;
 		do {
@@ -223,7 +223,7 @@ public class GUIHandler {
 				nameBad = !Pattern.matches("^[a-zA-zøØæÆåÅ]+[ -]?[a-zA-zøØæÆåÅ]+$", name);
 			}
 			if (nameBad) {
-				GUI.showMessage(badName);
+				GUI.showMessage(badNameMessage);
 			}
 		} while (nameBad);
 
@@ -345,7 +345,7 @@ public class GUIHandler {
 	public void showChanceCard() {
 		GUI.displayChanceCard();
 	}
-
+	
 	/**
 	 * Show chance card.
 	 *
@@ -363,5 +363,13 @@ public class GUIHandler {
 	 */
 	public void showDice(int d1, int d2) {
 		GUI.setDice(d1, d2);
+	}
+
+	public void showMessage(String msg) {
+		GUI.showMessage(msg);
+		
+	}
+	public void shutdown (){
+		GUI.close();
 	}
 }

@@ -1,7 +1,7 @@
 /*
  * 
  */
-package model.daoboundary;
+package model.daoimplementation;
 
 // TODO: Auto-generated Javadoc
 /**

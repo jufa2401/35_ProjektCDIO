@@ -34,8 +34,8 @@ public class GameLogic {
 	 * @param player the player
 	 * @param dice the dice
 	 */
-	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, GameBoardDTO game, int fieldNumber,
-			FieldDTO field, PlayerDTO player, DiceCup dice) {
+	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, GameBoardDTO game, int fieldNumber,FieldDTO field, PlayerDTO player, DiceCup dice)
+	{	
 		int type = field.getType();
 
 		switch (type) {

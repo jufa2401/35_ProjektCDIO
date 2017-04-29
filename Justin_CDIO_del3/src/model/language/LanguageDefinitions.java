@@ -227,4 +227,12 @@ interface LanguageDefinitions {
 	 */
 	String yes();
 
+	String timedExit();
+
+	String exitOrNew();
+
+	String endgame();
+
+	String newgame();
+
 }

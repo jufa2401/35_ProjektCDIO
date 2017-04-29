@@ -34,8 +34,7 @@ public class BreweryDTO extends Ownable {
 
 	/**
 	 * Superklassens metode til at købe feltet genbruges derudover registreres
-	 * det at denne spiller har købt endnu en LaborCamps, da dette skal bruges
-	 * til at beregne leje.
+	 * det at denne spiller har købt endnu en Brewery,
 	 *
 	 * @param player the player
 	 */
@@ -72,19 +71,19 @@ public class BreweryDTO extends Ownable {
 	}
 
 	/**
-	 * Returnerer unik id, som identificerer denne klasse som Labor Camp.
+	 * Returnerer unik id, som identificerer denne klasse som Brewery.
 	 *
 	 * @return the type
 	 */
 	@Override
 	public int getType() {
-		return 2; // Labor Camp
+		return 2; // Brewery
 	}
 
 	/**
-	 * Hvis man lander på en LaborCamp som er ejet, skal man betale en variabel
+	 * Hvis man lander på en Brewery som er ejet, skal man betale en variabel
 	 * leje til ejeren. Lejen er bestemt efter hvor mange af denne type ejendom
-	 * man ejer dvs. at du kan opkræve højere leje, jo flere 'labor camps' du
+	 * man ejer dvs. at du kan opkræve højere leje, jo flere 'Breweries' du
 	 * ejer og spillerens terningkast Når det er bestemt bliver det betalt
 	 * metoden returnerer det betalte beløb, som bruges til at tælle balancen
 	 * ned i GUIen

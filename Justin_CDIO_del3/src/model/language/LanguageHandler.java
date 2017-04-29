@@ -320,4 +320,21 @@ public class LanguageHandler {
 		return selectedLanguage.yes();
 	}
 
+	public String timedExit() {
+		return selectedLanguage.timedExit();
+		
+	}
+
+	public String newgame() {
+		return selectedLanguage.newgame();
+	}
+
+	public String endgame() {
+		return selectedLanguage.endgame();
+	}
+
+	public String exitOrNew() {
+		return selectedLanguage.exitOrNew();
+	}
+
 }

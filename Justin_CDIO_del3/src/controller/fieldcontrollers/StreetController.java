@@ -9,6 +9,7 @@ import model.fieldclasses.GameBoardDTO;
 import model.fieldclasses.StreetDTO;
 import model.language.LanguageHandler;
 import view.GUIHandler;
+import view.Sound;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -51,6 +52,7 @@ public class StreetController {
 	 */
 	public static void StreetRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field,
 			PlayerDTO player, GameBoardDTO gb) {
+		Sound Sound = new Sound();
 		// Ownable ofield = (Ownable) field;
 		StreetDTO sfield = (StreetDTO) field; // ?? noget skal sek
 		if (sfield.getOwner() != null) {
@@ -66,6 +68,7 @@ public class StreetController {
 			if (player.getBalance() > sfield.getPrice()) {
 				if (GUIh.getYesNo(language.askBuyField(), language.yes(), language.no())) {
 					sfield.buyField(player);
+					Sound.playPaySoundThread();
 					GUIh.setOwner(fieldNumber, player.getName());
 				}
 			}

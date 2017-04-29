@@ -52,6 +52,18 @@ public class StreetDTO extends Ownable {
 		this.group = streetgroup;
 	}
 
+	public StreetDTO(int id, String name, String streetgroup, Color color, int price, int[] rent, int houseprice) {
+		super(id, name, color, price);
+		this.rent[0] = rent[0];
+		this.rent[1] = rent[1];
+		this.rent[2] = rent[2];
+		this.rent[3] = rent[3];
+		this.rent[4] = rent[4];
+		this.rent[5] = 0;
+		this.houseprice = houseprice;
+		this.group = streetgroup;
+	}
+
 	/**
 	 * Check street group owned.
 	 *

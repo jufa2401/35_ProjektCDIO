@@ -3,7 +3,7 @@
  */
 package model.fieldclasses;
 
-import java.awt.Color; 
+import java.awt.Color;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class GameBoardDTO {
 
 		for (int index = 0; index < fieldcount; index++) {
 
-			field[index] = fielddao.getField(index);
+			field[index] = fielddao.getField2(index);
 		}
 	}
 

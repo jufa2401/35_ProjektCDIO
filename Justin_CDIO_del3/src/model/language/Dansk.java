@@ -267,7 +267,7 @@ public class Dansk implements LanguageDefinitions {
 	 */
 	@Override
 	public String playerPayTo(String payer, String recipient, int paid) {
-		return "Spiller '" + payer + "' betaler " + paid + " til '" + recipient + "'.";
+		return "Spilleren:" + payer + "' betaler " + paid + " til '" + recipient + "'.";
 	}
 
 	/* (non-Javadoc)
@@ -283,7 +283,7 @@ public class Dansk implements LanguageDefinitions {
 	 */
 	@Override
 	public String promptGroup() {
-		return "Vælg hvilken gadegruppe du vil købe hus på:";
+		return "Vælg hvilken gadegruppe du vil købe hus på:"+"\nPrisen for ét hus er angivet i parantesen";
 	}
 
 	/* (non-Javadoc)
@@ -293,5 +293,27 @@ public class Dansk implements LanguageDefinitions {
 	public String yes() {
 		return "Ja";
 	}
+
+	@Override
+	public String timedExit() {
+		return null;
+	}
+
+	@Override
+	public String exitOrNew() {
+		return "Vil du starte et nyt spil, eller afslutte?";
+	}
+
+	@Override
+	public String endgame() {
+		return "Afslut";
+	}
+
+	@Override
+	public String newgame() {
+		return "Nyt Spil";
+	}
+
+
 
 }

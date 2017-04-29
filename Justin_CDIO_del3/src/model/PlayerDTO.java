@@ -228,7 +228,7 @@ public class PlayerDTO {
 	 * @param amount the amount
 	 * @return the int
 	 */
-	// DATABASE
+
 	public int payTo(PlayerDTO recipient, int amount) {
 		recipient.Transaction(amount);
 		Transaction(-amount);

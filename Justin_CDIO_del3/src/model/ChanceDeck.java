@@ -36,8 +36,8 @@ public class ChanceDeck {
 		discards.add(new ChanceCard(0, 0, "collect 150", 0, 0, 0, 0));
 		discards.add(new ChanceCard(0, 0, "make repairs", 0, 0, 0, 0));
 		discards.add(new ChanceCard(1, 0, "GO TO JAIL", 0, 0, 0, 0));
-		discards.add(new ChanceCard(2, "advance to go"));
-		discards.add(new ChanceCard(3, "advance to charles"));
+		discards.add(new ChanceCard(2, 0, "advance to go", 0, 0, 0, 0));
+		discards.add(new ChanceCard(3, 0, "advance to charles", 0, 0, 0, 0));
 		discards.add(new ChanceCard(4, "advance to boardwalk"));
 		discards.add(new ChanceCard(5, "advance to nearest utility"));
 		discards.add(new ChanceCard(6, "advance to illinois"));

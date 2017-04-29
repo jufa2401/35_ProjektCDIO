@@ -17,22 +17,22 @@ import java.sql.Statement;
  * @author Ronnie Dalsgaard
  */
 public class Connector {
-	
+
 	/** The host. */
 	private final String HOST = "Localhost";
-	
+
 	/** The port. */
 	private final int PORT = 3306;
-	
+
 	/** The database. */
 	private final String DATABASE = "matador2";
-	
+
 	/** The username. */
 	private final String USERNAME = "root";
-	
+
 	/** The password. */
 	private final String PASSWORD = "";
-	
+
 	/** The connection. */
 	private Connection connection;
 
@@ -83,16 +83,22 @@ public class Connector {
 	public Connection getConnection() {
 		return connection;
 	}
+	public PreparedStatement prep(String query) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(query);
+		return stmt;
+		
+	}
 
 	/**
 	 * Ps.
 	 *
 	 * @param query the query
-	 * @return the prepared statement
 	 * @throws SQLException the SQL exception
 	 */
-	public PreparedStatement ps(String query) throws SQLException {
-		return null;
+	public ResultSet psRead(String query) throws SQLException {
+		PreparedStatement stmt = connection.prepareStatement(query);
+		ResultSet res = stmt.executeQuery(query);
+		return res;
 
 	}
 }

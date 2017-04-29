@@ -9,6 +9,7 @@ import model.fieldclasses.GameBoardDTO;
 import model.fieldclasses.Ownable;
 import model.language.LanguageHandler;
 import view.GUIHandler;
+import view.Sound;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -28,7 +29,8 @@ public class OwnableController {
 	 */
 	public static void OwnableRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field,
 			PlayerDTO player, GameBoardDTO gb) {
-		Ownable ofield = (Ownable) field; // ?? noget skal sek
+		Sound Sound = new Sound ();
+		Ownable ofield = (Ownable) field; 
 		if (ofield.getOwner() != null) {
 			// Hvis der er en ejer af feltet
 			int paid = ofield.landOnField(player, gb);
@@ -43,6 +45,7 @@ public class OwnableController {
 			if (player.getBalance() > ofield.getPrice()) {
 				if (GUIh.getYesNo(language.askBuyField(), language.yes(), language.no())) {
 					ofield.buyField(player);
+					Sound.playPaySoundThread();
 					GUIh.setOwner(fieldNumber, player.getName());
 				}
 			}

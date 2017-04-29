@@ -18,7 +18,7 @@ public interface FieldDAO {
 	 * @return the field
 	 * @throws RuntimeException the runtime exception
 	 */
-	public FieldDTO getField(int id) throws RuntimeException;
+	public FieldDTO getFieldOld(int id) throws RuntimeException;
 
 	/**
 	 * Gets the field count.
@@ -27,5 +27,7 @@ public interface FieldDAO {
 	 * @throws RuntimeException the runtime exception
 	 */
 	public int getFieldCount() throws RuntimeException;
+
+	public FieldDTO getField2(int id) throws RuntimeException;
 
 }

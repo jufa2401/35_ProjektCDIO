@@ -42,12 +42,20 @@ public class ShippingCompanyDTO extends Ownable {
 	public ShippingCompanyDTO(int fieldNumber, String name, Color color, int price, int rent_1, int rent_2, int rent_3,
 			int rent_4) {
 		super(fieldNumber, name, color, price);
-		rent[0] = 0;
+//		rent[0] = 0;
 		rent[1] = rent_1;
 		rent[2] = rent_2;
 		rent[3] = rent_3;
 		rent[4] = rent_4;
 
+	}
+
+	public ShippingCompanyDTO(int fieldnumber, String fieldname, Color color, int price, int[] rent) {
+		super(fieldnumber, fieldname, color, price);
+		this.rent[1] = rent[1];
+		this.rent[2] = rent[2];
+		this.rent[3] = rent[3];
+		this.rent[4] = rent[4];
 	}
 
 	/**

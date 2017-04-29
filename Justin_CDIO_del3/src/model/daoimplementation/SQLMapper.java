@@ -2,8 +2,7 @@
  * 
  */
 package model.daoimplementation;
-
-import java.io.File;
+import java.io.File; 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -24,7 +23,7 @@ public class SQLMapper {
 
 		Properties props = new Properties();
 		try {
-			File file = new File("sql.txt");
+			File file = new File("ressources/sql.txt");
 			FileInputStream in = new FileInputStream(file);
 			props.load(in);
 			String res = props.getProperty(Integer.toString(i));
