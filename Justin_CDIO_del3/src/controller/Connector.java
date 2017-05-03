@@ -42,8 +42,8 @@ public class Connector {
 	public Connector() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
-			connection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+			final String URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DATABASE;
+			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			System.exit(1);

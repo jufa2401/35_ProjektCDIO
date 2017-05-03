@@ -26,12 +26,122 @@ import model.fieldclasses.TaxDTO;
  */
 public class MySQLFieldDAO implements FieldDAO {
 
+	
+	/* (non-Javadoc)
+	 * @see boundary.dao.FieldDAO#getField2(int)
+	 */
+	@Override
+	public FieldDTO getField(int id) throws RuntimeException {
+		final Connector C = new Connector();
+		PreparedStatement preparedstatement = null;
+		int fieldnumber = 0;
+		String fieldname = null;
+		String type = null;
+		int price = 0;
+		Color color = null;
+		int[] rent = new int[6];
+
+		final SQLMapper M = new SQLMapper();
+		String query = M.getStatement(1);
+
+		try {
+
+			preparedstatement = C.prep(query);
+			preparedstatement.setInt(1, id);
+			ResultSet rs = preparedstatement.executeQuery();
+			while (rs.next()) {
+				fieldnumber = rs.getInt("field_id");
+				fieldname = rs.getString("field_name");
+				type = rs.getString("type");
+				price = rs.getInt("price");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		query = M.getStatement(3);
+
+		try {
+			preparedstatement = C.prep(query);
+			preparedstatement.setInt(1, id);
+			ResultSet rs = preparedstatement.executeQuery();
+			while (rs.next()) {
+				int rent_id = rs.getInt("rent_id");
+				if (0 <= rent_id && rent_id < 6) 
+					rent[rent_id] = rs.getInt("rent");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		switch (type) {
+		case "street":
+			MySQLStreetDAO MySQLStreetDAO = new MySQLStreetDAO();
+			StreetDTO streetfield = MySQLStreetDAO.getStreet(fieldnumber, fieldname, price, rent);
+			return streetfield;
+		case "jail":
+			JailDTO jailfield = new JailDTO(fieldnumber, fieldname, color);
+			return jailfield;
+		case "chance":
+			ChanceDTO chancefield = new ChanceDTO(fieldnumber, fieldname, color);
+			return chancefield;
+		case "brewery":
+			BreweryDTO breweryfield = new BreweryDTO(fieldnumber, fieldname, color, price, rent[1], rent[2]);
+			return breweryfield;
+		case "refuge":
+			if (fieldnumber == 0) {
+				
+				MySQLStartDAO MySQLStartDAO = new MySQLStartDAO();
+				StartDTO startfield = MySQLStartDAO.getStart(fieldnumber, fieldname);
+				return startfield;
+			} else {
+				RefugeDTO refugefield = new RefugeDTO(fieldnumber, fieldname, color);
+				return refugefield;
+			}
+		case "shipping_company":
+			ShippingCompanyDTO shippingfield = new ShippingCompanyDTO(fieldnumber, fieldname, color, price, rent);
+			return shippingfield;
+		case "tax":
+			MySQLTaxDAO tax = new MySQLTaxDAO();
+			TaxDTO taxfield = tax.getTax(fieldnumber, fieldname);
+			return taxfield;
+		default:
+			break;
+
+		}
+		return null;
+
+	}
+	/* (non-Javadoc)
+	 * @see boundary.dao.FieldDAO#getFieldCount()
+	 */
+	@Override
+	public int getFieldCount() throws RuntimeException {
+		final Connector C = new Connector();
+		/* Alt SQL er holdt ude af java koden */
+		final SQLMapper M = new SQLMapper();
+		final String query = M.getStatement(5);
+		try {
+			ResultSet rs = C.doQuery(query);
+			rs.next();
+			int fieldCount = rs.getInt(1);
+			return fieldCount;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error");
+		}
+	}
+
+
 	/* (non-Javadoc)
 	 * @see boundary.dao.FieldDAO#getField(int)
 	 */
+	/*
 	@Override
 	public FieldDTO getFieldOld(int id) throws RuntimeException {
-		Connector c = new Connector();
+		Connector C = new Connector();
 		int fieldnumber = 0;
 		String fieldname = null;
 		String type = null;
@@ -39,11 +149,11 @@ public class MySQLFieldDAO implements FieldDAO {
 		Color color = null;
 
 
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(6);
+		SQLMapper M = new SQLMapper();
+		String query = M.getStatement(6);
 		String newquery = query.replace("##", "" + id);
 		try {
-			ResultSet rs = c.doQuery(newquery);
+			ResultSet rs = C.doQuery(newquery);
 			while (rs.next()) {
 				fieldnumber = rs.getInt("field_id");
 				fieldname = rs.getString("field_name");
@@ -57,7 +167,7 @@ public class MySQLFieldDAO implements FieldDAO {
 		}
 		String newnewquery = newquery.replace("`field`", "`" + type + "`");
 		try {
-			ResultSet rs = c.doQuery(newnewquery);
+			ResultSet rs = C.doQuery(newnewquery);
 			while (rs.next()) {
 				switch (type) {
 				case "street":
@@ -124,108 +234,7 @@ public class MySQLFieldDAO implements FieldDAO {
 
 		return null;
 	}
-	@Override
-	public FieldDTO getField2(int id) throws RuntimeException {
-		Connector c = new Connector();
-		PreparedStatement preparedstatement = null;
-		int fieldnumber = 0;
-		String fieldname = null;
-		String type = null;
-		int price = 0;
-		Color color = null;
-		int[] rent = new int[6];
-
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(1);
-
-		try {
-
-			preparedstatement = c.prep(query);
-			preparedstatement.setInt(1, id);
-			ResultSet rs = preparedstatement.executeQuery();
-			while (rs.next()) {
-				fieldnumber = rs.getInt("field_id");
-				fieldname = rs.getString("field_name");
-				type = rs.getString("type");
-				price = rs.getInt("price");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		query = m.getStatement(3);
-
-		try {
-			preparedstatement = c.prep(query);
-			preparedstatement.setInt(1, id);
-			ResultSet rs = preparedstatement.executeQuery();
-			while (rs.next()) {
-				int rent_id = rs.getInt("rent_id");
-				if (0 <= rent_id && rent_id < 6) 
-					rent[rent_id] = rs.getInt("rent");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		switch (type) {
-		case "street":
-			MySQLStreetDAO MySQLStreetDAO = new MySQLStreetDAO();
-			StreetDTO streetfield = MySQLStreetDAO.getStreet(fieldnumber, fieldname, price, rent);
-			return streetfield;
-		case "jail":
-			JailDTO jailfield = new JailDTO(fieldnumber, fieldname, color);
-			return jailfield;
-		case "chance":
-			ChanceDTO chancefield = new ChanceDTO(fieldnumber, fieldname, color);
-			return chancefield;
-		case "brewery":
-			BreweryDTO breweryfield = new BreweryDTO(fieldnumber, fieldname, color, price, rent[1], rent[2]);
-			return breweryfield;
-		case "refuge":
-			if (fieldnumber == 0) {
-				
-				MySQLStartDAO MySQLStartDAO = new MySQLStartDAO();
-				StartDTO startfield = MySQLStartDAO.getStart(fieldnumber, fieldname);
-				return startfield;
-			} else {
-				RefugeDTO refugefield = new RefugeDTO(fieldnumber, fieldname, color);
-				return refugefield;
-			}
-		case "shipping_company":
-			ShippingCompanyDTO shippingfield = new ShippingCompanyDTO(fieldnumber, fieldname, color, price, rent);
-			return shippingfield;
-		case "tax":
-			MySQLTaxDAO tax = new MySQLTaxDAO();
-			TaxDTO taxfield = tax.getTax(fieldnumber, fieldname);
-			return taxfield;
-		default:
-			break;
-
-		}
-		return null;
-
-	}
-	/* (non-Javadoc)
-	 * @see boundary.dao.FieldDAO#getFieldCount()
-	 */
-	@Override
-	public int getFieldCount() throws RuntimeException {
-		Connector c = new Connector();
-		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(5);
-		try {
-			ResultSet rs = c.doQuery(query);
-			rs.next();
-			int fieldCount = rs.getInt(1);
-			return fieldCount;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Error");
-		}
-	}
-
+	*/
+	
+	
 }

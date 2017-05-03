@@ -15,10 +15,10 @@ public class PlayerList {
 	
 	/** The player count. */
 	// Tomt Playerarray
-	private int playerCount;
+	private final int playerCount;
 	
 	/** The players. */
-	private PlayerDTO[] players;
+	private final PlayerDTO[] players;
 
 	/**
 	 * For hver spiller der kommer ind i spillet, tæller vi 1 op i players
@@ -27,7 +27,7 @@ public class PlayerList {
 	 * @param playerCount the player count
 	 */
 	public PlayerList(int playerCount) {
-		this.players = new PlayerDTO[playerCount];
+		players = new PlayerDTO[playerCount];
 		for (int c = 0; c < playerCount; c++)
 			players[c] = new PlayerDTO();
 		this.playerCount = playerCount;

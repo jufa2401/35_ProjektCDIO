@@ -8,7 +8,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.DiceCup;
 import model.PlayerDTO;
 import model.fieldclasses.FieldDTO;
 import model.fieldclasses.GameBoardDTO;
@@ -23,11 +22,8 @@ public class TestJail {
 	/** The player. */
 	private PlayerDTO player;
 
-	/** The d. */
-	private DiceCup d = new DiceCup();
-
-	/** The gb. */
-	private GameBoardDTO gb = new GameBoardDTO();
+	/** The GB. */
+	private final GameBoardDTO GB = new GameBoardDTO();
 
 	/**
 	 * Sets the up.
@@ -65,8 +61,8 @@ public class TestJail {
 	@Test
 	public void testLandOnField() {
 		JailDTO Jailfield = null;
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 6) {
 				Jailfield = (JailDTO) field;
 
@@ -80,19 +76,19 @@ public class TestJail {
 		// det forventes at spilleren smides tilbage på felt 10 efter at lande
 		// på jail2
 
-		Jailfield.landOnField(player, gb);
+		Jailfield.landOnField(player, GB);
 
 		expectedfield = 10;
 		actualfield = player.getCurrentField();
 
 		Assert.assertEquals(expectedfield, actualfield);
 	}
-/*
+/*		Denne test virker ikke da denne funktionalitet ligger inde i JailController
 	@Test
 	public void test3rolls() { 
 		JailDTO Jailfield = null; 
-		for(int index = 0; index < gb.getNumberOfFields(); index++) { 
-			FieldDTO field = gb.getField(index);
+		for(int index = 0; index < GB.getNumberOfFields(); index++) { 
+			FieldDTO field = GB.getField(index);
 
 			if(field.getType() == 6) {
 				Jailfield = (JailDTO) field; } 
@@ -103,7 +99,7 @@ public class TestJail {
 
 		// Denne test af land on field bruger det sidste Jail-felt i gameboardet
 		// det forventes at spilleren smides tilbage på felt 10 efter at lande på jail2 
-		Jailfield.landOnField(player, gb); 
+		Jailfield.landOnField(player, GB); 
 		int jailposition = player.getCurrentField();
 
 		d.rollDiceCup(); 
@@ -123,8 +119,8 @@ public class TestJail {
 	@Test
 	public void test2identical() { 
 		JailDTO Jailfield = null;
-		for(int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index); 
+		for(int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index); 
 			if(field.getType() == 6){ 
 				Jailfield = (JailDTO) field;
 			} 
@@ -135,7 +131,7 @@ public class TestJail {
 
 		// Denne test af land on field bruger det sidste Jail-felt i gameboardet
 		// det forventes at spilleren smides tilbage på felt 10 efter at lande på jail2 
-		Jailfield.landOnField(player, gb); int expectedRounds = 3; int
+		Jailfield.landOnField(player, GB); int expectedRounds = 3; int
 		actualRounds = player.getRoundsLeftJail();
 		Assert.assertEquals(expectedRounds, actualRounds);
 

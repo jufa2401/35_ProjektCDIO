@@ -25,8 +25,8 @@ public class TestShippingCompany {
 	/** The ejer. */
 	private PlayerDTO ejer;
 	
-	/** The gb. */
-	private GameBoardDTO gb = new GameBoardDTO();
+	/** The GB. */
+	private final GameBoardDTO GB = new GameBoardDTO();
 
 	/**
 	 * Sets the up.
@@ -67,8 +67,8 @@ public class TestShippingCompany {
 	public void testLandOnField() {
 		ShippingCompanyDTO shipfield = null;
 		// Sætter første ShippingCompany til at have samme ejer
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			final FieldDTO field = GB.getField(index);
 			if (field.getType() == 1) {
 				shipfield = (ShippingCompanyDTO) field;
 				shipfield.setOwner(ejer);
@@ -82,7 +82,7 @@ public class TestShippingCompany {
 		// Tester om når der er én ejer af af ShippingCompanyen og en anden
 		// spiller lander derpå om balancen bliver påvirket korrekt.
 
-		shipfield.landOnField(player, gb);
+		shipfield.landOnField(player, GB);
 
 		expected = 10000 - 500;
 		actual = player.getBalance();
@@ -106,14 +106,14 @@ public class TestShippingCompany {
 
 		ShippingCompanyDTO shipfield = null;
 		// Sætter alle ShippingCompany til at have samme ejer
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 1) {
 				shipfield = (ShippingCompanyDTO) field;
 				shipfield.setOwner(ejer);
 			}
 		}
-		shipfield.landOnField(player, gb);
+		shipfield.landOnField(player, GB);
 
 		expected = 10000 - 4000;
 		actual = player.getBalance();

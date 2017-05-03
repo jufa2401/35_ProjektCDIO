@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import controller.Connector;
-import model.ChanceCard;
+import model.NOTIMPLEMENTEDChanceCard;
 import model.daoboundary.ChanceDAO;
 
 // TODO: Auto-generated Javadoc
@@ -20,8 +20,8 @@ public class MySQLChanceCardDAO implements ChanceDAO {
 	 * @see boundary.dao.ChanceDAO#getChance()
 	 */
 	@Override
-	public ChanceCard getChance() throws RuntimeException {
-		Connector c = new Connector();
+	public NOTIMPLEMENTEDChanceCard getChance() throws RuntimeException {
+		final Connector C = new Connector();
 		int id = -1;
 		int type = 0;
 		String text = null;
@@ -29,14 +29,14 @@ public class MySQLChanceCardDAO implements ChanceDAO {
 		int move_absolute = 0;
 		int pay_1 = 0;
 		int pay_2 = 0;
-		double r = Math.random() * getChanceCardCount();
-		int ri = (int) r;
+		final double r = Math.random() * getChanceCardCount();
+		final int ri = (int) r;
 		// /* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(13);
-		String newquery = query.replace("##", "" + ri);
+		final SQLMapper m = new SQLMapper();
+		final String query = m.getStatement(13);
+		final String newquery = query.replace("##", "" + ri);
 		try {
-			ResultSet rs = c.doQuery(newquery);
+			final ResultSet rs = C.doQuery(newquery);
 			while (rs.next()) {
 				id = rs.getInt(1);
 				type = rs.getInt(2);
@@ -46,9 +46,9 @@ public class MySQLChanceCardDAO implements ChanceDAO {
 				pay_1 = rs.getInt(6);
 				pay_2 = rs.getInt(7);
 			}
-			ChanceCard chancecard = new ChanceCard(id, type, text, move_relative, move_absolute, pay_1, pay_2);
+			final NOTIMPLEMENTEDChanceCard chancecard = new NOTIMPLEMENTEDChanceCard(id, type, text, move_relative, move_absolute, pay_1, pay_2);
 			return chancecard;
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error");
 		}
@@ -59,17 +59,17 @@ public class MySQLChanceCardDAO implements ChanceDAO {
 	 */
 	@Override
 	public int getChanceCardCount() throws RuntimeException {
-		Connector c = new Connector();
+		final Connector C = new Connector();
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(12);
+		final SQLMapper m = new SQLMapper();
+		final String query = m.getStatement(12);
 		try {
-			ResultSet rs = c.doQuery(query);
+			final ResultSet rs = C.doQuery(query);
 			rs.next();
-			int chanceCount = rs.getInt(1);
+			final int chanceCount = rs.getInt(1);
 			return chanceCount;
 
-		} catch (SQLException e) {
+		} catch (final SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error");
 		}

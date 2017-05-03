@@ -25,8 +25,8 @@ public class TestStreet {
 	/** The ejer. */
 	private PlayerDTO ejer;
 	
-	/** The gb. */
-	private GameBoardDTO gb = new GameBoardDTO();
+	/** The GB. */
+	private final GameBoardDTO GB = new GameBoardDTO();
 
 	/**
 	 * Sets the up.
@@ -68,8 +68,8 @@ public class TestStreet {
 	public void testLandOnField() {
 		StreetDTO streetfield = null;
 		// Sætter første Street til at have samme ejer
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 5) {
 				streetfield = (StreetDTO) field;
 				streetfield.setOwner(ejer);
@@ -109,8 +109,8 @@ public class TestStreet {
 
 		StreetDTO streetfield = null;
 		// Sætter alle Street til at have samme ejer
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 5) {
 				streetfield = (StreetDTO) field;
 				streetfield.setOwner(ejer);

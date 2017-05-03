@@ -27,7 +27,7 @@ public class Die {
 	 * @return the int
 	 */
 	public int roll() {
-		this.sides = 6;
+		sides = 6;
 		return FaceValue = (int) (Math.random() * sides + 1);
 	}
 

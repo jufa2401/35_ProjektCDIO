@@ -14,7 +14,7 @@ import model.PlayerDTO;
 public class BreweryDTO extends Ownable {
 	
 	/** The rent 2. */
-	int rent_1, rent_2;
+	private final int RENT_1, RENT_2;
 
 	/**
 	 * Instantiates a new brewery DTO.
@@ -28,8 +28,8 @@ public class BreweryDTO extends Ownable {
 	 */
 	public BreweryDTO(int fieldNumber, String name, Color color, int price, int rent_1, int rent_2) {
 		super(fieldNumber, name, color, price);
-		this.rent_1 = rent_1;
-		this.rent_2 = rent_2;
+		this.RENT_1 = rent_1;
+		this.RENT_2 = rent_2;
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class BreweryDTO extends Ownable {
 	 */
 	@Override
 	public int getPrice() {
-		return this.price;
+		return price;
 	}
 
 	/**
@@ -95,10 +95,10 @@ public class BreweryDTO extends Ownable {
 	@Override
 	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
 		int rent = 0;
-		if (this.owner != null) {
-			int BreweriesOwned = getNumberOwned(this.owner, gb);
-			rent = (BreweriesOwned > 1) ? rent_2 * player.getDiceSum() : rent_1 * player.getDiceSum();
-			player.payTo(this.owner, rent);
+		if (owner != null) {
+			int BreweriesOwned = getNumberOwned(owner, gb);
+			rent = (BreweriesOwned > 1) ? RENT_2 * player.getDiceSum() : RENT_1 * player.getDiceSum();
+			player.payTo(owner, rent);
 		}
 		return rent;
 

@@ -16,29 +16,6 @@ import view.Sound;
  * The Class StreetController.
  */
 public class StreetController {
-	
-	/**
-	 * Buy house.
-	 *
-	 * @param GUIh the GU ih
-	 * @param language the language
-	 * @param player the player
-	 * @param gb the gb
-	 */
-	public static void BuyHouse(GUIHandler GUIh, LanguageHandler language, PlayerDTO player, GameBoardDTO gb) {
-		while (!GUIh.getYesNo(language.askBuyHouse(), language.move(), language.buy())) {
-			int streetnumber = GUIh.buyHouse(gb, language.promptGroup(), player);
-			if (streetnumber > 0) {
-				GUIh.setBalance(player.getName(), player.getBalance());
-				StreetDTO sfield = (StreetDTO) gb.getField(streetnumber);
-				GUIh.setHouses(streetnumber, sfield.getHouses());
-			} else {
-				GUIh.getButtonPressed(language.failedHousePurchase(), language.Ok());
-
-			}
-
-		}
-	}
 
 	/**
 	 * Street rules.
@@ -59,9 +36,11 @@ public class StreetController {
 			// Hvis der er en ejer af feltet
 			int paid = sfield.landOnField(player);
 			// Giv besked om betalt leje
-			GUIh.getButtonPressed(language.playerPayTo(player.getName(), sfield.getOwner().getName(), paid),
-					language.Ok());
-			GUIh.setBalance(sfield.getOwner().getName(), sfield.getOwner().getBalance());
+			if(player != sfield.getOwner()) {
+				GUIh.getButtonPressed(language.playerPayTo(player.getName(), sfield.getOwner().getName(), paid),
+						language.Ok());
+				GUIh.setBalance(sfield.getOwner().getName(), sfield.getOwner().getBalance());
+			}
 		} else {
 			// Feltet ejes ikke af nogen, hvis spilleren har penge nok spørges
 			// der om feltet skal købes
@@ -74,5 +53,24 @@ public class StreetController {
 			}
 		}
 	}
-
+	/**
+	 * DEPRECATED: Erstattet af Enum BuyHouseController
+	 * @param GUIh
+	 * @param language
+	 * @param player
+	 * @param gb
+	 */
+	//Gammel metode til at købe huse uden med dårligere fejlhåndtering
+	public static void BuyHouse(GUIHandler GUIh, LanguageHandler language, PlayerDTO player, GameBoardDTO gb) {
+		while (!GUIh.getYesNo(language.askBuyHouse(player.getName()), language.move(), language.buy())) {
+			int streetnumber = GUIh.buyHouse(gb, language.promptGroup(), player);
+			if (streetnumber > 0) {
+				GUIh.setBalance(player.getName(), player.getBalance());
+				final StreetDTO sfield = (StreetDTO) gb.getField(streetnumber);
+				GUIh.setHouses(streetnumber, sfield.getHouses());
+			} else {
+				GUIh.getButtonPressed(language.failedHousePurchase(), language.Ok());
+			}
+		}
+	}
 }

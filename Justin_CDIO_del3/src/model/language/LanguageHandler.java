@@ -46,8 +46,8 @@ public class LanguageHandler {
 	 *
 	 * @return the string
 	 */
-	public String askBuyHouse() {
-		return selectedLanguage.askBuyHouse();
+	public String askBuyHouse(String name) {
+		return selectedLanguage.askBuyHouse(name);
 	}
 
 	// public String getFieldName(int index) {
@@ -249,13 +249,20 @@ public class LanguageHandler {
 	 * @return the string
 	 */
 	public String playerGoToJail(String name) {
-		return selectedLanguage.playerGoTOJail(name);
+		return selectedLanguage.playerGoToJail(name);
 	}
 
 	/**
-	 * Player out of jail.
-	 *
-	 * @param name the name
+	 * player released from jail
+	 * @param name
+	 * @return
+	 */
+	public String playerOutOfJailDoubles(String name) {
+		return selectedLanguage.playerOutOfJailDoubles(name);
+	}
+	/**
+	 * Player released from jail
+	 * @param name the playerneame
 	 * @return the string
 	 */
 	public String playerOutOfJail(String name) {
@@ -319,22 +326,71 @@ public class LanguageHandler {
 	public String yes() {
 		return selectedLanguage.yes();
 	}
-
+	/**
+	 * Unused: intended for use to inform the player of shutdown game after a timeout
+	 * @return the string
+	 */
 	public String timedExit() {
 		return selectedLanguage.timedExit();
 		
 	}
-
+	/**
+	 * start a new game
+	 * @return the string
+	 */
 	public String newgame() {
 		return selectedLanguage.newgame();
 	}
-
+	/**
+	 * end the game
+	 * @return the string
+	 */
 	public String endgame() {
 		return selectedLanguage.endgame();
 	}
-
+	/**
+	 *  asks player if he wants to exit the game or start a new one
+	 * @return
+	 */
 	public String exitOrNew() {
 		return selectedLanguage.exitOrNew();
+	}
+	/**
+	 * count down rounds left in jail
+	 * @param name of player in prison
+	 * @return the string
+	 */
+	public String jailCountdown(String name) {
+		return selectedLanguage.jailCountdown(name);
+	}
+	/**
+	 * failed house purchase, you cannot afford it.
+	 * @return the string
+	 */
+	public String failedHouseNoMoney() {
+		return selectedLanguage.failedHouseNoMoney();
+	}
+	/**
+	 * Failed house purchase, no more houses left
+	 * @return the string
+	 */
+	public String failedHouseNoHouses() {
+		return selectedLanguage.failedHouseNoHouses();
+	}
+	/**
+	 * Succesful house purchase, house built
+	 * @return the string
+	 */
+	public String SuccessfulHousePurchase(int newrent, String fieldname) {
+		return selectedLanguage.SuccessfulHousePurchase(newrent, fieldname);
+	}
+	/**
+	 * Player rolled a double, extra roll is rewarded
+	 * @param name
+	 * @return
+	 */
+	public String extraRoll(String name) {
+		return selectedLanguage.extraRoll(name);
 	}
 
 }

@@ -17,7 +17,7 @@ import model.PlayerDTO;
 public class StartDTO extends FieldDTO {
 	
 	/** The bonus. */
-	private int bonus;
+	private final int BONUS;
 
 	/**
 	 * Constructor til StartDTO.
@@ -29,7 +29,7 @@ public class StartDTO extends FieldDTO {
 	 */
 	public StartDTO(int fieldNumber, String name, Color color, int bonus) {
 		super(fieldNumber, name, color);
-		this.bonus = bonus;
+		this.BONUS = bonus;
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class StartDTO extends FieldDTO {
 	 * @return the bonus
 	 */
 	public int getBonus() {
-		return bonus;
+		return BONUS;
 	}
 
 	// /**

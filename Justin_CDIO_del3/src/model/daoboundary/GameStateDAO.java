@@ -43,6 +43,7 @@ public interface GameStateDAO {
 	 * @throws RuntimeException the runtime exception
 	 */
 	public void saveFieldStatus(GameBoardDTO gb) throws RuntimeException;
+	public void saveFieldStatusThread(GameBoardDTO gb) throws RuntimeException;
 
 	/**
 	 * Gemmer spillerens status i tabellen player_status.
@@ -51,5 +52,6 @@ public interface GameStateDAO {
 	 * @throws RuntimeException the runtime exception
 	 */
 	public void savePlayerStatus(PlayerList p) throws RuntimeException;
+	public void savePlayerStatusThread(PlayerList p) throws RuntimeException;
 
 }

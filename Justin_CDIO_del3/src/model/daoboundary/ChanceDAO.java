@@ -3,7 +3,7 @@
  */
 package model.daoboundary;
 
-import model.ChanceCard;
+import model.NOTIMPLEMENTEDChanceCard;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -17,7 +17,7 @@ public interface ChanceDAO {
 	 * @return the chance
 	 * @throws RuntimeException the runtime exception
 	 */
-	public ChanceCard getChance() throws RuntimeException;
+	public NOTIMPLEMENTEDChanceCard getChance() throws RuntimeException;
 
 	/**
 	 * Gets the chance card count.

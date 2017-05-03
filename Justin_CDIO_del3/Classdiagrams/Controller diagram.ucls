@@ -10,25 +10,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="controller.fieldcontrollers.JailController" project="35_ProjektCDIO" 
-    file="/35_ProjektCDIO/src/controller/fieldcontrollers/JailController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="749" y="744"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="controller.fieldcontrollers.OwnableController" project="35_ProjektCDIO" 
+  <class id="2" language="java" name="controller.fieldcontrollers.OwnableController" project="35_ProjektCDIO" 
     file="/35_ProjektCDIO/src/controller/fieldcontrollers/OwnableController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="292" y="635"/>    
+    <position height="-1" width="-1" x="270" y="602"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="controller.fieldcontrollers.StreetController" project="35_ProjektCDIO" 
+  <class id="3" language="java" name="controller.fieldcontrollers.StreetController" project="35_ProjektCDIO" 
     file="/35_ProjektCDIO/src/controller/fieldcontrollers/StreetController.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="883" y="461"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,16 +28,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="controller.fieldcontrollers.TaxController" project="35_ProjektCDIO" 
+  <class id="4" language="java" name="controller.fieldcontrollers.TaxController" project="35_ProjektCDIO" 
     file="/35_ProjektCDIO/src/controller/fieldcontrollers/TaxController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="952" y="618"/>    
+    <position height="-1" width="-1" x="961" y="611"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="controller.Controller" project="35_ProjektCDIO" 
+  <class id="5" language="java" name="controller.Controller" project="35_ProjektCDIO" 
     file="/35_ProjektCDIO/src/controller/Controller.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="636" y="252"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="controller.SetupController" project="35_ProjektCDIO" 
+  <class id="6" language="java" name="controller.SetupController" project="35_ProjektCDIO" 
     file="/35_ProjektCDIO/src/controller/SetupController.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1001" y="265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="controller.GameLogic" project="35_ProjektCDIO" 
+  <class id="7" language="java" name="controller.GameLogic" project="35_ProjektCDIO" 
     file="/35_ProjektCDIO/src/controller/GameLogic.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="363" y="456"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,29 +64,63 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="9">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
+  <enumeration id="8" language="java" name="controller.fieldcontrollers.JailStateController" project="35_ProjektCDIO" 
+    file="/35_ProjektCDIO/src/controller/fieldcontrollers/JailStateController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="115" width="502" x="430" y="676"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <enumeration id="9" language="java" name="controller.fieldcontrollers.BuyHouseController" project="35_ProjektCDIO" 
+    file="/35_ProjektCDIO/src/controller/fieldcontrollers/BuyHouseController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="407" x="26" y="141"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
   <dependency id="10">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
   </dependency>  
   <dependency id="11">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="8"/>  
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
   </dependency>  
   <dependency id="12">    
-    <end type="SOURCE" refId="8"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="4"/>  
   </dependency>  
   <dependency id="13">    
-    <end type="SOURCE" refId="8"/>    
+    <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
   <dependency id="14">    
-    <end type="SOURCE" refId="8"/>    
+    <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="15">    
+    <end type="SOURCE" refId="5" navigable="false" variant="ASSOCIATION">      
+      <attribute id="16" name="RULES"/>      
+      <multiplicity id="17" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="8"/>  
+  </dependency>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="2"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

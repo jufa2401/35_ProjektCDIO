@@ -64,8 +64,8 @@ public class SetupController {
 			gamestate.loadFieldStatus(playerList, game); // load fieldstatus
 			for (int i = 0; i < game.getNumberOfFields(); i++) {
 				FieldDTO field = game.getField(i);
-				int type = field.getType();
-				switch (type) {
+				final int TYPE = field.getType();
+				switch (TYPE) {
 				case 1:
 				case 2:
 				case 5:
@@ -73,7 +73,7 @@ public class SetupController {
 					if (ofield.getOwner() != null) {
 						String name = ofield.getOwner().getName();
 						GUIh.setOwner(ofield.getID(), name);
-						if (type == 5) {
+						if (TYPE == 5) {
 							StreetDTO sfield = (StreetDTO) ofield;
 							//Den udleverede GUI indeholder ikke en metoder som kan opdatere dent, hvilket der behov for når der kommer flere huse
 							GUIh.setRent(i, language.getFieldRent(sfield.getRent())); 
@@ -86,6 +86,7 @@ public class SetupController {
 				}
 			}
 		} else {
+
 			// Spørger om antal spillere
 			playerCount = GUIh.getInteger(language.AskHowManyPlayers(), 2, 6);
 
@@ -103,6 +104,32 @@ public class SetupController {
 			}
 		}
 		return playerList;
+	}
+	/**
+	 * Min run metode starter og initialiserer GameBoard, GUIHandler, sætter
+	 * sprog, henter reglerne starter spillet
+	 *
+	 */
+	public void runGame() {		
+		final GameBoardDTO GAME = new GameBoardDTO();
+		final GUIHandler GUI = new GUIHandler();
+		final SetupController SETUP = new SetupController();
+		// Sætter sproget til dansk, flere sprog kan udvikles i language pakken,
+		// ved at implementere language definitions
+		final LanguageHandler LANGUAGE = new LanguageHandler("Dansk");
+		final PlayerList PLAYERLIST = SETUP.setup(GUI, GAME, LANGUAGE);
+
+
+		// Start spillet
+		final Controller GameController = new Controller(GUI, LANGUAGE, GAME, PLAYERLIST);
+		GameController.launchGame();
+
+		/*
+		 *Dette virker ikke rigtigt, da GUIen ikke har funktioner til at fjerne spillere. 
+		 *Dette virker delvist, hvis man starter kun 2 mands spil. Men de døde spillere bliver stadig vist, dog ikke rykket
+		 *Når vi når enden af Controller skal GUIen lukkes, så felterne kan tegnes igen uden ejere.
+		 */
+		GUI.shutdown();
 	}
 
 }

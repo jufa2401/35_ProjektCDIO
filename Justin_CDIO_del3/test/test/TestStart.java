@@ -24,8 +24,8 @@ public class TestStart {
 	/** The start. */
 	private StartDTO start;
 	
-	/** The gb. */
-	GameBoardDTO gb = new GameBoardDTO();
+	/** The GB. */
+	private final GameBoardDTO GB = new GameBoardDTO();
 
 	/**
 	 * Sets the up.
@@ -69,8 +69,8 @@ public class TestStart {
 		Assert.assertEquals(expected, actual);
 
 		// Tester påvirkningen på spilleren, altså balancen.
-		player.moveToField(35, gb);
-		player.moveToField(5, gb);
+		player.moveToField(35, GB);
+		player.moveToField(5, GB);
 		expected = 1000 + 4000;
 		actual = player.getBalance();
 		Assert.assertEquals(expected, actual);

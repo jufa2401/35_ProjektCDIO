@@ -45,7 +45,7 @@ public class JailDTO extends FieldDTO {
 	 */
 	@Override
 	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
-		int currentfield = this.getID();
+		int currentfield = getID();
 		// hvis det er go to jail, bliver du smidt i fængsel
 		if (currentfield != jailindex) {
 			currentfield = player.moveToJail(jailindex, gb);

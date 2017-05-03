@@ -16,7 +16,7 @@ import model.PlayerDTO;
 public class TaxDTO extends FieldDTO {
 	
 	/** The tax rate. */
-	private int taxAmount, taxRate;
+	private final int TAXAMOUNT, TAXRATE;
 
 	/**
 	 * Instantiates a new tax DTO.
@@ -24,13 +24,13 @@ public class TaxDTO extends FieldDTO {
 	 * @param fieldNumber the field number
 	 * @param name the name
 	 * @param color the color
-	 * @param taxAmount the tax amount
-	 * @param taxRate the tax rate
+	 * @param TAXAMOUNT the tax amount
+	 * @param TAXRATE the tax rate
 	 */
 	public TaxDTO(int fieldNumber, String name, Color color, int taxAmount, int taxRate) {
 		super(fieldNumber, name, color);
-		this.taxAmount = taxAmount;
-		this.taxRate = taxRate;
+		this.TAXAMOUNT = taxAmount;
+		this.TAXRATE = taxRate;
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class TaxDTO extends FieldDTO {
 	 */
 	@Override
 	public int getTaxAmount() {
-		return taxAmount;
+		return TAXAMOUNT;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class TaxDTO extends FieldDTO {
 	 */
 	@Override
 	public int getTaxRate() {
-		return taxRate;
+		return TAXRATE;
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class TaxDTO extends FieldDTO {
 	 */
 	@Override
 	public int landOnField(PlayerDTO player) {
-		int payment = this.taxAmount;
+		final int payment = TAXAMOUNT;
 		player.Transaction(-payment);
 		return payment;
 	}
@@ -108,11 +108,11 @@ public class TaxDTO extends FieldDTO {
 	 */
 	@Override
 	public int landOnField(PlayerDTO player, int rate) {
-		int balance = player.getBalance();
+		final int balance = player.getBalance();
 		// Vi beregner assets som resterende penge på kontoen, det kunne have
 		// inkluderet værdien af ejendomme
 		// Dette kan evt. implementeres senere
-		int payment = rate * balance / 100;
+		final int payment = rate * balance / 100;
 		player.Transaction(-payment);
 		return payment;
 	}

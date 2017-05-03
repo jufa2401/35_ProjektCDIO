@@ -32,12 +32,12 @@ public class MySQLGameStateDAO implements GameStateDAO {
 	 */
 	@Override
 	public boolean checkFieldStatus() throws RuntimeException {
-		Connector c = new Connector();
+		Connector C = new Connector();
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(14);
+		SQLMapper M = new SQLMapper();
+		String query = M.getStatement(14);
 		try {
-			ResultSet rs = c.doQuery(query);
+			ResultSet rs = C.doQuery(query);
 			rs.next();
 			int fieldstatuscount = rs.getInt(1);
 
@@ -48,13 +48,13 @@ public class MySQLGameStateDAO implements GameStateDAO {
 
 		catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Error");
+			throw new RuntimeException("Error, checking field status");
 		}
 
 		return false;
 
 	}
-	
+
 	/**
 	 * Tømmer tabellerne field_status og player_status for datainput.
 	 *
@@ -62,22 +62,22 @@ public class MySQLGameStateDAO implements GameStateDAO {
 	 */
 	@Override
 	public void emptyDataEntries() throws RuntimeException {
-		Connector c = new Connector();
+		Connector C = new Connector();
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(8);
-		String query2 = m.getStatement(9);
+		SQLMapper M = new SQLMapper();
+		String query = M.getStatement(8);
+		String query2 = M.getStatement(9);
 		try {
 
-			c.doUpdate(query2);
-			c.doUpdate(query);
+			C.doUpdate(query2);
+			C.doUpdate(query);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Error");
+			throw new RuntimeException("Error emptying player/field status");
 		}
 	}
-	
+
 	/**
 	 * Indlæser feltets status.
 	 *
@@ -87,13 +87,13 @@ public class MySQLGameStateDAO implements GameStateDAO {
 	 */
 	@Override
 	public void loadFieldStatus(PlayerList pl, GameBoardDTO gb) throws RuntimeException {
-		Connector c = new Connector();
-		int count = 0; // count er blevet lavet af debugging hensyn
+		Connector C = new Connector();
+		//		int count = 0; // count er blevet lavet af debugging hensyn
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(11);
+		SQLMapper M = new SQLMapper();
+		String query = M.getStatement(11);
 		try {
-			ResultSet rs = c.doQuery(query);
+			ResultSet rs = C.doQuery(query);
 			while (rs.next()) {
 				int fieldid = rs.getInt("field_id");
 				int ownerid = rs.getInt("owned_by"); // check
@@ -111,11 +111,11 @@ public class MySQLGameStateDAO implements GameStateDAO {
 						// sfield.setHotels(hotels);
 					}
 				}
-				++count;
+				//				++count;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Error");
+			throw new RuntimeException("Error, loading field_status ");
 		}
 	}
 
@@ -127,10 +127,10 @@ public class MySQLGameStateDAO implements GameStateDAO {
 	 */
 	@Override
 	public void saveFieldStatus(GameBoardDTO gb) throws RuntimeException {
-		Connector c = new Connector();
+		Connector C = new Connector();
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(7);
+		SQLMapper M = new SQLMapper();
+		String query = M.getStatement(7);
 
 		try {
 			for (int i = 0; i < gb.getNumberOfFields(); i++) {
@@ -163,15 +163,28 @@ public class MySQLGameStateDAO implements GameStateDAO {
 
 				// Gemmer kun felter som er ejet
 				if (ownerid >= 0) {
-					c.doUpdate(newquery);
+					C.doUpdate(newquery);
 				}
 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Error");
+			throw new RuntimeException("Error, saving field_status");
 		}
 
+	}
+	@Override
+	public void saveFieldStatusThread(GameBoardDTO gb){
+		new Thread(
+				new Runnable() {
+					public void run() {
+						try {
+							saveFieldStatus(gb);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
 	}
 
 	/**
@@ -182,11 +195,11 @@ public class MySQLGameStateDAO implements GameStateDAO {
 	 */
 	@Override
 	public void savePlayerStatus(PlayerList p) throws RuntimeException {
-		Connector c = new Connector();
+		final Connector C = new Connector();
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
+		final SQLMapper M = new SQLMapper();
 		int nplayers = p.getNumberofPlayer();
-		String query = m.getStatement(10);
+		String query = M.getStatement(10);
 
 		try {
 
@@ -198,12 +211,25 @@ public class MySQLGameStateDAO implements GameStateDAO {
 				int position = player.getCurrentField();
 				// Her kunne man have brugt Preparedstatement
 				String newquery = query + i + ",'" + name + "'," + position + "," + balance + "," + roundsjail + ");";
-				c.doUpdate(newquery);
+				C.doUpdate(newquery);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new RuntimeException("Error");
+			throw new RuntimeException("Error, saving player status");
 		}
+	}
+	@Override
+	public void savePlayerStatusThread(PlayerList p){
+		new Thread(
+				new Runnable() {
+					public void run() {
+						try {
+							savePlayerStatus(p);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}).start();
 	}
 
 }

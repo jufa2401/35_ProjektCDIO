@@ -24,14 +24,14 @@ public class MySQLPlayerDAO implements PlayerDAO {
 	 */
 	@Override
 	public int getPlayerCount() throws RuntimeException {
-		Connector c = new Connector();
+		final Connector C = new Connector();
 
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(4);
+		final SQLMapper M = new SQLMapper();
+		String query = M.getStatement(4);
 
 		try {
-			ResultSet rs = c.doQuery(query);
+			ResultSet rs = C.doQuery(query);
 			rs.next();
 			int playerCount = rs.getInt(1);
 
@@ -48,15 +48,15 @@ public class MySQLPlayerDAO implements PlayerDAO {
 	 */
 	@Override
 	public PlayerList getPlayers() throws RuntimeException {
-		Connector c = new Connector();
+		final Connector C = new Connector();
 
 		/* Alt SQL er holdt ude af java koden */
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(2);
+		final SQLMapper M = new SQLMapper();
+		String query = M.getStatement(2);
 		int playerCount = getPlayerCount();
 		PlayerList pl = new PlayerList(playerCount);
 		try {
-			ResultSet rs = c.doQuery(query);
+			ResultSet rs = C.doQuery(query);
 			while (rs.next()) {
 				int playerid = rs.getInt("player_id");
 				String name = rs.getString("name");

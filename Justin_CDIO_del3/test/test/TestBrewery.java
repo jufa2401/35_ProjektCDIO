@@ -29,8 +29,8 @@ public class TestBrewery {
 	/** The d 12. */
 	private DiceCup d12;
 	
-	/** The gb. */
-	private GameBoardDTO gb = new GameBoardDTO();
+	/** The GB. */
+	private final GameBoardDTO GB = new GameBoardDTO();
 
 	/**
 	 * Sets the up.
@@ -70,8 +70,8 @@ public class TestBrewery {
 	public void testLandOnField() {
 		BreweryDTO brewfield = null;
 		// Sætter første brewery til at have samme ejer
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			final FieldDTO field = GB.getField(index);
 			if (field.getType() == 2) {
 				brewfield = (BreweryDTO) field;
 				brewfield.setOwner(ejer);
@@ -87,7 +87,7 @@ public class TestBrewery {
 		d12.rollDiceCup();
 		player.SaveDiceRoll(d12);
 
-		brewfield.landOnField(player, gb);
+		brewfield.landOnField(player, GB);
 
 		expected = 10000 - (100 * d12.getDiceSum());
 		actual = player.getBalance();
@@ -111,8 +111,8 @@ public class TestBrewery {
 
 		BreweryDTO brewfield = null;
 		// Sætter første brewery til at have samme ejer
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 2) {
 				brewfield = (BreweryDTO) field;
 				brewfield.setOwner(ejer);
@@ -122,7 +122,7 @@ public class TestBrewery {
 		d12.rollDiceCup();
 		player.SaveDiceRoll(d12);
 
-		brewfield.landOnField(player, gb);
+		brewfield.landOnField(player, GB);
 
 		// Tester om balanen bliver påvirket korrekt
 		expected = 10000 - (200 * d12.getDiceSum());

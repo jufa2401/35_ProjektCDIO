@@ -13,7 +13,7 @@ public class MySQLStreetDAO implements StreetDAO {
 	@Override
 	public StreetDTO getStreet(int id, String name, int price, int[] rent) throws RuntimeException {
 
-		Connector c = new Connector();
+		final Connector C = new Connector();
 		PreparedStatement preparedstatement = null;
 		
 		String streetgroup = null;
@@ -21,11 +21,11 @@ public class MySQLStreetDAO implements StreetDAO {
 		Color color = null;
 		int houseprice = 0;
 		
-		SQLMapper m = new SQLMapper();
-		String query = m.getStatement(15);
+		final SQLMapper M = new SQLMapper();
+		String query = M.getStatement(15);
 
 		try {
-			preparedstatement = c.prep(query);
+			preparedstatement = C.prep(query);
 			preparedstatement.setInt(1, id);
 			ResultSet rs = preparedstatement.executeQuery();
 			while (rs.next()) {
@@ -34,7 +34,6 @@ public class MySQLStreetDAO implements StreetDAO {
 				houseprice = rs.getInt("house_price");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	

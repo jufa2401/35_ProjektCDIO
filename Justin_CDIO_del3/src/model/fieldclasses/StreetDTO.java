@@ -16,10 +16,12 @@ import model.PlayerDTO;
 public class StreetDTO extends Ownable {
 	
 	/** The rent. */
-	private int[] rent = new int[6];
+	private final int[] rent = new int[6];
 
 	/** The houseprice. */
-	private int houses, hotels, houseprice;
+	private int houses, hotels;
+
+	private final int HOUSEPRICE;
 	
 	/** The group. */
 	String group;
@@ -32,13 +34,10 @@ public class StreetDTO extends Ownable {
 	 * @param streetgroup the streetgroup
 	 * @param color the color
 	 * @param price the price
-	 * @param rent the rent
-	 * @param rent_1 the rent 1
-	 * @param rent_2 the rent 2
-	 * @param rent_3 the rent 3
-	 * @param rent_4 the rent 4
+	 * @param rent-array the rent
 	 * @param houseprice the houseprice
 	 */
+/*
 	public StreetDTO(int fieldNumber, String name, String streetgroup, Color color, int price, int rent, int rent_1,
 			int rent_2, int rent_3, int rent_4, int houseprice) {
 		super(fieldNumber, name, color, price);
@@ -51,6 +50,8 @@ public class StreetDTO extends Ownable {
 		this.houseprice = houseprice;
 		this.group = streetgroup;
 	}
+	// Gammel konstruktør til gamle database design
+*/
 
 	public StreetDTO(int id, String name, String streetgroup, Color color, int price, int[] rent, int houseprice) {
 		super(id, name, color, price);
@@ -60,8 +61,8 @@ public class StreetDTO extends Ownable {
 		this.rent[3] = rent[3];
 		this.rent[4] = rent[4];
 		this.rent[5] = 0;
-		this.houseprice = houseprice;
-		this.group = streetgroup;
+		this.HOUSEPRICE = houseprice;
+		group = streetgroup;
 	}
 
 	/**
@@ -73,14 +74,14 @@ public class StreetDTO extends Ownable {
 	 */
 	// Bliver aldrig kaldt, er til at checke om man ejer en gadegruppe
 	public boolean checkStreetGroupOwned(PlayerDTO p, GameBoardDTO gb) {
-		int nfields = gb.getNumberOfFields();
+		final int nfields = gb.getNumberOfFields();
 		int ngroup = 0;
 		int nowned = 0;
 
 		for (int i = 0; i < nfields; i++) {
-			FieldDTO field = gb.getField(i);
+			final FieldDTO field = gb.getField(i);
 			if (field.getType() == 5) {
-				StreetDTO sfield = (StreetDTO) field;
+				final StreetDTO sfield = (StreetDTO) field;
 				if (sfield.getGroup().equals(group)) {
 					++ngroup;
 					if (sfield.getOwner() == p) {
@@ -116,7 +117,7 @@ public class StreetDTO extends Ownable {
 	 * @return the house price
 	 */
 	public int getHousePrice() {
-		return houseprice;
+		return HOUSEPRICE;
 	}
 
 	/**
@@ -165,8 +166,8 @@ public class StreetDTO extends Ownable {
 	@Override
 	public int landOnField(PlayerDTO player) {
 		int paid = 0;
-		if (this.owner != null) {
-			player.payTo(this.owner, rent[houses]);
+		if (owner != null) {
+			player.payTo(owner, rent[houses]);
 			paid = rent[houses];
 			return paid;
 		} else {

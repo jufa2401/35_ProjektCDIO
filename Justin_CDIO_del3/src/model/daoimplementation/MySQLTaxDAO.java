@@ -12,25 +12,24 @@ public class MySQLTaxDAO implements TaxDAO {
 	@Override
 	public TaxDTO getTax(int id, String name) throws RuntimeException {
 
-	Connector c = new Connector();
+	final Connector C = new Connector();
 	PreparedStatement preparedstatement = null;
 	
 	int tax_amount = 0;
 	int tax_rate = 0;
 	int colorint = 0;
-	SQLMapper m = new SQLMapper();
-	String query = m.getStatement(16);
+	final SQLMapper M = new SQLMapper();
+	String query = M.getStatement(16);
 
 	try {
-		preparedstatement = c.prep(query);
+		preparedstatement = C.prep(query);
 		preparedstatement.setInt(1, id);
 		ResultSet rs = preparedstatement.executeQuery();
 		while (rs.next()) {
 		tax_amount = rs.getInt("tax_amount");
 		tax_rate = rs.getInt("tax_rate");
 		}
-	} catch (SQLException e) {
-		// TODO Auto-generated catch block
+	} catch (final SQLException e) {
 		e.printStackTrace();
 	}
 

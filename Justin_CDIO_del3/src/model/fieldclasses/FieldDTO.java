@@ -17,35 +17,35 @@ import model.PlayerDTO;
 public abstract class FieldDTO {
 	
 	/** The id. */
-	private int ID;
+	private final int ID;
 	
-	/** The color. */
-	private Color color;
+	/** The COLOR. */
+	private final Color COLOR;
 	
-	/** The name. */
-	private String name;
+	/** The NAME. */
+	private final String NAME;
 
 	/**
 	 * Constructor som laver et felt.
 	 *
 	 * @param fieldNumber the field number
-	 * @param name the name
-	 * @param color the color
+	 * @param NAME the NAME
+	 * @param COLOR the COLOR
 	 */
 
-	public FieldDTO(int fieldNumber, String name, Color color) {
-		this.ID = fieldNumber;
-		this.color = color;
-		this.name = name;
+	public FieldDTO(int fieldNumber, String NAME, Color COLOR) {
+		ID = fieldNumber;
+		this.COLOR = COLOR;
+		this.NAME = NAME;
 	}
 
 	/**
-	 * Gets the color.
+	 * Gets the COLOR.
 	 *
-	 * @return the color
+	 * @return the COLOR
 	 */
 	public Color getColor() {
-		return color;
+		return COLOR;
 	}
 
 	/**
@@ -58,13 +58,13 @@ public abstract class FieldDTO {
 	}
 
 	/**
-	 * Gets the name.
+	 * Gets the NAME.
 	 *
-	 * @return the name
+	 * @return the NAME
 	 */
 	public String getName() {
 		// TODO Auto-generated method stub
-		return name;
+		return NAME;
 	}
 
 	/**

@@ -25,22 +25,22 @@ public class TaxController {
 	 */
 	public static void TaxRules(GUIHandler GUIh, LanguageHandler language, int fieldNumber, FieldDTO field,
 			PlayerDTO player) {
-		int taxAmount = field.getTaxAmount();
-		int taxRate = field.getTaxRate();
+		final int TAXAMOUNT = field.getTaxAmount();
+		final int TAXRATE = field.getTaxRate();
 		int paid;
-		if (taxAmount > 0 && taxRate > 0) {
+		if (TAXAMOUNT > 0 && TAXRATE > 0) {
 			// Tax-felt med valg af beløb håndteres specielt, spilleren spørges
 			// Teksten på knapperne er ikke tekst, men tal og behøver derfor
 			// ikke oversættes
 			// Teksten på knapperne er ikke tekst, men tal og behøver derfor
 			// ikke oversættes
-			if (GUIh.getYesNo(language.askPayTax(), taxAmount + "", taxRate + "%")) {
+			if (GUIh.getYesNo(language.askPayTax(), TAXAMOUNT + "", TAXRATE + "%")) {
 				// Fast beløb valgt
 				paid = field.landOnField(player);
 				GUIh.getButtonPressed(language.playerTax(player.getName(), paid), language.Ok());
 			} else {
 				// Rate valgt, beløb afhængig af saldobalance
-				paid = field.landOnField(player, taxRate);
+				paid = field.landOnField(player, TAXRATE);
 				GUIh.getButtonPressed(language.playerTax(player.getName(), paid), language.Ok());
 			}
 

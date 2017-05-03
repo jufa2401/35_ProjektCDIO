@@ -22,8 +22,8 @@ public class Dansk implements LanguageDefinitions {
 	 * @see boundary.language.LanguageDefinitions#askBuyHouse()
 	 */
 	@Override
-	public String askBuyHouse() {
-		return "Vil du rykke eller købe hus?";
+	public String askBuyHouse(String name) {
+		return "Vil spilleren " + name + " købe hus, inden han rykker? \nDu får ikke mulighed for at købe hus senere i din tur";
 	}
 
 	/* (non-Javadoc)
@@ -249,17 +249,25 @@ public class Dansk implements LanguageDefinitions {
 	 * @see boundary.language.LanguageDefinitions#playerGoTOJail(java.lang.String)
 	 */
 	@Override
-	public String playerGoTOJail(String name) {
+	public String playerGoToJail(String name) {
 		return "Spilleren " + name + " smides i fængsel";
 	}
 
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#playerOutOfJailDoubles(java.lang.String)
+	 */
+	@Override
+	public String playerOutOfJailDoubles(String name) {
+
+		return "Spilleren " + name + " slog to ens og kom ud af fængsel!";
+	}
 	/* (non-Javadoc)
 	 * @see boundary.language.LanguageDefinitions#playerOutOfJail(java.lang.String)
 	 */
 	@Override
 	public String playerOutOfJail(String name) {
 
-		return "Spilleren " + name + " er kommet ud af fængsel!";
+		return "Spilleren " + name + " løslades nu";
 	}
 
 	/* (non-Javadoc)
@@ -293,25 +301,68 @@ public class Dansk implements LanguageDefinitions {
 	public String yes() {
 		return "Ja";
 	}
-
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#timedExit()
+	 */
 	@Override
 	public String timedExit() {
 		return null;
 	}
-
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#exitOrNew()
+	 */
 	@Override
 	public String exitOrNew() {
 		return "Vil du starte et nyt spil, eller afslutte?";
 	}
-
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#endgame()
+	 */
 	@Override
 	public String endgame() {
 		return "Afslut";
 	}
-
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#newgame()
+	 */
 	@Override
 	public String newgame() {
 		return "Nyt Spil";
+	}
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#jailCountdown(java.lang.String)
+	 */
+	@Override
+	public String jailCountdown(String name) {
+		return "Spilleren " + name + " slog ikke 2 ens og kom ikke ud af fængsel!";
+	}
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#failedHouseNoMoney()
+	 */
+	@Override
+	public String failedHouseNoMoney() {
+		return "Du har ikke råd til at købe hus på disse grunde";
+	}
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#failedHouseNoHouses()
+	 */
+	@Override
+	public String failedHouseNoHouses() {
+		return "Der er ikke flere huse at købe på disse grunde";
+	}
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#SuccesfulHousePurchase(int)
+	 */
+	@Override
+	public String SuccessfulHousePurchase(int newrent, String fieldname) {
+		return "Tillykke med dit nye hus på gaden: "+ fieldname +"\nLejen er forhøjet til: " +newrent ;
+	}
+	/* (non-Javadoc)
+	 * @see boundary.language.LanguageDefinitions#failedHouseNoHouses(java.lang.String)
+	 */
+	@Override
+	public String extraRoll(String name) {
+		return "Spilleren " + name + " har slået 2 ens, du modtager ekstra tur!";
 	}
 
 

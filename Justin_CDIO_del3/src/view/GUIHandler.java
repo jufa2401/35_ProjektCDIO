@@ -28,7 +28,7 @@ import model.language.LanguageHandler;
  * Denne klasse indeholder alle de GUI metoder vi anvender til programmet.
  */
 public class GUIHandler {
-	
+
 	/** The playerid. */
 	static int pid = 0;
 	
@@ -46,7 +46,7 @@ public class GUIHandler {
 	 * @param balance the balance
 	 */
 	public void addPlayer(String player, int currentField, int balance) {
-		Builder carBuilder = new Car.Builder();
+		final Builder carBuilder = new Car.Builder();
 		switch (pid) {
 		case 0:
 			carBuilder.typeRacecar().patternHorizontalGradiant().primaryColor(Color.MAGENTA)
@@ -90,7 +90,7 @@ public class GUIHandler {
 	 */
 	public int buyHouse(GameBoardDTO gb, String prompt, PlayerDTO p) {
 		ArrayList<String> groups = gb.getGroupsOwnedBy(p);
-		String[] T = new String[1];
+		final String[] T = new String[1];
 		String[] grouparray = groups.toArray(T);
 		String group_price = GUI.getUserSelection(prompt, grouparray);
 		// '(pris)' fjernes ved at splitte på '(' og derefter fjerne afsluttende mellemrum
@@ -163,7 +163,7 @@ public class GUIHandler {
 			case 8:
 				fields[id] = new Refuge.Builder().setTitle(language.getFieldDescription(type))
 						.setSubText(language.getFieldPrice(price)).setDescription(gb.getFieldName(id))
-						// .setBgColor(gb.getFieldColor(index))
+						.setPicture("ressources/monopoly_icon_parking_col (1).gif")
 						.build();
 				break;
 			default:
@@ -361,7 +361,7 @@ public class GUIHandler {
 	 * @param d1 the d 1
 	 * @param d2 the d 2
 	 */
-	public void showDice(int d1, int d2) {
+	public void showDice(int d1, int d2) {	
 		GUI.setDice(d1, d2);
 	}
 

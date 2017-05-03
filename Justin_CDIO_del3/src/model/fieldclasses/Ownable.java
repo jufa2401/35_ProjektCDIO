@@ -14,15 +14,13 @@ import model.PlayerDTO;
  * Field og de metoder som kun er generelle, for de felter der kan ejes.
  */
 public abstract class Ownable extends FieldDTO {
-	
+
 	/** The price. */
 	protected int price;
-	
-	/** The owner. */
-	PlayerDTO owner;
-	
 	/** The Number owned. */
 	protected int NumberOwned = 0;
+	/** The owner. */
+	protected PlayerDTO owner;
 
 	/**
 	 * Constructor til Ownable felter:.
@@ -36,7 +34,7 @@ public abstract class Ownable extends FieldDTO {
 		super(fieldNumber, name, color);
 
 		this.price = price;
-		this.owner = null;
+		owner = null;
 	}
 
 	/**

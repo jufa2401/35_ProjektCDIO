@@ -21,10 +21,10 @@ import model.PlayerDTO;
 public class ShippingCompanyDTO extends Ownable {
 
 	/** The Shipping companys owned. */
-	int ShippingCompanysOwned;
+	private int ShippingCompanysOwned;
 
 	/** The rent. */
-	int[] rent = new int[5];
+	private final int[] RENT = new int[5];
 
 	/**
 	 * Constructor til ShippingCompany felt objekter/instanser.
@@ -38,7 +38,7 @@ public class ShippingCompanyDTO extends Ownable {
 	 * @param rent_3 the rent 3
 	 * @param rent_4 the rent 4
 	 */
-
+/*
 	public ShippingCompanyDTO(int fieldNumber, String name, Color color, int price, int rent_1, int rent_2, int rent_3,
 			int rent_4) {
 		super(fieldNumber, name, color, price);
@@ -49,13 +49,15 @@ public class ShippingCompanyDTO extends Ownable {
 		rent[4] = rent_4;
 
 	}
+	// Gammel konstruktør fra det gamle databasedesign
+*/
 
 	public ShippingCompanyDTO(int fieldnumber, String fieldname, Color color, int price, int[] rent) {
 		super(fieldnumber, fieldname, color, price);
-		this.rent[1] = rent[1];
-		this.rent[2] = rent[2];
-		this.rent[3] = rent[3];
-		this.rent[4] = rent[4];
+		this.RENT[1] = rent[1];
+		this.RENT[2] = rent[2];
+		this.RENT[3] = rent[3];
+		this.RENT[4] = rent[4];
 	}
 
 	/**
@@ -97,7 +99,7 @@ public class ShippingCompanyDTO extends Ownable {
 	 */
 	@Override
 	public int getPrice() {
-		return this.price;
+		return price;
 	}
 
 	/* (non-Javadoc)
@@ -134,10 +136,10 @@ public class ShippingCompanyDTO extends Ownable {
 	@Override
 	public int landOnField(PlayerDTO player, GameBoardDTO gb) {
 		int paid = 0;
-		if (this.owner != null) {
-			ShippingCompanysOwned = getNumberOwned(this.owner, gb);
-			int r = rent[ShippingCompanysOwned];
-			player.payTo(this.owner, r);
+		if (owner != null) {
+			ShippingCompanysOwned = getNumberOwned(owner, gb);
+			int r = RENT[ShippingCompanysOwned];
+			player.payTo(owner, r);
 			paid = r;
 		}
 		return paid;

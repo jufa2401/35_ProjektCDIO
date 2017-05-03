@@ -45,13 +45,13 @@ public class TestDiceCup {
 	 * Test method for {@link model.DiceCup#getDiceSum()}.
 	 */
 	@Test
-	public final void testGetDiceSum() {
+	public void testGetDiceSum() {
 		int two = 0, three = 0, four = 0, five = 0, six = 0, seven = 0, eight = 0, nine = 0, ten = 0, eleven = 0,
 				twelve = 0;
 
 		for (int i = 1; i < 1100001; i++) {
 			dice.rollDiceCup();
-			int roll = dice.getDiceSum();
+			final int roll = dice.getDiceSum();
 
 			if (roll == 2) {
 				two++;

@@ -3,7 +3,7 @@
  */
 package controller;
 
-import controller.fieldcontrollers.JailController;
+import controller.fieldcontrollers.JailStateController;
 import controller.fieldcontrollers.OwnableController;
 import controller.fieldcontrollers.StreetController;
 import controller.fieldcontrollers.TaxController;
@@ -34,11 +34,13 @@ public class GameLogic {
 	 * @param player the player
 	 * @param dice the dice
 	 */
-	public static void FieldRules(GUIHandler GUIh, LanguageHandler language, GameBoardDTO game, int fieldNumber,FieldDTO field, PlayerDTO player, DiceCup dice)
+	
+	//Fjernet static
+	public int FieldRules(GUIHandler GUIh, LanguageHandler language, GameBoardDTO game, int fieldNumber,FieldDTO field, PlayerDTO player, DiceCup dice)
 	{	
-		int type = field.getType();
+		final int TYPE = field.getType();
 
-		switch (type) {
+		switch (TYPE) {
 		case 1:
 		case 2:
 			OwnableController.OwnableRules(GUIh, language, fieldNumber, field, player, game);
@@ -50,14 +52,15 @@ public class GameLogic {
 			StreetController.StreetRules(GUIh, language, fieldNumber, field, player, game);
 			break;
 		case 6:
-			JailController.JailRules(GUIh, language, fieldNumber, field, player, game, dice);
+//			JailController.JailRulesState(GUIh, language, fieldNumber, field, player, game, dice);
+			JailStateController.JailRulesState(GUIh, language, fieldNumber, field, player, game, dice);
 			break;
 
 		default:
-
 		}
 		// GUI opdateres med den nye balance for spilleren
 		GUIh.setBalance(player.getName(), player.getBalance());
+		return fieldNumber;
 
 	}
 

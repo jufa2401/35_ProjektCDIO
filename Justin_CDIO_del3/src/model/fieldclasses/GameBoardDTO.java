@@ -22,20 +22,20 @@ public class GameBoardDTO {
 	/** The field. */
 	private static FieldDTO[] field;
 	
-	/** The fielddao. */
-	FieldDAO fielddao = new MySQLFieldDAO();
+	/** The FIELDDAO. */
+	private final FieldDAO FIELDDAO = new MySQLFieldDAO();
 
 	/**
 	 * Instantiates a new GameBoardDTO.
 	 */
 	public GameBoardDTO() {
-		int fieldcount = fielddao.getFieldCount();
+		int fieldcount = FIELDDAO.getFieldCount();
 
 		GameBoardDTO.field = new FieldDTO[fieldcount];
 
 		for (int index = 0; index < fieldcount; index++) {
 
-			field[index] = fielddao.getField2(index);
+			field[index] = FIELDDAO.getField(index);
 		}
 	}
 
@@ -124,7 +124,7 @@ public class GameBoardDTO {
 	public ArrayList<String> getGroups() {
 		int nfields = getNumberOfFields();
 		int ngroup = 0;
-		ArrayList<String> groups = new ArrayList<String>();
+		ArrayList<String> groups = new ArrayList<>();
 		String lastgroup = "";
 		for (int i = 0; i < nfields; i++) {
 			FieldDTO field = getField(i);
@@ -152,7 +152,7 @@ public class GameBoardDTO {
 	public ArrayList<String> getGroupsOwnedBy(PlayerDTO p) {
 		int nfields = getNumberOfFields();
 		int ngroup = 0;
-		ArrayList<String> groups = new ArrayList<String>();
+		ArrayList<String> groups = new ArrayList<>();
 		String lastgroup = "";
 		for (int i = 0; i < nfields; i++) {
 			FieldDTO field = getField(i);

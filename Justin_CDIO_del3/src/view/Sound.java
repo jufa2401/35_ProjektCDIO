@@ -9,7 +9,14 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
-
+/**
+ * Denne klasse er delvis afskrift af en sound klasse-vejledning fundet på nettet.
+ * Det er en klasse fra nettet fordi jeg ville have en klasse med sikker exceptionhandling.
+ * kan ikke finde kilden. 
+ * Metoderne playSoundThread og nedefter er skrevet af mig
+ * @author Justin
+ *
+ */
 public class Sound {
 
 	private final int BUFFER_SIZE = 128000;
@@ -72,6 +79,7 @@ public class Sound {
 		sourceLine.drain();
 		sourceLine.close();
 	}
+	
 	public void playSoundThread(String filename){
 		new Thread(
 				new Runnable() {
@@ -92,7 +100,7 @@ public class Sound {
 		playSoundThread("ressources/coin.wav");
 	}
 	public void playGameOverSound (){
-		playSound("ressources/game_over.wav");
+		playSoundThread("ressources/game_over.wav");
 	}
 
 }

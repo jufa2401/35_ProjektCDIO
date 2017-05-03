@@ -1,25 +1,18 @@
 1=SELECT * FROM matador2.`field_ownable_view` WHERE field_id = ?;
-2=SELECT * FROM matador2.player_status_view;
-3=SELECT * FROM matador2.ownable_rent_view WHERE field_id = ?;
-4=SELECT * FROM matador2.player_count_view;
-5=SELECT * FROM matador2.field_count_view;
-
+2=SELECT * FROM matador2.player_status;
+3=SELECT * FROM matador2.ownable_rent WHERE field_id = ?;
+4=SELECT COUNT(*) FROM matador2.player_status;
+5=SELECT COUNT(*)  FROM matador2.field;
 6=SELECT * FROM `field` WHERE field_id = ##;
-
-
 7=REPLACE INTO `field_status` (field_id, owned_by, street_houses, street_hotels) VALUES(
 8=truncate table `player_status`
-
-
 9=truncate table `field_status`
 10=REPLACE INTO `player_status` (player_id, name, position, balance, rounds_left_jail) VALUES(
-11=SELECT * FROM matador2.field_status_view;
-12=SELECT COUNT(*) FROM `chance_card`;
-13=SELECT * FROM `chance_card` WHERE id = ?;
-14=SELECT * FROM matador2.field_status_count_view;
+11=SELECT * FROM matador2.field_status;
+14=SELECT COUNT(*) FROM matador2.field_status;
 15=SELECT * FROM matador2.`street+group` WHERE field_id = ?;
-16=SELECT * FROM matador2.tax_view WHERE field_id = ?;
-17=SELECT * FROM matador2.refuge_view WHERE field_id = ?;
+16=SELECT * FROM matador2.tax WHERE field_id = ?;
+17=SELECT * FROM matador2.refuge WHERE field_id = ?;
 
 field_ownable_view:
 SELECT * FROM matador2.field
@@ -28,4 +21,6 @@ NATURAL LEFT JOIN ownable
 street+group
 SELECT * FROM matador2.street NATURAL JOIN street_group
 
- 
+
+12=SELECT COUNT(*) FROM `chance_card`;
+13=SELECT * FROM `chance_card` WHERE id = ?;

@@ -16,7 +16,7 @@ import view.Sound;
  * The Class OwnableController.
  */
 public class OwnableController {
-	
+
 	/**
 	 * Ownable rules.
 	 *

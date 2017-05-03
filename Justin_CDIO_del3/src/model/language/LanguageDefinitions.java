@@ -21,7 +21,7 @@ interface LanguageDefinitions {
 	 *
 	 * @return the string
 	 */
-	String askBuyHouse();
+	String askBuyHouse(String name);
 
 	/**
 	 * Ask for player name.
@@ -184,7 +184,7 @@ interface LanguageDefinitions {
 	 * @param name the name
 	 * @return the string
 	 */
-	String playerGoTOJail(String name);
+	String playerGoToJail(String name);
 
 	/**
 	 * Player out of jail.
@@ -192,7 +192,7 @@ interface LanguageDefinitions {
 	 * @param name the name
 	 * @return the string
 	 */
-	String playerOutOfJail(String name);
+	String playerOutOfJailDoubles(String name);
 
 	/**
 	 * Player pay to.
@@ -226,13 +226,60 @@ interface LanguageDefinitions {
 	 * @return the string
 	 */
 	String yes();
-
+	/**
+	 * Unused: intended for use to inform the player of shutdown game after a timeout
+	 * @return the string
+	 */
 	String timedExit();
-
+	/**
+	 *  asks player if he wants to exit the game or start a new one
+	 * @return
+	 */
 	String exitOrNew();
-
+	/**
+	 * end the game
+	 * @return the string
+	 */
 	String endgame();
-
+	/**
+	 * start a new game
+	 * @return the string
+	 */
 	String newgame();
+	/**
+	 * count down rounds left in jail
+	 * @param name of player in prison
+	 * @return the string
+	 */
+	String jailCountdown(String name);
+	/**
+	 * failed house purchase, you cannot afford it.
+	 * @return the string
+	 */
+
+	String failedHouseNoMoney();
+	/**
+	 * Failed house purchase, no more houses left
+	 * @return the string
+	 */
+	String failedHouseNoHouses();
+	/**
+	 * Succesful house purchase, house built
+	 * @return the string
+	 */
+	String SuccessfulHousePurchase(int newrent, String fieldname);
+	/**
+	 * Player rolled a double, extra roll is rewarded
+	 * @param name
+	 * @return
+	 */
+	String extraRoll(String name);
+
+	/**
+	 * player released from jail
+	 * @param name
+	 * @return
+	 */
+	String playerOutOfJail(String name);
 
 }

@@ -22,8 +22,8 @@ public class TestTax {
 	/** The player. */
 	private PlayerDTO player;
 
-	/** The gb. */
-	private GameBoardDTO gb = new GameBoardDTO();
+	/** The GB. */
+	private final GameBoardDTO GB = new GameBoardDTO();
 
 	/**
 	 * Sets the up.
@@ -60,8 +60,8 @@ public class TestTax {
 	@Test
 	public void testLandOnField() {
 		TaxDTO taxfield = null;
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 4) {
 				taxfield = (TaxDTO) field;
 				break;
@@ -92,8 +92,8 @@ public class TestTax {
 		Assert.assertEquals(expected, actual);
 
 		TaxDTO taxfield = null;
-		for (int index = 0; index < gb.getNumberOfFields(); index++) {
-			FieldDTO field = gb.getField(index);
+		for (int index = 0; index < GB.getNumberOfFields(); index++) {
+			FieldDTO field = GB.getField(index);
 			if (field.getType() == 4) {
 				taxfield = (TaxDTO) field;
 

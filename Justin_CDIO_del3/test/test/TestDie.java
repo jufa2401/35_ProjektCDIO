@@ -19,7 +19,7 @@ import model.Die;
  */
 public class TestDie {
 
-	/** The d. */
+	/** The die. */
 	Die d;
 
 	/**
@@ -52,7 +52,7 @@ public class TestDie {
 	 * bliver printet. Dette sker 10 gange, altså har vi 600 kast fordelt på 10
 	 * printede arrays.
 	 */
-	public final void testGetValue() {
+	public void testGetValue() {
 
 		for (int c = 0; c < 10; c++) {
 			int[] testArray = new int[60];

@@ -19,22 +19,21 @@ public class PlayerDTO {
 	/** The name. */
 	private String name;
 	
-	/** The balance, The position of player, dice1, dice2The rounds left jail. */
+	/** The balance, The position of player, ½1, dice2The rounds left jail. */
 	private int balance, currentField, d1, d2, Identifier, rounds_left_jail;
 	
 	/** The has lost. */
 	private boolean hasLost;
 
+	
 	/**
-	 * Instantiates a new player DTO.
+	 * Instantiates a new Player DTO. 
+	 * Denne constructor har ingen parametre, da playerlist ikke har brug for dem
 	 */
 	public PlayerDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
-	// private static int AvailableIdentifer = 0;
 	/**
-	 * Den private int anvendes til at give hver spiller et unikt id.
 	 *
 	 * @param playerid the playerid
 	 * @param name the name
@@ -46,8 +45,6 @@ public class PlayerDTO {
 		this.name = name;
 		this.balance = balance;
 		this.rounds_left_jail = rounds_left_jail;
-
-		// Disse variabler skal vel hentes fra databasen?
 
 		hasLost = false;
 		currentField = position;
@@ -67,6 +64,7 @@ public class PlayerDTO {
 		int fieldindex = -1;
 		int housesonlastfield = 5;
 		int housesonthisfield;
+		// Find field with fewest houses
 		for (int i = 0; i < nfields; i++) {
 			FieldDTO field = gb.getField(i);
 			if (field.getType() == 5) {
@@ -80,15 +78,18 @@ public class PlayerDTO {
 				}
 			}
 		}
+		// Buy house
 		if (fieldindex > 0) {
 			StreetDTO sfield = (StreetDTO) gb.getField(fieldindex);
 			int houseprice = sfield.getHousePrice();
 			int nhouses = sfield.getHouses();
-			if ((balance > houseprice) && (nhouses < 4)) {
+			if (balance < houseprice) 
+				fieldindex = -2;	// Error: Not enough money to buy house
+			else if (nhouses >= 4) 
+				fieldindex = -3;	// Error: Fully built
+			else {
 				Transaction(-houseprice);
 				sfield.setHouses(nhouses + 1);
-			} else {
-				fieldindex = -1;
 			}
 		}
 		return fieldindex;
@@ -151,7 +152,7 @@ public class PlayerDTO {
 	 */
 	// getters and setters for navn og balance
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	/**
@@ -160,7 +161,7 @@ public class PlayerDTO {
 	 * @return the player ID
 	 */
 	public int getPlayerID() {
-		return this.Identifier;
+		return Identifier;
 	}
 
 	/**
@@ -195,13 +196,13 @@ public class PlayerDTO {
 
 	public int moveToField(int roll, GameBoardDTO gb) {
 		int length = gb.getNumberOfFields();
-		this.currentField += roll;
-		while (this.currentField >= length) {
-			this.currentField -= length;
+		currentField += roll;
+		while (currentField >= length) {
+			currentField -= length;
 			// this.balance += gb.getStartBonus();
 			Transaction(gb.getStartBonus());
 		}
-		return this.currentField;
+		return currentField;
 	}
 
 	/**
@@ -211,11 +212,10 @@ public class PlayerDTO {
 	 * @param gb the gb
 	 * @return the int
 	 */
-	// Ny kode skal rettes
 	public int moveToJail(int jailindex, GameBoardDTO gb) {
-		this.currentField = jailindex;
+		currentField = jailindex;
 		setRoundsLeftJail(3);
-		return this.currentField;
+		return currentField;
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class PlayerDTO {
 	 */
 	public void SaveDiceRoll(DiceCup dice) {
 		int[] d = dice.getDiceValue();
-		this.d1 = d[0];
-		this.d2 = d[1];
+		d1 = d[0];
+		d2 = d[1];
 	}
 
 	/**
@@ -254,7 +254,7 @@ public class PlayerDTO {
 	 * @param hasLost the new checks for lost
 	 */
 	// nedenstående metode bliver ikke brugt, og kan fjernes
-	public void setHasLost(boolean hasLost) {
+	public void HasLost(boolean hasLost) {
 		this.hasLost = hasLost;
 	}
 
